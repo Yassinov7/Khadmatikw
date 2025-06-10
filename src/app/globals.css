@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
-:root {
-  --background: #F9FAFB;
-  --primary: #1D4ED8;
-  --secondary: #F59E42;
-  --accent: #FDBA74;
-  --text: #111827;
+
+@theme {
+  --color-background: #F9FAFB;
+  --color-primary: #1D4ED8;
+  --color-secondary: #F59E42;
+  --color-accent: #FDBA74;
+  --color-text: #111827;
 }
 
 body {
-  background: var(--background);
-  color: var(--text);
+  background: var(--color-background);
+  color: var(--color-text);
   font-family: 'Noto Kufi Arabic', Arial, Helvetica, sans-serif;
   direction: rtl;
 }

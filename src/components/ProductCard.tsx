@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import { Phone, MessageCircle } from "lucide-react"; // أيقونات الاتصال والواتساب
+import Image from "next/image";
+import { Phone, MessageCircle } from "lucide-react";
 
 type Product = {
   id: number;
@@ -18,9 +21,8 @@ type Product = {
 };
 
 export function ProductCard({ product }: { product: Product }) {
-  // توليد رابط واتساب إذا كان متوفر
   const whatsappLink = product.contact_info?.whatsapp
-    ? `https://wa.me/${product.contact_info.whatsapp.replace(/[^0-9]/g, "")}?text=مرحبًا، أود الاستفسار عن منتج: ${encodeURIComponent(product.name)}`
+    ? `https://wa.me/${product.contact_info.whatsapp.replace(/[^0-9]/g, "")}?text=مرحبًا، أود الاستفسار عن المنتج: ${encodeURIComponent(product.name)}`
     : null;
 
   const phoneLink = product.contact_info?.phone
@@ -30,27 +32,29 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <div className="bg-white rounded-2xl shadow-md border border-gray-100 flex flex-col h-full transition hover:shadow-lg">
       <Link href={`/products/${product.id}`}>
-        <div className="w-full h-44 bg-gray-50 flex items-center justify-center overflow-hidden rounded-t-2xl">
-          {product.image_url ? (
-            <img
-              src={product.image_url}
-              alt={product.description}
-              className="w-full h-full object-contain p-3"
-              loading="lazy"
-            />
-          ) : (
-            <div className="text-gray-400">بدون صورة</div>
-          )}
+        <div className="w-full h-44 bg-gray-50 flex items-center justify-center overflow-hidden rounded-t-2xl relative">
+          <Image
+            src={product.image_url || "/default-product.png"}
+            alt={product.name || "منتج"}
+            fill
+            sizes="(max-width: 768px) 100vw, 300px"
+            className="object-contain p-3"
+            priority={!!product.image_url} // ✅ فقط إذا كانت صورة حقيقية
+          />
         </div>
       </Link>
+
       <div className="p-4 flex flex-col flex-1 gap-2">
         <div className="text-xs text-gray-500">{product.category?.name}</div>
+
         <Link href={`/products/${product.id}`}>
           <h3 className="text-lg font-bold text-primary hover:underline line-clamp-2">
             {product.name}
           </h3>
         </Link>
+
         <p className="text-gray-600 text-sm line-clamp-2">{product.description}</p>
+
         <div className="mt-2 flex items-center gap-2">
           {product.on_sale && product.sale_price ? (
             <>
@@ -61,12 +65,13 @@ export function ProductCard({ product }: { product: Product }) {
             <span className="text-primary font-bold text-lg">{product.price} د.ك</span>
           ) : null}
         </div>
+
         <div className="flex gap-2 mt-auto">
           {whatsappLink && (
             <a
               href={whatsappLink}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="flex items-center gap-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-bold shadow"
             >
               <MessageCircle size={16} />
@@ -76,7 +81,7 @@ export function ProductCard({ product }: { product: Product }) {
           {phoneLink && (
             <a
               href={phoneLink}
-              className="flex items-center gap-1 px-3 py-2 bg-primary hover:bg-blue-800 text-white rounded-full text-sm font-bold shadow"
+              className="flex items-center gap-1 px-3 py-2 bg-primary hover:bg-primary/90 text-white rounded-full text-sm font-bold shadow"
             >
               <Phone size={16} />
               اتصال

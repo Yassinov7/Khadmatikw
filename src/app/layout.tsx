@@ -6,6 +6,14 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "خدماتي KW",
   description: "كل خدمات الشاشات، الستلايت والكاميرات بالكويت.",
+  openGraph: {
+    title: "خدماتي KW",
+    description: "كل خدمات الشاشات، الستلايت والكاميرات بالكويت.",
+    url: "https://khadmatikw.com",
+    siteName: "خدماتي KW",
+    locale: "ar_KW",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
