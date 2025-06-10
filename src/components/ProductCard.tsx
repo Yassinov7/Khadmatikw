@@ -1,0 +1,89 @@
+import Link from "next/link";
+import { Phone, MessageCircle } from "lucide-react"; // أيقونات الاتصال والواتساب
+
+type Product = {
+  id: number;
+  name: string;
+  description?: string;
+  image_url?: string;
+  price?: number;
+  on_sale?: boolean;
+  sale_price?: number;
+  category?: { name: string };
+  contact_info?: {
+    phone?: string;
+    whatsapp?: string;
+    [key: string]: any;
+  };
+};
+
+export function ProductCard({ product }: { product: Product }) {
+  // توليد رابط واتساب إذا كان متوفر
+  const whatsappLink = product.contact_info?.whatsapp
+    ? `https://wa.me/${product.contact_info.whatsapp.replace(/[^0-9]/g, "")}?text=مرحبًا، أود الاستفسار عن منتج: ${encodeURIComponent(product.name)}`
+    : null;
+
+  const phoneLink = product.contact_info?.phone
+    ? `tel:${product.contact_info.phone.replace(/[^0-9+]/g, "")}`
+    : null;
+
+  return (
+    <div className="bg-white rounded-2xl shadow-md border border-gray-100 flex flex-col h-full transition hover:shadow-lg">
+      <Link href={`/products/${product.id}`}>
+        <div className="w-full h-44 bg-gray-50 flex items-center justify-center overflow-hidden rounded-t-2xl">
+          {product.image_url ? (
+            <img
+              src={product.image_url}
+              alt={product.description}
+              className="w-full h-full object-contain p-3"
+              loading="lazy"
+            />
+          ) : (
+            <div className="text-gray-400">بدون صورة</div>
+          )}
+        </div>
+      </Link>
+      <div className="p-4 flex flex-col flex-1 gap-2">
+        <div className="text-xs text-gray-500">{product.category?.name}</div>
+        <Link href={`/products/${product.id}`}>
+          <h3 className="text-lg font-bold text-primary hover:underline line-clamp-2">
+            {product.name}
+          </h3>
+        </Link>
+        <p className="text-gray-600 text-sm line-clamp-2">{product.description}</p>
+        <div className="mt-2 flex items-center gap-2">
+          {product.on_sale && product.sale_price ? (
+            <>
+              <span className="line-through text-gray-400">{product.price} د.ك</span>
+              <span className="text-secondary font-bold text-lg">{product.sale_price} د.ك</span>
+            </>
+          ) : product.price ? (
+            <span className="text-primary font-bold text-lg">{product.price} د.ك</span>
+          ) : null}
+        </div>
+        <div className="flex gap-2 mt-auto">
+          {whatsappLink && (
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener"
+              className="flex items-center gap-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-bold shadow"
+            >
+              <MessageCircle size={16} />
+              واتساب
+            </a>
+          )}
+          {phoneLink && (
+            <a
+              href={phoneLink}
+              className="flex items-center gap-1 px-3 py-2 bg-primary hover:bg-blue-800 text-white rounded-full text-sm font-bold shadow"
+            >
+              <Phone size={16} />
+              اتصال
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

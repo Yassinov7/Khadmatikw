@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F9FAFB;
+  --primary: #1D4ED8;
+  --secondary: #F59E42;
+  --accent: #FDBA74;
+  --text: #111827;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: 'Noto Kufi Arabic', Arial, Helvetica, sans-serif;
+  direction: rtl;
+}
