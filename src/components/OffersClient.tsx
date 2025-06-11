@@ -1,12 +1,8 @@
 "use client";
 import { useState } from "react";
 import { CategoryBar } from "./CategoryBar";
-import { OfferCard, Offer } from "./OfferCard";
-
-type Category = {
-  id: number;
-  name: string;
-};
+import { OfferCard } from "./OfferCard";
+import type { Category, Offer } from "@/types";
 
 type Props = {
   categories: Category[];
@@ -38,7 +34,7 @@ export function OffersClient({ categories, offers }: Props) {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500 mt-10">لا توجد عروض حاليا.</p>
+        <p className="text-center text-gray-500 mt-10">لا توجد عروض حالياً.</p>
       )}
     </section>
   );

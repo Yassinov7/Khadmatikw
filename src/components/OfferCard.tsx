@@ -1,20 +1,6 @@
 import Image from "next/image";
 import { Phone, MessageCircle, Percent } from "lucide-react";
-
-export type Offer = {
-  id: number;
-  title: string;
-  description?: string;
-  discount_percent?: number;
-  start_date?: string;
-  end_date?: string;
-  product?: { name: string; image_url?: string; category_id?: number; };
-  contact_info?: {
-    phone?: string;
-    whatsapp?: string;
-    [key: string]: string | undefined;
-  };
-};
+import type { Offer } from "@/types";
 
 const DEFAULT_IMAGE = "/default-product.png";
 

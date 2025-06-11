@@ -1,24 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, MessageCircle } from "lucide-react";
-
-export type Product = {
-  id: number;
-  name: string;
-  description?: string;
-  image_url?: string;
-  price?: number;
-  on_sale?: boolean;
-  sale_price?: number;
-  category?: { name: string; category_id?: number; };
-  contact_info?: {
-    phone?: string;
-    whatsapp?: string;
-    [key: string]: string | undefined;
-  };
-};
+import type { Product } from "@/types";
 
 export function ProductCard({ product }: { product: Product }) {
   const whatsappLink = product.contact_info?.whatsapp
@@ -39,22 +22,18 @@ export function ProductCard({ product }: { product: Product }) {
             fill
             sizes="(max-width: 768px) 100vw, 300px"
             className="object-contain p-3"
-            priority={!!product.image_url} // ✅ فقط إذا كانت صورة حقيقية
+            priority={!!product.image_url}
           />
         </div>
       </Link>
-
       <div className="p-4 flex flex-col flex-1 gap-2">
         <div className="text-xs text-gray-500">{product.category?.name}</div>
-
         <Link href={`/products/${product.id}`}>
           <h3 className="text-lg font-bold text-primary hover:underline line-clamp-2">
             {product.name}
           </h3>
         </Link>
-
         <p className="text-gray-600 text-sm line-clamp-2">{product.description}</p>
-
         <div className="mt-2 flex items-center gap-2">
           {product.on_sale && product.sale_price ? (
             <>
@@ -65,7 +44,6 @@ export function ProductCard({ product }: { product: Product }) {
             <span className="text-primary font-bold text-lg">{product.price} د.ك</span>
           ) : null}
         </div>
-
         <div className="flex gap-2 mt-auto">
           {whatsappLink && (
             <a

@@ -1,14 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import { CategoryBar } from "./CategoryBar";
-import { ProductCard, Product } from "./ProductCard";
-
-type Category = {
-  id: number;
-  name: string;
-};
-
+import { ProductCard } from "./ProductCard";
+import type { Category, Product } from "@/types";
 
 type Props = {
   categories: Category[];
@@ -29,7 +23,6 @@ export function ProductsClient({ categories, products }: Props) {
         selectedId={selectedId}
         onSelect={setSelectedId}
       />
-
       {filteredProducts.length === 0 ? (
         <div className="text-center text-gray-500 py-10">
           لا توجد منتجات مطابقة.
