@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CategoryBar } from "./CategoryBar";
-import { ProductCard } from "./ProductCard";
+import { ProductCard, Product } from "./ProductCard";
 
 type Category = {
   id: number;

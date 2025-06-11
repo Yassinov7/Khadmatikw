@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Phone, MessageCircle, Percent } from "lucide-react";
 
-type Offer = {
+export type Offer = {
   id: number;
   title: string;
   description?: string;
@@ -12,7 +12,7 @@ type Offer = {
   contact_info?: {
     phone?: string;
     whatsapp?: string;
-    [key: string]: any;
+    [key: string]: string | undefined;
   };
 };
 

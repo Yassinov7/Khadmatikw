@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, MessageCircle } from "lucide-react";
 
-type Product = {
+export type Product = {
   id: number;
   name: string;
   description?: string;
@@ -16,7 +16,7 @@ type Product = {
   contact_info?: {
     phone?: string;
     whatsapp?: string;
-    [key: string]: any;
+    [key: string]: string | undefined;
   };
 };
 
