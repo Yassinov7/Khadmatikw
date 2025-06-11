@@ -9,21 +9,6 @@ type Category = {
   name: string;
 };
 
-type Product = {
-  id: number;
-  name: string;
-  description?: string;
-  image_url?: string;
-  price?: number;
-  on_sale?: boolean;
-  sale_price?: number;
-  category?: { name: string };
-  category_id: number;
-  contact_info?: {
-    phone?: string;
-    whatsapp?: string;
-  };
-};
 
 type Props = {
   categories: Category[];
