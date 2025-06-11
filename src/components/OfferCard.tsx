@@ -8,7 +8,7 @@ export type Offer = {
   discount_percent?: number;
   start_date?: string;
   end_date?: string;
-  product?: { name: string; image_url?: string };
+  product?: { name: string; image_url?: string; category_id?: number; };
   contact_info?: {
     phone?: string;
     whatsapp?: string;
