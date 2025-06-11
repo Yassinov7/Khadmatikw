@@ -12,7 +12,7 @@ export type Product = {
   price?: number;
   on_sale?: boolean;
   sale_price?: number;
-  category?: { name: string };
+  category?: { name: string; category_id?: number; };
   contact_info?: {
     phone?: string;
     whatsapp?: string;
