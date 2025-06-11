@@ -3,8 +3,22 @@ import { OffersClient } from "@/components/OffersClient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "عروضنا الخاصة | خدماتي KW",
-  description: "اكتشف أحدث العروض على خدمات الشاشات، الستلايت، والكاميرات في الكويت بأسعار مميزة.",
+  title: "أحدث العروض والخصومات | خدماتي KW",
+  description: "استكشف أفضل العروض على خدمات الشاشات، الستلايت، الكاميرات وتركيبها في الكويت. خصومات حصرية وخدمات فنية مميزة مع تواصل سريع عبر واتساب وهاتف.",
+  openGraph: {
+    title: "عروض خاصة وخصومات حقيقية | خدماتي KW",
+    description: "جميع عروض وخصومات خدمات الشاشات، الستلايت والكاميرات في الكويت. احصل على أفضل الأسعار وخدمة تركيب وصيانة احترافية.",
+    url: "https://khadmatikw.vercel.app/offers",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://khadmatikw.vercel.app/offers",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "عروض وخصومات خدماتي KW",
+    description: "اكتشف أقوى عروض الشاشات والستلايت والكاميرات وخدمات التركيب والصيانة في الكويت.",
+  },
 };
 
 export default async function OffersPage() {

@@ -16,7 +16,7 @@ export function Navbar() {
 
   return (
     <nav
-      className="w-full bg-white shadow-sm bg-background sticky top-0 z-50 border-b border-gray-100"
+      className="w-full shadow-sm bg-background sticky top-0 z-50 border-b border-gray-100"
       
       role="navigation"
       aria-label="Main"
