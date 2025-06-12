@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, MessageCircle } from "lucide-react";
 import type { Product } from "@/types";
+import { slugify } from "@/utils/slugify";
 
 export function ProductCard({ product }: { product: Product }) {
   const whatsappLink = product.contact_info?.whatsapp
@@ -18,7 +19,7 @@ export function ProductCard({ product }: { product: Product }) {
       itemScope
       itemType="https://schema.org/Product"
     >
-      <Link href={`/products/${product.id}`}>
+      <Link href={`/products/${slugify(product.name)}-${product.id}`}>
         <div className="w-full h-44 bg-gray-50 flex items-center justify-center overflow-hidden rounded-t-2xl relative">
           <Image
             src={product.image_url || "/default-product.png"}
@@ -39,7 +40,7 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         )}
 
-        <Link href={`/products/${product.id}`}>
+        <Link href={`/products/${slugify(product.name)}-${product.id}`}>
           <h3
             className="text-lg font-bold text-primary hover:underline line-clamp-2"
             itemProp="name"
@@ -48,9 +49,20 @@ export function ProductCard({ product }: { product: Product }) {
           </h3>
         </Link>
 
-        <p className="text-sm text-gray-600 line-clamp-2" itemProp="description">
-          {product.description}
-        </p>
+        <p className="text-sm text-gray-600 truncate" itemProp="description">
+  {product.description?.slice(0, 40)}
+  {product.description && product.description.length > 40 && (
+    <>
+      ...{" "}
+      <Link
+        href={`/products/${slugify(product.name)}-${product.id}`}
+        className="text-primary hover:underline font-medium"
+      >
+        اقرأ المزيد
+      </Link>
+    </>
+  )}
+</p>
 
         <div className="mt-2 flex items-center gap-2" itemProp="offers" itemScope itemType="https://schema.org/Offer">
           {product.on_sale && product.sale_price ? (
@@ -59,7 +71,7 @@ export function ProductCard({ product }: { product: Product }) {
                 {product.price} د.ك
               </span>
               <span
-                className="text-secondary font-bold text-lg"
+                className="text-secondary font-bold px-2 text-2xl"
                 itemProp="price"
               >
                 {product.sale_price} د.ك
@@ -69,7 +81,7 @@ export function ProductCard({ product }: { product: Product }) {
           ) : product.price ? (
             <>
               <span
-                className="text-primary font-bold text-lg"
+                className="text-primary font-bold px-2 text-2xl"
                 itemProp="price"
               >
                 {product.price} د.ك
