@@ -28,6 +28,10 @@ export async function generateMetadata(
       description: product.description || "",
       images: [product.image_url || "/default-product.png"],
     },
+    robots: "index, follow",
+    alternates: {
+      canonical: `https://khadmatikw.vercel.app//products/${slugWithId}`,
+    },
   };
 }
 

@@ -15,19 +15,19 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <article
-      className="bg-white rounded-2xl shadow-md border border-gray-100 flex flex-col h-full transition hover:shadow-lg"
+      className="bg-white rounded-2xl shadow-md border border-gray-200 flex flex-col h-full transition hover:shadow-lg"
       itemScope
       itemType="https://schema.org/Product"
     >
       <Link href={`/products/${slugify(product.name)}-${product.id}`}>
-        <div className="w-full h-44 bg-gray-50 flex items-center justify-center overflow-hidden rounded-t-2xl relative">
+        <div className="w-full h-44 bg-gray-50 flex items-center justify-center rounded-t-2xl relative">
           <Image
             src={product.image_url || "/default-product.png"}
             alt={`صورة منتج: ${product.name}`}
             fill
             sizes="(max-width: 768px) 100vw, 300px"
             className="object-contain p-3"
-            priority={!!product.image_url}
+            priority
             itemProp="image"
           />
         </div>
@@ -50,19 +50,19 @@ export function ProductCard({ product }: { product: Product }) {
         </Link>
 
         <p className="text-sm text-gray-600 truncate" itemProp="description">
-  {product.description?.slice(0, 40)}
-  {product.description && product.description.length > 40 && (
-    <>
-      ...{" "}
-      <Link
-        href={`/products/${slugify(product.name)}-${product.id}`}
-        className="text-primary hover:underline font-medium"
-      >
-        اقرأ المزيد
-      </Link>
-    </>
-  )}
-</p>
+          {product.description?.slice(0, 40)}
+          {product.description && product.description.length > 40 && (
+            <>
+              ...{" "}
+              <Link
+                href={`/products/${slugify(product.name)}-${product.id}`}
+                className="text-primary hover:underline font-medium"
+              >
+                اقرأ المزيد
+              </Link>
+            </>
+          )}
+        </p>
 
         <div className="mt-2 flex items-center gap-2" itemProp="offers" itemScope itemType="https://schema.org/Offer">
           {product.on_sale && product.sale_price ? (

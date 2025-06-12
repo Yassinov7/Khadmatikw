@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "خدماتي KW",
     description: "كل خدمات الشاشات، الستلايت والكاميرات بالكويت.",
-    url: "https://khadmatikw.com",
+    url: "https://khadmatikw.vercel.app",
     siteName: "خدماتي KW",
     locale: "ar_KW",
     type: "website",
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#1D4ED8" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
       </head>
