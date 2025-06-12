@@ -13,44 +13,80 @@ export function ProductCard({ product }: { product: Product }) {
     : null;
 
   return (
-    <div className="bg-white rounded-2xl shadow-md border border-gray-100 flex flex-col h-full transition hover:shadow-lg">
+    <article
+      className="bg-white rounded-2xl shadow-md border border-gray-100 flex flex-col h-full transition hover:shadow-lg"
+      itemScope
+      itemType="https://schema.org/Product"
+    >
       <Link href={`/products/${product.id}`}>
         <div className="w-full h-44 bg-gray-50 flex items-center justify-center overflow-hidden rounded-t-2xl relative">
           <Image
             src={product.image_url || "/default-product.png"}
-            alt={product.name || "منتج"}
+            alt={`صورة منتج: ${product.name}`}
             fill
             sizes="(max-width: 768px) 100vw, 300px"
             className="object-contain p-3"
             priority={!!product.image_url}
+            itemProp="image"
           />
         </div>
       </Link>
+
       <div className="p-4 flex flex-col flex-1 gap-2">
-        <div className="text-xs text-gray-500">{product.category?.name}</div>
+        {product.category?.name && (
+          <span className="text-xs text-gray-500 font-medium" itemProp="category">
+            {product.category.name}
+          </span>
+        )}
+
         <Link href={`/products/${product.id}`}>
-          <h3 className="text-lg font-bold text-primary hover:underline line-clamp-2">
+          <h3
+            className="text-lg font-bold text-primary hover:underline line-clamp-2"
+            itemProp="name"
+          >
             {product.name}
           </h3>
         </Link>
-        <p className="text-gray-600 text-sm line-clamp-2">{product.description}</p>
-        <div className="mt-2 flex items-center gap-2">
+
+        <p className="text-sm text-gray-600 line-clamp-2" itemProp="description">
+          {product.description}
+        </p>
+
+        <div className="mt-2 flex items-center gap-2" itemProp="offers" itemScope itemType="https://schema.org/Offer">
           {product.on_sale && product.sale_price ? (
             <>
-              <span className="line-through text-gray-400">{product.price} د.ك</span>
-              <span className="text-secondary font-bold text-lg">{product.sale_price} د.ك</span>
+              <span className="line-through text-gray-400">
+                {product.price} د.ك
+              </span>
+              <span
+                className="text-secondary font-bold text-lg"
+                itemProp="price"
+              >
+                {product.sale_price} د.ك
+              </span>
+              <meta itemProp="priceCurrency" content="KWD" />
             </>
           ) : product.price ? (
-            <span className="text-primary font-bold text-lg">{product.price} د.ك</span>
+            <>
+              <span
+                className="text-primary font-bold text-lg"
+                itemProp="price"
+              >
+                {product.price} د.ك
+              </span>
+              <meta itemProp="priceCurrency" content="KWD" />
+            </>
           ) : null}
         </div>
-        <div className="flex gap-2 mt-auto">
+
+        <div className="flex gap-2 mt-auto pt-3">
           {whatsappLink && (
             <a
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-bold shadow"
+              aria-label={`تواصل عبر واتساب بخصوص: ${product.name}`}
             >
               <MessageCircle size={16} />
               واتساب
@@ -60,6 +96,7 @@ export function ProductCard({ product }: { product: Product }) {
             <a
               href={phoneLink}
               className="flex items-center gap-1 px-3 py-2 bg-primary hover:bg-primary/90 text-white rounded-full text-sm font-bold shadow"
+              aria-label={`اتصل بخصوص المنتج: ${product.name}`}
             >
               <Phone size={16} />
               اتصال
@@ -67,6 +104,6 @@ export function ProductCard({ product }: { product: Product }) {
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 }

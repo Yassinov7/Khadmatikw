@@ -17,7 +17,10 @@ export function ProductsClient({ categories, products }: Props) {
     : products;
 
   return (
-    <div className="flex flex-col gap-6">
+    <section className="flex flex-col gap-6 py-8">
+      <h1 className="text-2xl font-bold text-primary mb-6 text-center">
+        العروض المتاحة
+      </h1>
       <CategoryBar
         categories={categories}
         selectedId={selectedId}
@@ -34,6 +37,6 @@ export function ProductsClient({ categories, products }: Props) {
           ))}
         </div>
       )}
-    </div>
+    </section>
   );
 }

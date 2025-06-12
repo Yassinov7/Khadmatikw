@@ -6,7 +6,7 @@ import { Menu, X, Home, Layers, PercentCircle, PhoneCall } from "lucide-react";
 
 const links = [
   { label: "الرئيسية", href: "/", icon: <Home size={20} className="md:mr-2 text-secondary" /> },
-  { label: "كل الخدمات", href: "/products", icon: <Layers size={20} className="md:mr-2 text-secondary" /> },
+  { label: "الخدمات", href: "/products", icon: <Layers size={20} className="md:mr-2 text-secondary" /> },
   { label: "العروض", href: "/offers", icon: <PercentCircle size={20} className="md:mr-2 text-secondary" /> },
   { label: "تواصل معنا", href: "/contact", icon: <PhoneCall size={20} className="md:mr-2 text-secondary" /> },
 ];
@@ -27,8 +27,8 @@ export function Navbar() {
             className="rounded border border-primary shadow"
             priority
           />
-          <span className="text-xl font-extrabold text-primary tracking-wide hidden sm:block" style={{ letterSpacing: "2px" }}>
-            خدماتي KW
+          <span className="text-xl font-extrabold text-primary tracking-wide " style={{ letterSpacing: "2px" }}>
+            خدماتي <span className="text-secondary">KW</span>
           </span>
         </Link>
 

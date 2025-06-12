@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Phone, MessageCircle, Percent } from "lucide-react";
+import { Phone, MessageCircle, Percent, CalendarDays } from "lucide-react";
 import type { Offer } from "@/types";
 
 const DEFAULT_IMAGE = "/default-product.png";
@@ -14,77 +14,109 @@ export function OfferCard({ offer }: { offer: Offer }) {
     : null;
 
   return (
-    <div className="bg-white rounded-2xl shadow-md border border-gray-100 flex flex-col h-full transition hover:shadow-lg">
-      <div className="w-full h-44 bg-gray-50 flex items-center justify-center overflow-hidden rounded-t-2xl relative">
+    <article
+      className="bg-white rounded-2xl shadow-md border border-orange-200 flex flex-col h-full transition hover:shadow-lg overflow-hidden"
+      itemScope
+      itemType="https://schema.org/Offer"
+    >
+      {/* صورة العرض */}
+      <div className="w-full h-44 bg-orange-50 flex items-center justify-center relative">
         {offer.product?.image_url ? (
           <Image
             src={offer.product.image_url}
-            alt={offer.product.name || offer.title}
+            alt={`صورة ${offer.product.name || offer.title}`}
             fill
             sizes="(max-width: 600px) 100vw, 33vw"
             className="object-contain p-3"
-            priority={!!offer.product.image_url}
+            priority
           />
         ) : (
           <Image
             src={DEFAULT_IMAGE}
-            alt={offer.product?.name || offer.title}
+            alt={`صورة العرض: ${offer.title}`}
             fill
             sizes="(max-width: 600px) 100vw, 33vw"
             className="object-contain p-3"
           />
         )}
-        {!offer.product?.image_url && (
-          <Percent
-            size={56}
-            className="absolute text-secondary opacity-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-          />
+
+        {/* شارة الخصم */}
+        {offer.discount_percent !== undefined && (
+          <div className="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow flex items-center gap-1">
+            <Percent size={12} />
+            خصم {offer.discount_percent}%
+          </div>
         )}
       </div>
+
+      {/* محتوى العرض */}
       <div className="p-4 flex flex-col flex-1 gap-2">
-        {offer.discount_percent !== undefined && (
-          <div className="text-xs text-secondary font-bold flex items-center gap-1">
-            <Percent size={14} /> خصم {offer.discount_percent}%
-          </div>
-        )}
-        <h3 className="text-lg font-bold text-primary">{offer.title}</h3>
+        <h3
+          className="text-lg font-bold text-orange-600"
+          itemProp="name"
+        >
+          {offer.title}
+        </h3>
+
         {offer.product?.name && (
-          <div className="text-xs text-gray-400 mb-1">
-            منتج: {offer.product.name}
-          </div>
+          <p className="text-xs text-gray-500 mb-1">
+            <span className="font-semibold">المنتج:</span> {offer.product.name}
+          </p>
         )}
-        <p className="text-gray-600 text-sm line-clamp-2">{offer.description}</p>
-        {(offer.start_date || offer.end_date) && (
-          <div className="text-xs text-gray-500">
-            {offer.start_date && <>من {offer.start_date} </>}
-            {offer.end_date && <>حتى {offer.end_date}</>}
-          </div>
-        )}
-        <div className="flex gap-2 mt-auto">
-          {whatsappLink && (
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener"
-              className="flex items-center gap-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-bold shadow"
-              aria-label={`تواصل عبر واتساب حول العرض: ${offer.title}`}
-            >
-              <MessageCircle size={16} />
-              واتساب
-            </a>
+
+        <p className="text-sm text-gray-700 line-clamp-3" itemProp="description">
+          {offer.description}
+        </p>
+      </div>
+
+      {/* شريط التواريخ المميز */}
+      {(offer.start_date || offer.end_date) && (
+        <div className="bg-orange-50 text-orange-700 text-xs font-semibold px-4 py-2 flex items-center gap-2 border-t border-orange-100">
+          <CalendarDays size={14} className="text-orange-500" />
+          {offer.start_date && (
+            <>
+              من{" "}
+              <time itemProp="validFrom" dateTime={offer.start_date}>
+                {offer.start_date}
+              </time>
+            </>
           )}
-          {phoneLink && (
-            <a
-              href={phoneLink}
-              className="flex items-center gap-1 px-3 py-2 bg-primary hover:bg-primary/90 text-white rounded-full text-sm font-bold shadow"
-              aria-label={`اتصل للاستفسار عن العرض: ${offer.title}`}
-            >
-              <Phone size={16} />
-              اتصال
-            </a>
+          {offer.end_date && (
+            <>
+              {" "}إلى{" "}
+              <time itemProp="validThrough" dateTime={offer.end_date}>
+                {offer.end_date}
+              </time>
+            </>
           )}
         </div>
+      )}
+
+      {/* روابط التواصل */}
+      <div className="p-4 pt-2 flex gap-2 mt-auto">
+        {whatsappLink && (
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener"
+            className="flex items-center gap-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-bold shadow"
+            aria-label={`تواصل عبر واتساب حول العرض: ${offer.title}`}
+          >
+            <MessageCircle size={16} />
+            واتساب
+          </a>
+        )}
+        {phoneLink && (
+          <a
+            href={phoneLink}
+            className="flex items-center gap-1 px-3 py-2 bg-primary hover:bg-primary/90 text-white rounded-full text-sm font-bold shadow"
+            aria-label={`اتصل للاستفسار عن العرض: ${offer.title}`}
+          >
+            <Phone size={16} />
+            اتصال
+          </a>
+        )}
       </div>
-    </div>
+    </article>
   );
 }

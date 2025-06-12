@@ -77,7 +77,7 @@ export default function ContactPage() {
         {/* بريد إلكتروني */}
         <ContactItem
           icon={<Mail size={28} className="text-secondary" />}
-          title="البريد الإلكتروني"
+          title="البريد "
           value={CONTACTS.email}
           link={`mailto:${CONTACTS.email}`}
           copy

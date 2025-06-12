@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://khadmatikw.vercel.app/products",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "منتجات وخدمات خدماتي KW",
+    description: "اكتشف أقوى خدمات ومنتجات الشاشات والستلايت والكاميرات وخدمات التركيب والصيانة في الكويت.",
+  },
 };
 export default async function ProductsPage() {
   const { data: categories } = await supabase
