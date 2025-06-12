@@ -52,7 +52,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProductPage({ params }: { params: { slugWithId: string } }) {
+type Props = {
+  params: {
+    slugWithId: string;
+  };
+};
+
+export default async function ProductPage({ params }: Props)  {
   const id = extractId(params.slugWithId);
   if (!id) notFound();
 
