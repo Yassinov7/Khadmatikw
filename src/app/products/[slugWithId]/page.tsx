@@ -11,7 +11,8 @@ function extractId(slugWithId: string): number | null {
 
 // ✅ ✅✅ الحل هنا: جعل params داخل async await وليس مباشرة
 export async function generateMetadata(
-  props: { params: { slugWithId: string } }): Promise<Metadata> {
+  props: { params: Promise<{ slugWithId: string }> }
+): Promise<Metadata> {
   const { slugWithId } = await props.params;
   const id = extractId(slugWithId);
   if (!id) return {};
@@ -38,7 +39,7 @@ export async function generateStaticParams() {
 }
 
 // ✅ وكذلك هنا
-export default async function ProductPage(props: { params: { slugWithId: string } }) {
+export default async function ProductPage(props: { params: Promise<{ slugWithId: string }> }) {
   const { slugWithId } = await props.params;
   const id = extractId(slugWithId);
   if (!id) notFound();
