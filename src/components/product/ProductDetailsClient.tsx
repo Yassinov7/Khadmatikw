@@ -1,10 +1,9 @@
 "use client";
-
 import Image from "next/image";
 import { Phone, MessageCircle } from "lucide-react";
 import type { Product } from "@/types";
 
-export default function ProductClient({ product }: { product: Product }) {
+export default function ProductDetailsClient({ product }: { product: Product }) {
   const whatsapp = product.contact_info?.whatsapp
     ? `https://wa.me/${product.contact_info.whatsapp.replace(/[^0-9]/g, "")}?text=مرحبًا، أود الاستفسار عن المنتج: ${encodeURIComponent(product.name)}`
     : null;
@@ -25,9 +24,11 @@ export default function ProductClient({ product }: { product: Product }) {
             priority
           />
         </div>
+
         <div className="p-6 flex flex-col gap-4 md:w-1/2">
           <h1 className="text-2xl font-bold text-primary">{product.name}</h1>
           <p className="text-text leading-relaxed text-sm">{product.description}</p>
+
           <div className="mt-2 text-xl font-bold">
             {product.on_sale && product.sale_price ? (
               <>
@@ -38,6 +39,7 @@ export default function ProductClient({ product }: { product: Product }) {
               <span className="text-primary">{product.price} د.ك</span>
             )}
           </div>
+
           <div className="flex flex-wrap gap-3 pt-2 mt-auto">
             {whatsapp && (
               <a
@@ -52,7 +54,7 @@ export default function ProductClient({ product }: { product: Product }) {
             {phone && (
               <a
                 href={phone}
-                className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-blue-800 text-white rounded-full shadow text-sm font-bold"
+                className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-full shadow text-sm font-bold"
               >
                 <Phone size={16} /> اتصال
               </a>
