@@ -1,21 +1,25 @@
+// ✅ Server Component فقط
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { getAllProductIds, getProductById } from "@/lib/api";
 import { slugify } from "@/utils/slugify";
-import Image from "next/image";
 import { Phone, MessageCircle } from "lucide-react";
 
+// 🧠 استخراج ID من slug في الرابط
 function extractId(slugWithId: string): number | null {
   const match = slugWithId.match(/-(\d+)$/);
   return match ? Number(match[1]) : null;
 }
 
+// ✅ توليد الروابط مسبقًا (SSG)
 export async function generateStaticParams() {
   const products = await getAllProductIds();
-  return products.map((p) => ({
-    slugWithId: `${slugify(p.name)}-${p.id}`,
+  return products.map((product) => ({
+    slugWithId: `${slugify(product.name)}-${product.id}`,
   }));
 }
 
+// ✅ توليد SEO Metadata
 export async function generateMetadata({ params }: { params: { slugWithId: string } }) {
   const id = extractId(params.slugWithId);
   if (!id) return {};
@@ -34,6 +38,7 @@ export async function generateMetadata({ params }: { params: { slugWithId: strin
   };
 }
 
+// ✅ عرض الصفحة
 export default async function Page({ params }: { params: { slugWithId: string } }) {
   const id = extractId(params.slugWithId);
   if (!id) notFound();
@@ -61,11 +66,9 @@ export default async function Page({ params }: { params: { slugWithId: string } 
             priority
           />
         </div>
-
         <div className="p-6 flex flex-col gap-4 md:w-1/2">
           <h1 className="text-2xl font-bold text-primary">{product.name}</h1>
           <p className="text-text leading-relaxed text-sm">{product.description}</p>
-
           <div className="mt-2 text-xl font-bold">
             {product.on_sale && product.sale_price ? (
               <>
@@ -76,7 +79,6 @@ export default async function Page({ params }: { params: { slugWithId: string } 
               <span className="text-primary">{product.price} د.ك</span>
             )}
           </div>
-
           <div className="flex flex-wrap gap-3 pt-2 mt-auto">
             {whatsapp && (
               <a
