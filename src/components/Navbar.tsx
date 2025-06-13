@@ -34,12 +34,12 @@ export function Navbar() {
         </Link>
 
         {/* روابط الديسكتوب */}
-        <ul className="hidden md:flex gap-3 items-center text-base font-bold">
+        <ul className="hidden md:flex gap-2 items-center text-base font-bold">
           {links.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="flex items-center gap-1 px-4 py-2 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
+                className="flex items-center gap-1 px-2 py-2 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
               >
                 {link.icon}
                 <span>{link.label}</span>
