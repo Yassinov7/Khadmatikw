@@ -39,7 +39,7 @@ export default function AdminLoginPage() {
         required
       />
       {error && <div className="text-red-500 text-sm text-center">{error}</div>}
-      <button type="submit" className="btn-primary w-full">دخول</button>
+      <button type="submit" className="bg-accent w-full">دخول</button>
     </form>
   );
 }
