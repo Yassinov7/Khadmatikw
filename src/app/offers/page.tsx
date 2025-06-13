@@ -2,6 +2,8 @@ import { supabase } from "@/lib/supabase";
 import { OffersClient } from "@/components/OffersClient";
 import { Metadata } from "next";
 
+export const revalidate = 600;
+
 export const metadata: Metadata = {
   title: "أحدث العروض والخصومات | خدماتي KW",
   description: "استكشف أفضل العروض على خدمات الشاشات، الستلايت، الكاميرات وتركيبها في الكويت. خصومات حصرية وخدمات فنية مميزة مع تواصل سريع عبر واتساب وهاتف.",

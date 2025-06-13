@@ -36,3 +36,12 @@ export type Offer = {
     [key: string]: string | undefined;
   };
 };
+
+export type Blog = {
+  id: number;
+  title: string;
+  cover_url?: string;
+  content: string;
+  created_at: string;
+  // category_id?: number; // لدعم التصنيفات مستقبلاً
+};

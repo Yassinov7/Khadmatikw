@@ -28,3 +28,16 @@ export async function getProductById(id: number): Promise<Product | null> {
 
   return data;
 }
+
+export async function getAllBlogPostIds() {
+  const { data, error } = await supabase.from("blog_posts").select("id, title");
+  if (error) return [];
+  return data;
+}
+
+// جلب تدوينة واحدة
+export async function getBlogPostById(id: number) {
+  const { data, error } = await supabase.from("blog_posts").select("*").eq("id", id).single();
+  if (error) return null;
+  return data;
+}
