@@ -16,3 +16,6 @@ body {
   font-family: 'Noto Kufi Arabic', Arial, Helvetica, sans-serif;
   direction: rtl;
 }
+.btn {
+  @apply text-sm px-2 py-1 border rounded bg-white hover:bg-gray-100;
+}

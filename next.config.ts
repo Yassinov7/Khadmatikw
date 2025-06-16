@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     domains: ['example.com'],
-     // ← أضف كل الدومينات التي تستخدم صورًا منها
      remotePatterns: [
       {
         protocol: 'https',

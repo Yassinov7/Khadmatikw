@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAdminAuth } from "../AdminAuthContext";
 import type { Product } from "@/types";
@@ -145,12 +146,15 @@ export default function AdminProductsPage() {
               className="bg-white rounded-xl shadow border p-4 flex flex-col h-full"
             >
               <div className="flex items-center gap-3 mb-3">
-                <img
-                  src={prod.image_url || "/default-product.png"}
+                <div className="relative w-20 h-20 rounded-lg border bg-gray-50 overflow-hidden">
+                <Image
+                  src={prod.image_url?.trim() ? prod.image_url : "/default-product.png"}
                   alt={prod.name}
-                  className="w-20 h-20 object-contain rounded-lg border bg-gray-50"
-                  loading="lazy"
+                  fill
+                  className="object-contain"
+                  sizes="80px"
                 />
+              </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-bold text-lg text-primary">{prod.name}</span>
@@ -170,7 +174,7 @@ export default function AdminProductsPage() {
                 {prod.on_sale && prod.sale_price ? (
                   <>
                     <span className="line-through text-gray-400">{prod.price} د.ك</span>
-                    <span className="text-red-500 font-bold text-xl">{prod.sale_price} د.ك</span>
+                    <span className="text-secondary font-bold text-xl">{prod.sale_price} د.ك</span>
                   </>
                 ) : (
                   <span className="text-primary font-bold text-xl">{prod.price} د.ك</span>
