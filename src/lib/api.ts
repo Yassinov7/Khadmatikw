@@ -29,6 +29,23 @@ export async function getProductById(id: number): Promise<Product | null> {
   return data;
 }
 
+export async function getAllOfferIds() {
+  const { data, error } = await supabase.from("offers").select("id, title");
+  if (error) return [];
+  return data;
+}
+
+export async function getOfferById(id: number) {
+  const { data, error } = await supabase
+    .from("offers")
+    .select("*, product:products(name, image_url, category_id)")
+    .eq("id", id)
+    .single();
+  if (error) return null;
+  return data;
+}
+
+
 export async function getAllBlogPostIds() {
   const { data, error } = await supabase.from("blog_posts").select("id, title");
   if (error) return [];

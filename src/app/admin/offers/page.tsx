@@ -6,7 +6,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAdminAuth } from "../AdminAuthContext";
 import type { Offer, Product } from "@/types";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "لوحة التحكم - خدماتي KW",
+  robots: "noindex, nofollow",
+};
 // Modal التأكيد
 function ConfirmModal({ open, onClose, onConfirm, offer }: {
   open: boolean;

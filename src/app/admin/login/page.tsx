@@ -2,6 +2,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "لوحة التحكم - خدماتي KW",
+  robots: "noindex, nofollow",
+};
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");

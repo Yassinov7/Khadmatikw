@@ -6,7 +6,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAdminAuth } from "../AdminAuthContext";
 import type { Product } from "@/types";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "لوحة التحكم - خدماتي KW",
+  robots: "noindex, nofollow",
+};
 // Modal تأكيد الحذف
 type ConfirmModalProps = {
   open: boolean;
@@ -118,6 +123,7 @@ export default function AdminProductsPage() {
   if (error) return alert("حدث خطأ أثناء الحذف!");
   setProducts((prev) => prev.filter((p) => p.id !== id));
 }
+
 
 
   if (loading) return <div className="text-center mt-20">جار التحقق...</div>;

@@ -28,30 +28,35 @@ const features = [
 export const metadata: Metadata = {
   title: "خدماتي KW | أفضل خدمات الشاشات والستلايت والكاميرات في الكويت",
   description: "منصة خدماتي KW توفر جميع خدمات الشاشات، الستلايت، الريسيفر، تركيب وصيانة الكاميرات والأنظمة الذكية في الكويت. تواصل معنا للعروض والخصومات والدعم الفني السريع.",
+  keywords: [
+    "خدمات الشاشات في الكويت",
+    "تركيب ستلايت",
+    "كاميرات مراقبة الكويت",
+    "خدماتي KW",
+    "أسعار الكاميرات",
+  ],
   openGraph: {
     title: "خدماتي KW | جميع حلول الشاشات والستلايت والكاميرات في الكويت",
     description: "خدمات تركيب وصيانة الشاشات، الستلايت، الكاميرات، الريسيفر بأفضل الأسعار وجودة عالية في الكويت.",
     url: "https://khadmatikw.vercel.app/",
     type: "website",
-    // images: [ // يمكنك إضافة صورة عند رفعها في public/og-image.png مثلاً
-    //   {
-    //     url: "https://khadmatikw.vercel.app/og-image.png",
-    //     width: 1200,
-    //     height: 630,
-    //     alt: "خدماتي KW",
-    //   },
-    // ],
-  },
-  alternates: {
-    canonical: "https://khadmatikw.vercel.app/",
+    siteName: "خدماتي KW",
   },
   twitter: {
     card: "summary_large_image",
     title: "خدماتي KW | أفضل حلول الشاشات والستلايت في الكويت",
     description: "كل خدمات الشاشات والستلايت والكاميرات من مكان واحد وبجودة عالية.",
-    // images: ["https://khadmatikw.vercel.app/og-image.png"], // أضف إذا وجدت صورة
+  },
+  alternates: {
+    canonical: "https://khadmatikw.vercel.app/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
   },
 };
+
 
 export default function Home() {
   return (

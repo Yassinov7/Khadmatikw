@@ -20,7 +20,7 @@ export function OffersClient({ categories, offers }: Props) {
   return (
     <section className="py-8">
       <h1 className="text-2xl font-bold text-primary mb-6 text-center">
-        العروض المتاحة
+  العروض المميزة
       </h1>
       <CategoryBar
         categories={categories}

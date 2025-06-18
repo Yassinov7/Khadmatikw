@@ -19,7 +19,7 @@ export function ProductsClient({ categories, products }: Props) {
   return (
     <section className="flex flex-col gap-6">
       <h1 className="text-2xl font-bold text-primary mb-6 text-center">
-        العروض المتاحة
+        الخدمات والمنتجات
       </h1>
       <CategoryBar
         categories={categories}

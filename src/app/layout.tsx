@@ -6,10 +6,10 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://khadmatikw.vercel.app/"),
   title: "خدماتي KW",
-  description: "كل خدمات الشاشات، الستلايت والكاميرات بالكويت.",
+  description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
   openGraph: {
     title: "خدماتي KW",
-    description: "كل خدمات الشاشات، الستلايت والكاميرات بالكويت.",
+  description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
     url: "https://khadmatikw.vercel.app",
     siteName: "خدماتي KW",
     locale: "ar_KW",
@@ -37,7 +37,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased bg-background min-h-screen flex flex-col"
       style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
         <Navbar />
-        <main className="flex-1 container mx-auto px-4 pt-8">{children}</main>
+        <main className="flex-1 container mx-auto px-4 pt-8">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

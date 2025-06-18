@@ -20,7 +20,6 @@ function formatDate(dateString: string) {
   });
 }
 
-// Metadata ديناميكي (SEO)
 export async function generateMetadata(
   props: { params: Promise<{ slugWithId: string }> }
 ): Promise<Metadata> {
@@ -31,13 +30,44 @@ export async function generateMetadata(
   const post = await getBlogPostById(id);
   if (!post) return {};
 
+  const plainText = post.content.replace(/<[^>]+>/g, " ");
+  const description = plainText.slice(0, 120);
+
+  const baseKeywords = [
+    "خدماتي KW",
+    "مدونة فنية",
+    "الشاشات",
+    "الستلايت",
+    "الكاميرات",
+    "نصائح",
+    "تركيب",
+    "صيانة",
+  ];
+
+  const titleWords: string[] = post.title
+    .split(" ")
+    .filter((w: string) => w.length > 2);
+
+  const contentWords: string[] = plainText
+    .split(" ")
+    .filter((w: string) => w.length > 4)
+    .slice(0, 10);
+
+  const keywords: string[] = [...new Set([...titleWords, ...contentWords, ...baseKeywords])];
+
   return {
     title: post.title,
-    description: post.content.replace(/<[^>]+>/g, "").slice(0, 120),
+    description,
+    keywords,
     openGraph: {
       title: post.title,
-      description: post.content.replace(/<[^>]+>/g, "").slice(0, 120),
+      description,
       images: [post.cover_url || "/default-blog.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
     },
     robots: "index, follow",
     alternates: {
@@ -45,6 +75,7 @@ export async function generateMetadata(
     },
   };
 }
+
 
 // إنشاء المسارات الساكنة
 export async function generateStaticParams() {

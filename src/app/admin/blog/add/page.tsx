@@ -4,6 +4,12 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { useAdminAuth } from "../../AdminAuthContext";
 import AdminBlogEditor from "@/components/AdminBlogEditor"; // استخدم المكون الجديد
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "لوحة التحكم - خدماتي KW",
+  robots: "noindex, nofollow",
+};
 
 export default function AddBlogPostPage() {
   const { user, loading } = useAdminAuth();

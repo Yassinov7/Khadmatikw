@@ -4,6 +4,12 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { useAdminAuth } from "../../AdminAuthContext";
 import type { Category } from "@/types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "لوحة التحكم - خدماتي KW",
+  robots: "noindex, nofollow",
+};
 
 export default function AddProductPage() {
   const { user, loading } = useAdminAuth();
