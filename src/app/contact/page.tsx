@@ -94,7 +94,7 @@ export default function ContactPage() {
       <div className="w-full rounded-xl overflow-hidden border border-gray-100 shadow-sm mt-7">
         <iframe
           title="خريطة الموقع"
-          src="https://maps.google.com/maps?q=Hawally, Kuwait&z=14&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3478.1617865036774!2d48.01891368490148!3d29.336253982145514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDIwJzEwLjUiTiA0OMKwMDEnMDAuMiJF!5e0!3m2!1sar!2sbg!4v1750270359813!5m2!1sar!2sbg"
           className="w-full h-56"
           allowFullScreen
           loading="lazy"
