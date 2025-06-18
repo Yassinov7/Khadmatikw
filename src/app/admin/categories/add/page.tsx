@@ -5,10 +5,6 @@ import { useRouter } from "next/navigation";
 import { useAdminAuth } from "../../AdminAuthContext";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "لوحة التحكم - خدماتي KW",
-  robots: "noindex, nofollow",
-};
 
 export default function AddCategoryPage() {
   const { user, loading } = useAdminAuth();

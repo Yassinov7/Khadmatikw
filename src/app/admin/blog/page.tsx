@@ -5,12 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useAdminAuth } from "../AdminAuthContext";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "لوحة التحكم - خدماتي KW",
-  robots: "noindex, nofollow",
-};
 
 type BlogPost = {
   id: number;

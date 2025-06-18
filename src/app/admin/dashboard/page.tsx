@@ -2,12 +2,7 @@
 import { useAdminAuth } from "../AdminAuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "لوحة التحكم - خدماتي KW",
-  robots: "noindex, nofollow",
-};
 
 export default function AdminDashboardPage() {
   const { user, loading } = useAdminAuth();

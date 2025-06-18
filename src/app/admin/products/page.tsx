@@ -6,12 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAdminAuth } from "../AdminAuthContext";
 import type { Product } from "@/types";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "لوحة التحكم - خدماتي KW",
-  robots: "noindex, nofollow",
-};
 // Modal تأكيد الحذف
 type ConfirmModalProps = {
   open: boolean;

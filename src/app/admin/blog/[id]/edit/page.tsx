@@ -4,12 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { useAdminAuth } from "../../../AdminAuthContext";
 import AdminBlogEditor from "@/components/AdminBlogEditor";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "لوحة التحكم - خدماتي KW",
-  robots: "noindex, nofollow",
-};
 
 export default function EditBlogPostPage() {
   const { user, loading } = useAdminAuth();

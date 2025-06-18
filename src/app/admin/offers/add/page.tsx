@@ -4,12 +4,7 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { useAdminAuth } from "../../AdminAuthContext";
 import type { Product } from "@/types";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "لوحة التحكم - خدماتي KW",
-  robots: "noindex, nofollow",
-};
 export default function AddOfferPage() {
   const { user, loading } = useAdminAuth();
   const router = useRouter();
