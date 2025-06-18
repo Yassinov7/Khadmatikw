@@ -3,8 +3,6 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { useAdminAuth } from "../../AdminAuthContext";
-import { Metadata } from "next";
-
 
 export default function AddCategoryPage() {
   const { user, loading } = useAdminAuth();
