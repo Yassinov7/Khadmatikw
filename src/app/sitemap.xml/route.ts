@@ -1,5 +1,3 @@
-// src/app/sitemap.xml/route.ts
-import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { slugify } from "@/utils/slugify";
 
@@ -38,17 +36,19 @@ export async function GET() {
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${urls.map((url) => `
-    <url>
-      <loc>${BASE_URL}${url}</loc>
-      <changefreq>daily</changefreq>
-      <priority>0.7</priority>
-    </url>`).join("")}
+${urls.map((url) => `
+  <url>
+    <loc>${BASE_URL}${url}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>`).join("")}
 </urlset>`.trim();
 
-  return new NextResponse(xml, {
+  return new Response(xml, {
+    status: 200,
     headers: {
-      "Content-Type": "application/xml"
+      "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "no-store, max-age=0",
     },
   });
 }
