@@ -1,3 +1,4 @@
+// src/app/offers/[slugWithId]/page.tsx
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getOfferById, getAllOfferIds } from "@/lib/api";
