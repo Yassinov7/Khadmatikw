@@ -10,31 +10,52 @@ function extractId(slugWithId: string): number | null {
   return match ? Number(match[1]) : null;
 }
 
-export async function generateMetadata(
-  { params }: { params: { slugWithId: string } }
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slugWithId: string };
+}): Promise<Metadata> {
   const id = extractId(params.slugWithId);
   if (!id) return {};
 
   const offer = await getOfferById(id);
   if (!offer) return {};
 
+  const cleanedWords =
+    offer.description
+      ?.replace(/[\n\r]+/g, " ")
+      .replace(/[^\p{L}\p{N}\s]/gu, "")
+      .split(/\s+/)
+      .filter(
+        (w: string) =>
+          w.length > 2 &&
+          !["هذا", "تقدم", "عرض", "خصم", "من", "على", "في", "مع", "عن", "الى", "حتى", "و"].includes(w)
+      )
+      .slice(0, 5) ?? [];
+
   const keywords = [
     offer.title,
     offer.product?.name,
-    offer.product?.category_id && "خصومات",
-    "عروض الكويت", "خصم", "خدماتي", "الشاشات", "الستلايت", "الكاميرات"
-  ].filter(Boolean).join(", ");
+    "عرض خصم",
+    "عروض الكويت",
+    "خصومات الشاشات",
+    "الستلايت",
+    "الكاميرات",
+    "خدماتي",
+    ...cleanedWords,
+  ]
+    .filter(Boolean)
+    .join(", ");
 
   return {
     title: offer.title,
     description: offer.description || "",
+    keywords,
     openGraph: {
       title: offer.title,
       description: offer.description || "",
       images: [offer.product?.image_url || "/default-product.png"],
     },
-    keywords,
     alternates: {
       canonical: `https://khadmatikw.vercel.app/offers/${params.slugWithId}`,
     },
@@ -49,7 +70,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function OfferDetailsPage({ params }: { params: { slugWithId: string } }) {
+export default async function OfferDetailsPage({
+  params,
+}: {
+  params: { slugWithId: string };
+}) {
   const id = extractId(params.slugWithId);
   if (!id) notFound();
 
