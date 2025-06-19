@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import type { Product } from "@/types";
+import type { Offer, Product } from "@/types";
 
 export async function getAllProductIds(): Promise<Pick<Product, "id" | "name">[]> {
   const { data, error } = await supabase
@@ -29,19 +29,31 @@ export async function getProductById(id: number): Promise<Product | null> {
   return data;
 }
 
-export async function getAllOfferIds() {
-  const { data, error } = await supabase.from("offers").select("id, title");
-  if (error) return [];
+export async function getAllOfferIds(): Promise<Pick<Offer, "id" | "title">[]> {
+  const { data, error } = await supabase
+    .from("offers")
+    .select("id, title");
+
+  if (error || !data) {
+    console.error("❌ خطأ في getAllOfferIds:", error);
+    return [];
+  }
+
   return data;
 }
 
-export async function getOfferById(id: number) {
+export async function getOfferById(id: number): Promise<Offer | null> {
   const { data, error } = await supabase
     .from("offers")
-    .select("*, product:products(name, image_url, category_id)")
+    .select("*, product:products(name, image_url, category_id), contact_info")
     .eq("id", id)
     .single();
-  if (error) return null;
+
+  if (error || !data) {
+    console.error("❌ خطأ في getOfferById:", error);
+    return null;
+  }
+
   return data;
 }
 
