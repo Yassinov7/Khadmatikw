@@ -57,7 +57,7 @@ export async function generateMetadata(
     },
     keywords,
     alternates: {
-      canonical: `https://khadmatikw.vercel.app/products/${slugWithId}`,
+      canonical: `https://khadmatikw.com/products/${slugWithId}`,
     },
     robots: "index, follow",
   };

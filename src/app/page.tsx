@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "خدماتي KW | جميع حلول الشاشات والستلايت والكاميرات في الكويت",
     description: "خدمات تركيب وصيانة الشاشات، الستلايت، الكاميرات، الريسيفر بأفضل الأسعار وجودة عالية في الكويت.",
-    url: "https://khadmatikw.vercel.app/",
+    url: "https://khadmatikw.com/",
     type: "website",
     siteName: "خدماتي KW",
   },
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     description: "كل خدمات الشاشات والستلايت والكاميرات من مكان واحد وبجودة عالية.",
   },
   alternates: {
-    canonical: "https://khadmatikw.vercel.app/",
+    canonical: "https://khadmatikw.com/",
   },
   robots: {
     index: true,

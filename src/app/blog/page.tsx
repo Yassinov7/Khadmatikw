@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "مدونة خدماتي KW",
     description: "مقالات ونصائح فنية حول الشاشات، الستلايت، الكاميرات والصيانة في الكويت. اكتشف أحدث التدوينات من خدماتي KW.",
-    url: "https://khadmatikw.vercel.app/blog",
+    url: "https://khadmatikw.com/blog",
     type: "website",
   },
   alternates: {
-    canonical: "https://khadmatikw.vercel.app/blog",
+    canonical: "https://khadmatikw.com/blog",
   },
   twitter: {
     card: "summary_large_image",

@@ -34,11 +34,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "تواصل معنا | خدماتي KW",
     description: "أرقام اتصال وواتساب مباشرة لفريق خدماتي لخدمات الشاشات، الستلايت، والكاميرات في الكويت.",
-    url: "https://khadmatikw.vercel.app/contact",
+    url: "https://khadmatikw.com/contact",
     type: "website",
   },
   alternates: {
-    canonical: "https://khadmatikw.vercel.app/contact",
+    canonical: "https://khadmatikw.com/contact",
   },
   robots: "index, follow",
 };

@@ -24,7 +24,7 @@
 
 ## 🌐 عنوان الموقع
 
-[https://khadmatikw.vercel.app](https://khadmatikw.vercel.app)
+[https://khadmatikw.com](https://khadmatikw.com)
 
 ## 📄 ملاحظات إضافية
 

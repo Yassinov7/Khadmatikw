@@ -14,11 +14,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "عروض خاصة وخصومات حقيقية | خدماتي KW",
     description: "جميع عروض وخصومات خدمات الشاشات، الستلايت والكاميرات في الكويت. احصل على أفضل الأسعار وخدمة تركيب وصيانة احترافية.",
-    url: "https://khadmatikw.vercel.app/offers",
+    url: "https://khadmatikw.com/offers",
     type: "website",
   },
   alternates: {
-    canonical: "https://khadmatikw.vercel.app/offers",
+    canonical: "https://khadmatikw.com/offers",
   },
   twitter: {
     card: "summary_large_image",

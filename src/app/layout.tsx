@@ -4,13 +4,13 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://khadmatikw.vercel.app/"),
+  metadataBase: new URL("https://khadmatikw.com/"),
   title: "خدماتي KW",
   description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
   openGraph: {
     title: "خدماتي KW",
   description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
-    url: "https://khadmatikw.vercel.app",
+    url: "https://khadmatikw.com",
     siteName: "خدماتي KW",
     locale: "ar_KW",
     type: "website",

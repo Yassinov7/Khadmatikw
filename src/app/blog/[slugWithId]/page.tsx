@@ -71,7 +71,7 @@ export async function generateMetadata(
     },
     robots: "index, follow",
     alternates: {
-      canonical: `https://khadmatikw.vercel.app/blog/${slugWithId}`,
+      canonical: `https://khadmatikw.com/blog/${slugWithId}`,
     },
   };
 }

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "جميع المنتجات | خدماتي KW",
     description: "كل المنتجات والخدمات الفنية للشاشات والستلايت والكاميرات في الكويت. أسعار، صور، تفاصيل وأحدث العروض.",
-    url: "https://khadmatikw.vercel.app/products",
+    url: "https://khadmatikw.com/products",
     type: "website",
   },
   twitter: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: "اكتشف أقوى خدمات ومنتجات الشاشات والستلايت والكاميرات وخدمات التركيب والصيانة في الكويت.",
   },
   alternates: {
-    canonical: "https://khadmatikw.vercel.app/products",
+    canonical: "https://khadmatikw.com/products",
   },
   robots: {
     index: true,
