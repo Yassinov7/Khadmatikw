@@ -4,6 +4,9 @@ import { slugify } from '@/utils/slugify';
 
 const BASE_URL = 'https://khadmatikw.com';
 
+const formatDate = (date: string | Date | null) =>
+  date ? new Date(date).toISOString() : new Date().toISOString();
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = ['', '/products', '/offers', '/blog', '/contact'];
 
@@ -33,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // المنتجات
     ...(products || []).map((product) => ({
       url: `${BASE_URL}/products/${slugify(product.name)}-${product.id}`,
-      lastModified: product.created_at,
+      lastModified: formatDate(product.created_at),
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     })),
@@ -41,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // العروض
     ...(offers || []).map((offer) => ({
       url: `${BASE_URL}/offers/${slugify(offer.title)}-${offer.id}`,
-      lastModified: offer.created_at,
+      lastModified: formatDate(offer.created_at),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     })),
@@ -49,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // المدونات
     ...(blogPosts || []).map((post) => ({
       url: `${BASE_URL}/blog/${slugify(post.title)}-${post.id}`,
-      lastModified: post.created_at,
+      lastModified: formatDate(post.created_at),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     })),
