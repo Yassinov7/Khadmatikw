@@ -1,4 +1,3 @@
-// src/app/offers/[slugWithId]/page.tsx
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getOfferById, getAllOfferIds } from "@/lib/api";
@@ -11,6 +10,7 @@ function extractId(slugWithId: string): number | null {
   return match ? Number(match[1]) : null;
 }
 
+// ✅ generateMetadata
 export async function generateMetadata({
   params,
 }: {
@@ -64,6 +64,7 @@ export async function generateMetadata({
   };
 }
 
+// ✅ generateStaticParams
 export async function generateStaticParams() {
   const offers = await getAllOfferIds();
   return offers.map((offer) => ({
@@ -71,6 +72,7 @@ export async function generateStaticParams() {
   }));
 }
 
+// ✅ الصفحة نفسها
 export default async function OfferDetailsPage({
   params,
 }: {
