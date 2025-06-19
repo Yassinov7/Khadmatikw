@@ -68,13 +68,13 @@ export function ProductCard({ product }: { product: Product }) {
           {product.on_sale && product.sale_price ? (
             <>
               <span className="line-through text-gray-400">
-                {product.price} د.ك
+                {product.price} د ك
               </span>
               <span
                 className="text-secondary font-bold px-2 text-2xl"
                 itemProp="price"
               >
-                {product.sale_price} د.ك
+                {product.sale_price} د ك
               </span>
               <meta itemProp="priceCurrency" content="KWD" />
             </>
@@ -84,7 +84,7 @@ export function ProductCard({ product }: { product: Product }) {
                 className="text-primary font-bold px-2 text-2xl"
                 itemProp="price"
               >
-                {product.price} د.ك
+                {product.price} د ك
               </span>
               <meta itemProp="priceCurrency" content="KWD" />
             </>
