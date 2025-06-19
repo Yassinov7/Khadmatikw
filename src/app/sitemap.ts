@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { supabase } from '@/lib/supabase';
 import { slugify } from '@/utils/slugify';
 
+export const revalidate = 3600;
+
 const BASE_URL = 'https://khadmatikw.com';
 
 const formatDate = (date: string | Date | null) =>
