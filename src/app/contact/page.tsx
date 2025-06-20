@@ -3,26 +3,26 @@ import { Phone, MessageCircle } from "lucide-react";
 
 const CONTACTS = [
   {
-    name: "صياح",
-    role: "فني تركيب شاشات",
+    name: "خبير",
+    role: " تركيب شاشات",
     phone: "96550266068",
     whatsapp: "96565013345",
   },
   {
-    name: "عيسى",
-    role: "خبير صيانة ستلايت",
+    name: "خبير",
+    role: " صيانة ستلايت",
     phone: "96550112233",
     whatsapp: "96566112233",
   },
   {
-    name: "موسى",
-    role: "متخصص كاميرات مراقبة",
+    name: "متخصص",
+    role: " كاميرات مراقبة",
     phone: "96550778899",
     whatsapp: "96566778899",
   },
   {
-    name: "عمر",
-    role: "فني صيانة عامة",
+    name: "فني",
+    role: " صيانة عامة",
     phone: "96550445566",
     whatsapp: "96565445566",
   },

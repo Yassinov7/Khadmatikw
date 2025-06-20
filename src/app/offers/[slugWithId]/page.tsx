@@ -29,6 +29,8 @@ export async function generateMetadata(
   const offer = await getOfferById(id);
   if (!offer) return {};
 
+  
+
   const dynamicKeywords = [
     ...extractKeywords(offer.title),
     ...extractKeywords(offer.description),
@@ -76,6 +78,39 @@ export default async function OfferPage(props: { params: Promise<{ slugWithId: s
 
   const offer = await getOfferById(id);
   if (!offer) notFound();
-
-  return <OfferDetailsClient offer={offer} />;
+  const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": offer.title,
+  "description": offer.description ?? "",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "KWD",
+    "price": (offer.discount_percent ?? 0).toFixed(2),
+    "availability": "http://schema.org/InStock",
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "returnPolicyCategory": "http://schema.org/Returnable"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "2.00",
+        "currency": "KWD"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "KW"
+      }
+    }
+  }
+};
+  return <> 
+            <OfferDetailsClient offer={offer}/> 
+            {/* بيانات Structured Data بصيغة JSON-LD لتحسين ظهور العرض في Google */}
+            <script type="application/ld+json" suppressHydrationWarning>
+              {JSON.stringify(structuredData)}
+            </script>
+        </>;
 }
