@@ -13,6 +13,12 @@ export function ProductCard({ product }: { product: Product }) {
     ? `tel:${product.contact_info.phone.replace(/[^0-9+]/g, "")}`
     : null;
 
+  const displayPrice = product.on_sale && product.sale_price
+    ? product.sale_price
+    : product.price;
+
+  const formattedPrice = (displayPrice ?? 0).toFixed(2);
+
   return (
     <article
       className="bg-white rounded-2xl shadow-md border border-gray-200 flex flex-col h-full transition hover:shadow-lg"
@@ -64,32 +70,24 @@ export function ProductCard({ product }: { product: Product }) {
           )}
         </p>
 
-        <div className="mt-2 flex items-center gap-2" itemProp="offers" itemScope itemType="https://schema.org/Offer">
-          {product.on_sale && product.sale_price ? (
-            <>
+        {displayPrice && (
+          <div className="mt-2 flex items-center gap-2" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+            {product.on_sale && product.sale_price && (
               <span className="line-through text-gray-400">
-                {product.price} د ك
+                {product.price?.toFixed(2)} د.ك
               </span>
-              <span
-                className="text-secondary font-bold px-2 text-2xl"
-                itemProp="price"
-              >
-                {product.sale_price} د ك
-              </span>
-              <meta itemProp="priceCurrency" content="KWD" />
-            </>
-          ) : product.price ? (
-            <>
-              <span
-                className="text-primary font-bold px-2 text-2xl"
-                itemProp="price"
-              >
-                {product.price} د ك
-              </span>
-              <meta itemProp="priceCurrency" content="KWD" />
-            </>
-          ) : null}
-        </div>
+            )}
+            <span
+              className={`font-bold px-2 text-2xl ${product.on_sale ? "text-secondary" : "text-primary"}`}
+              itemProp="price"
+              content={formattedPrice}
+            >
+              {formattedPrice} د.ك
+            </span>
+            <meta itemProp="priceCurrency" content="KWD" />
+            <link itemProp="availability" href="http://schema.org/InStock" />
+          </div>
+        )}
 
         <div className="flex gap-2 mt-auto pt-3">
           {whatsappLink && (
