@@ -78,5 +78,26 @@ export default async function ProductPage(props: { params: Promise<{ slugWithId:
   const product = await getProductById(id);
   if (!product) notFound();
 
-  return <ProductDetailsClient product={product} />;
+  const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description ?? "",
+  "image": product.image_url || "/default-product.png",
+  "category": product.category?.name ?? "",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "KWD",
+    "price": (product.on_sale ? product.sale_price : product.price)?.toFixed(2) || "0.00",
+    "availability": "http://schema.org/InStock"
+  }
+};
+
+
+  return <>
+    <ProductDetailsClient product={product} />
+    <script type="application/ld+json" suppressHydrationWarning>
+      {JSON.stringify(structuredData)}
+    </script>
+  </>;
 }
