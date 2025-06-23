@@ -40,7 +40,7 @@ export default async function OffersPage() {
   const { data: offers } = await supabase
     .from("offers")
     .select("*, product:products(name, image_url, category_id)")
-    .order("id", { ascending: false });
+    .order("created_at", { ascending: false });
 
   return (
     <OffersClient
