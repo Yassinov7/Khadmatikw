@@ -69,7 +69,7 @@ export function Footer() {
       {showScroll && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 bg-primary hover:bg-primary/90 text-white p-2 rounded-full shadow-lg transition"
+          className="fixed bottom-6 left-6 z-50 bg-primary hover:bg-primary/90 text-white p-2 rounded-full shadow-lg transition"
           aria-label="العودة للأعلى"
         >
           <ArrowUp size={20} />

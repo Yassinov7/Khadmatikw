@@ -13,7 +13,7 @@ export function FloatingContact() {
         href={`https://wa.me/${phone}?text=${encodeURIComponent("مرحبًا، أود الاستفسار عن خدماتكم.")}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed top-24 right-2 z-50 group flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full shadow-lg transition"
+        className="fixed top-24 left-2 z-50 group flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full shadow-lg transition"
         aria-label="تواصل عبر واتساب"
       >
         <MessageCircle size={20} />
@@ -26,7 +26,7 @@ export function FloatingContact() {
       {/* زر اتصال */}
       <a
         href={`tel:${phonecall}`}
-        className="fixed top-36 right-2 z-50 group flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full shadow-lg transition"
+        className="fixed top-36 left-2 z-50 group flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full shadow-lg transition"
         aria-label="اتصال مباشر"
       >
         <Phone size={20} />
