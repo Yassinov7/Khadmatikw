@@ -2,7 +2,40 @@ import { notFound } from "next/navigation";
 import { getAllBlogPostIds, getBlogPostById } from "@/lib/api";
 import type { Metadata } from "next";
 import { slugify } from "@/utils/slugify";
+import { Camera, SatelliteDish, Tv2, Wrench } from "lucide-react";
 import Image from "next/image";
+import { ContactCard } from "@/components/ContactCard";
+
+const CONTACTS = [
+  {
+    name: "خبير",
+    role: "تركيب شاشات",
+    phone: "96550266068",
+    whatsapp: "96565013345",
+    icon: <Tv2 size={28} className="text-primary" />,
+  },
+  {
+    name: "خبير",
+    role: "صيانة ستلايت",
+    phone: "96550266068",
+    whatsapp: "96565013345",
+    icon: <SatelliteDish size={28} className="text-primary" />,
+  },
+  {
+    name: "متخصص",
+    role: "كاميرات مراقبة",
+    phone: "96550266068",
+    whatsapp: "96565013345",
+    icon: <Camera size={28} className="text-primary" />,
+  },
+  {
+    name: "فني",
+    role: "صيانة عامة",
+    phone: "96550266068",
+    whatsapp: "96565013345",
+    icon: <Wrench size={28} className="text-primary" />,
+  },
+];
 
 // استخراج id من نهاية السلاج
 function extractId(slugWithId: string): number | null {
@@ -112,6 +145,13 @@ export default async function BlogPostPage(props: { params: Promise<{ slugWithId
         dir="rtl"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
+      <section>
+        <p className="text-center text-gray-700 text-lg max-w-3xl mx-auto mb-10">
+        إليك قائمة بأرقام التواصل المباشر مع الفنيين المختصين حسب مجالات الخدمة. يمكنك الاتصال أو المراسلة عبر واتساب.
+        </p>
+        <ContactCard contacts={CONTACTS} />
+    </section>
     </article>
+    
   );
 }

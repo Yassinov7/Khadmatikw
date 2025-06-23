@@ -1,30 +1,35 @@
 import { Metadata } from "next";
-import { Phone, MessageCircle } from "lucide-react";
+import { ContactCard } from "@/components/ContactCard";
+import { Camera, SatelliteDish, Tv2, Wrench } from "lucide-react";
 
 const CONTACTS = [
   {
     name: "خبير",
-    role: " تركيب شاشات",
+    role: "تركيب شاشات",
     phone: "96550266068",
     whatsapp: "96565013345",
+    icon: <Tv2 size={28} className="text-primary" />,
   },
   {
     name: "خبير",
-    role: " صيانة ستلايت",
-    phone: "96550112233",
-    whatsapp: "96566112233",
+    role: "صيانة ستلايت",
+    phone: "96550266068",
+    whatsapp: "96565013345",
+    icon: <SatelliteDish size={28} className="text-primary" />,
   },
   {
     name: "متخصص",
-    role: " كاميرات مراقبة",
-    phone: "96550778899",
-    whatsapp: "96566778899",
+    role: "كاميرات مراقبة",
+    phone: "96550266068",
+    whatsapp: "96565013345",
+    icon: <Camera size={28} className="text-primary" />,
   },
   {
     name: "فني",
-    role: " صيانة عامة",
-    phone: "96550445566",
-    whatsapp: "96565445566",
+    role: "صيانة عامة",
+    phone: "96550266068",
+    whatsapp: "96565013345",
+    icon: <Wrench size={28} className="text-primary" />,
   },
 ];
 
@@ -73,34 +78,7 @@ export default function ContactPage() {
         إليك قائمة بأرقام التواصل المباشر مع الفنيين المختصين حسب مجالات الخدمة. يمكنك الاتصال أو المراسلة عبر واتساب.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {CONTACTS.map((person, index) => (
-          <div
-            key={index}
-            className="bg-white shadow border border-gray-200 rounded-2xl p-5 flex flex-col items-center text-center gap-3"
-          >
-            <div className="text-xl font-bold text-gray-800">{person.name}</div>
-            <div className="text-sm text-gray-500">{person.role}</div>
-
-            <div className="flex flex-col gap-2 w-full mt-3">
-              <a
-                href={`tel:${person.phone}`}
-                className="flex items-center justify-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-full text-sm font-bold shadow"
-              >
-                <Phone size={16} /> اتصال مباشر
-              </a>
-              <a
-                href={`https://wa.me/${person.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-bold shadow"
-              >
-                <MessageCircle size={16} /> واتساب
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <ContactCard contacts={CONTACTS} />
 
       {/* Google Map */}
       <div className="w-full rounded-xl overflow-hidden border border-gray-100 shadow-sm mt-10">
