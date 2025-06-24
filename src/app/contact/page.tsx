@@ -84,7 +84,7 @@ export default function ContactPage() {
       <div className="w-full rounded-xl overflow-hidden border border-gray-100 shadow-sm mt-10">
         <iframe
           title="خريطة خدماتي KW"
-          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3478.1617865036774!2d48.01891368490148!3d29.336253982145514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDIwJzEwLjUiTiA0OMKwMDEnMDAuMiJF!5e0!3m2!1sar!2sbg!4v1750270359813!5m2!1sar!2sbg"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d17408.89872405616!2d48.0245132!3d29.3364041!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9d08cd68d2e3%3A0xea65814e3d172990!2z2LPYqtmE2KfZitiq!5e1!3m2!1sar!2skw!4v1750771538308!5m2!1sar!2skw"
           className="w-full h-56"
           loading="lazy"
         />
