@@ -103,9 +103,9 @@ export async function generateMetadata(
       description,
     },
     robots: "index, follow",
-    alternates: {
-      canonical: `https://khadmatikw.com/blog/${slugWithId}`,
-    },
+    // alternates: {
+    //   canonical: `https://khadmatikw.com/blog/${slugWithId}`,
+    // },
   };
 }
 

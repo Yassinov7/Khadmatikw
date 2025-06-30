@@ -56,9 +56,9 @@ export async function generateMetadata(
       images: [product.image_url || "/default-product.png"],
     },
     keywords,
-    alternates: {
-      canonical: `https://khadmatikw.com/products/${slugWithId}`,
-    },
+    // alternates: {
+    //   canonical: `https://khadmatikw.com/products/${slugWithId}`,
+    // },
     robots: "index, follow",
   };
 }
