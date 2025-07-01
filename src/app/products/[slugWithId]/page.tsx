@@ -35,7 +35,7 @@ export async function generateMetadata(
     ...extractKeywords(product.description),
     ...(product.category?.name ? [product.category.name] : []),
   ];
-
+  const canUrl= `https://khadmatikw.com/products/${slugWithId}`;
   const keywords = [
     ...dynamicKeywords,
     "خدمات الكويت",
@@ -56,9 +56,9 @@ export async function generateMetadata(
       images: [product.image_url || "/default-product.png"],
     },
     keywords,
-    // alternates: {
-    //   canonical: `https://khadmatikw.com/products/${slugWithId}`,
-    // },
+    alternates: {
+      canonical: `${canUrl}`,
+    },
     robots: "index, follow",
   };
 }
