@@ -52,6 +52,13 @@ function formatDate(dateString: string) {
     day: "numeric",
   });
 }
+// إنشاء المسارات الساكنة
+export async function generateStaticParams() {
+  const posts = await getAllBlogPostIds();
+  return posts.map((p) => ({
+    slugWithId: `${slugify(p.title)}-${p.id}`,
+  }));
+}
 
 export async function generateMetadata(
   props: { params: Promise<{ slugWithId: string }> }
@@ -65,7 +72,7 @@ export async function generateMetadata(
 
   const plainText = post.content.replace(/<[^>]+>/g, " ");
   const description = plainText.slice(0, 120);
-
+  const canUrl = `https://khadmatikw.com/blog/${slugWithId}`;
   const baseKeywords = [
     "خدماتي KW",
     "مدونة فنية",
@@ -103,20 +110,14 @@ export async function generateMetadata(
       description,
     },
     robots: "index, follow",
-    // alternates: {
-    //   canonical: `https://khadmatikw.com/blog/${slugWithId}`,
-    // },
+    alternates: {
+      canonical: `${canUrl}`,
+    },
   };
 }
 
 
-// إنشاء المسارات الساكنة
-export async function generateStaticParams() {
-  const posts = await getAllBlogPostIds();
-  return posts.map((p) => ({
-    slugWithId: `${slugify(p.title)}-${p.id}`,
-  }));
-}
+
 
 // صفحة تفاصيل التدوينة
 export default async function BlogPostPage(props: { params: Promise<{ slugWithId: string }> }) {

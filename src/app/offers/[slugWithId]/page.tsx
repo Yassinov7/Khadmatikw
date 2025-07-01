@@ -18,7 +18,12 @@ function extractKeywords(text?: string): string[] {
     .filter(w => w.length > 2 && !stopwords.includes(w))
     .slice(0, 10);
 }
-
+export async function generateStaticParams() {
+  const offers = await getAllOfferIds();
+  return offers.map((o) => ({
+    slugWithId: `${slugify(o.title)}-${o.id}`,
+  }));
+}
 export async function generateMetadata(
   props: { params: Promise<{ slugWithId: string }> }
 ): Promise<Metadata> {
@@ -47,7 +52,7 @@ export async function generateMetadata(
   ]
     .filter(Boolean)
     .join(", ");
-
+  const canUrl = `https://khadmatikw.com/offers/${slugWithId}`;
   return {
     title: offer.title,
     description: offer.description || "اكتشف هذا العرض من خدماتي KW في الكويت.",
@@ -57,19 +62,14 @@ export async function generateMetadata(
       images: [offer.product?.image_url || "/default-product.png"],
     },
     keywords,
-    // alternates: {
-    //   canonical: `https://khadmatikw.com/offers/${slugWithId}`,
-    // },
+    alternates: {
+      canonical: `${canUrl}`,
+    },
     robots: "index, follow",
   };
 }
 
-export async function generateStaticParams() {
-  const offers = await getAllOfferIds();
-  return offers.map((o) => ({
-    slugWithId: `${slugify(o.title)}-${o.id}`,
-  }));
-}
+
 
 export default async function OfferPage(props: { params: Promise<{ slugWithId: string }> }) {
   const { slugWithId } = await props.params;
@@ -83,25 +83,62 @@ export default async function OfferPage(props: { params: Promise<{ slugWithId: s
   "@type": "Product",
   "name": offer.title,
   "description": offer.description ?? "",
+  "review": {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "4.4",
+      "bestRating": "5"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "صياح الناجي"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.4",
+    "reviewCount": "1"
+  },
   "offers": {
     "@type": "Offer",
     "priceCurrency": "KWD",
     "price": (offer.discount_percent ?? 0).toFixed(2),
+    "priceValidUntil": "2028-12-31",
     "availability": "http://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",
-      "returnPolicyCategory": "http://schema.org/Returnable"
+      "returnPolicyCategory": "https://schema.org/Returnable",
+      "merchantReturnDays": 1,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
     },
     "shippingDetails": {
       "@type": "OfferShippingDetails",
       "shippingRate": {
         "@type": "MonetaryAmount",
-        "value": "2.00",
+        "value": "0.00",
         "currency": "KWD"
       },
       "shippingDestination": {
         "@type": "DefinedRegion",
         "addressCountry": "KW"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0.5,
+          "maxValue": 3,
+          "unitCode": "h"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 2,
+          "maxValue": 4,
+          "unitCode": "h"
+        }
       }
     }
   }

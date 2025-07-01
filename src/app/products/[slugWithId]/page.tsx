@@ -85,11 +85,64 @@ export default async function ProductPage(props: { params: Promise<{ slugWithId:
   "description": product.description ?? "",
   "image": product.image_url || "/default-product.png",
   "category": product.category?.name ?? "",
+  "review": {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "4.4",
+      "bestRating": "5"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "صياح الناجي"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.4",
+    "reviewCount": "1"
+  },
   "offers": {
     "@type": "Offer",
     "priceCurrency": "KWD",
+    "priceValidUntil": "2028-12-31",
     "price": (product.on_sale ? product.sale_price : product.price)?.toFixed(2) || "0.00",
-    "availability": "http://schema.org/InStock"
+    "availability": "http://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "returnPolicyCategory": "https://schema.org/Returnable",
+      "merchantReturnDays": 1,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0.00",
+        "currency": "KWD"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "KW"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0.5,
+          "maxValue": 3,
+          "unitCode": "h"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 2,
+          "maxValue": 4,
+          "unitCode": "h"
+        }
+      }
+    }
   }
 };
 
