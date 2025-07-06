@@ -129,30 +129,43 @@ export default async function BlogPostPage(props: { params: Promise<{ slugWithId
   if (!post) notFound();
 
   return (
-    <article className="max-w-2xl mx-auto bg-white rounded-2xl shadow p-6 my-8">
-      <div className="w-full h-56 mb-4 relative rounded-xl overflow-hidden bg-gray-50">
-        <Image
-          src={post.cover_url || "/default-blog.png"}
-          alt={post.title}
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
-      <h1 className="text-2xl font-bold text-primary mb-2">{post.title}</h1>
-      <div className="text-xs text-gray-400 mb-4">{formatDate(post.created_at)}</div>
-      <div
-        className="prose prose-slate max-w-none text-lg"
-        dir="rtl"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-      <section>
-        <p className="text-center text-gray-700 text-lg max-w-3xl mx-auto mb-10">
-        إليك قائمة بأرقام التواصل المباشر مع الفنيين المختصين حسب مجالات الخدمة. يمكنك الاتصال أو المراسلة عبر واتساب.
-        </p>
-        <ContactCard contacts={CONTACTS} />
-    </section>
-    </article>
+    <article className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6 my-10">
+
+  <div className="w-full h-64 mb-6 relative rounded-xl overflow-hidden group bg-gray-50 shadow-sm">
+    <Image
+      src={post.cover_url || "/default-blog.png"}
+      alt={post.title}
+      fill
+      className="object-cover transition-transform duration-300 group-hover:scale-105"
+      priority
+    />
+  </div>
+
+  <h1 className="text-3xl font-extrabold text-primary mb-2 leading-snug">{post.title}</h1>
+
+  <div className="flex items-center gap-2 text-xs text-gray-400 mb-6">
+    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10m-12 5h14M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+    {formatDate(post.created_at)}
+  </div>
+
+  <div
+    className="prose prose-slate max-w-none text-lg leading-loose prose-headings:text-blue-900 prose-p:text-gray-800"
+    dir="rtl"
+    dangerouslySetInnerHTML={{ __html: post.content }}
+  />
+
+  <section className="mt-12 bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
+    <h2 className="text-xl font-bold text-primary text-center mb-4">فنيونا جاهزون لخدمتك</h2>
+    <p className="text-center text-gray-700 text-sm mb-6">
+      إليك قائمة بأرقام التواصل المباشر مع الفنيين المختصين حسب مجالات الخدمة. يمكنك الاتصال أو المراسلة عبر واتساب.
+    </p>
+    <ContactCard contacts={CONTACTS} />
+  </section>
+
+</article>
+
     
   );
 }
