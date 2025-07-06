@@ -4,21 +4,13 @@ import type { Metadata } from "next";
 import { slugify } from "@/utils/slugify";
 import ProductDetailsClient from "@/components/product/ProductDetailsClient";
 
+// استخراج id من نهاية slug
 function extractId(slugWithId: string): number | null {
   const match = slugWithId.match(/-(\d+)$/);
   return match ? Number(match[1]) : null;
 }
 
-function extractKeywords(text?: string): string[] {
-  if (!text) return [];
-  const stopwords = ["من", "على", "إلى", "هذا", "في", "عن", "الذي", "و", "أو", "ثم", "مع", "أن", "كما"];
-  return text
-    .split(/[\s،.]+/)
-    .map(w => w.trim())
-    .filter(w => w.length > 2 && !stopwords.includes(w))
-    .slice(0, 10);
-}
-
+// تنسيق SEO بدون دلالات تجارية
 export async function generateMetadata(
   props: { params: Promise<{ slugWithId: string }> }
 ): Promise<Metadata> {
@@ -29,40 +21,30 @@ export async function generateMetadata(
   const product = await getProductById(id);
   if (!product) return {};
 
-  const dynamicKeywords = [
-    ...extractKeywords(product.name),
-    ...extractKeywords(product.description),
-    ...(product.category?.name ? [product.category.name] : []),
-  ];
-
   const canUrl = `https://khadmatikw.com/products/${slugWithId}`;
-  const keywords = [
-    ...dynamicKeywords,
-    "خدمات الكويت",
-    "الشاشات",
-    "الستلايت",
-    "الكاميرات",
-    "خدماتي KW",
-  ]
-    .filter(Boolean)
-    .join(", ");
 
   return {
     title: product.name,
-    description: product.description || "اكتشف هذه الخدمة من خدماتي KW في الكويت. نوفر أفضل خدمات الصيانة والتركيب للشاشات والستلايت والكاميرات.",
+    description: "صفحة معلومات ضمن موقع خدماتي KW.",
     openGraph: {
       title: product.name,
-      description: product.description || "",
+      description: "صفحة استعراض عامة ضمن خدماتي KW.",
       images: [product.image_url || "/default-product.png"],
     },
-    keywords,
-    alternates: {
-      canonical: `${canUrl}`,
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description: "تعرف على محتوى هذه الصفحة من خدماتي KW.",
     },
+    keywords: ["خدماتي KW", "معلومات", "صفحة عامة", "الكويت"],
     robots: "index, follow",
+    alternates: {
+      canonical: canUrl,
+    },
   };
 }
 
+// توليد الروابط الثابتة
 export async function generateStaticParams() {
   const products = await getAllProductIds();
   return products.map((p) => ({
@@ -70,6 +52,7 @@ export async function generateStaticParams() {
   }));
 }
 
+// صفحة التفاصيل
 export default async function ProductPage(props: { params: Promise<{ slugWithId: string }> }) {
   const { slugWithId } = await props.params;
   const id = extractId(slugWithId);
@@ -78,32 +61,7 @@ export default async function ProductPage(props: { params: Promise<{ slugWithId:
   const product = await getProductById(id);
   if (!product) notFound();
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": product.name,
-    "description": product.description ?? "",
-    "image": product.image_url || "/default-product.png",
-    "serviceType": product.category?.name ?? "",
-    "provider": {
-      "@type": "Organization",
-      "name": "خدماتي KW",
-      "areaServed": {
-        "@type": "Place",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "KW"
-        }
-      }
-    }
-  };
-
   return (
-    <>
-      <ProductDetailsClient product={product} />
-      <script type="application/ld+json" suppressHydrationWarning>
-        {JSON.stringify(structuredData)}
-      </script>
-    </>
+    <ProductDetailsClient product={product} />
   );
 }

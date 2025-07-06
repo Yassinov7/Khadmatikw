@@ -51,46 +51,29 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <section className="max-w-6xl mx-auto py-12 px-4">
-      {/* Structured Data SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "خدماتي KW",
-            contactPoint: CONTACTS.map((c) => ({
-              "@type": "ContactPoint",
-              name: c.name,
-              contactType: "Customer Support",
-              telephone: `+${c.phone}`,
-              sameAs: `https://wa.me/${c.whatsapp}`,
-              areaServed: "KW",
-            })),
-          }),
-        }}
-      />
-
-      <h1 className="text-3xl md:text-4xl font-extrabold text-primary text-center mb-4">
+      <h1 className="text-3xl md:text-4xl font-extrabold text-primary text-center mb-6">
         تواصل مع فريق خدماتي
       </h1>
-      <p className="text-center text-gray-700 text-lg max-w-3xl mx-auto mb-10">
+
+      <p className="text-center text-gray-700 text-lg max-w-3xl mx-auto mb-12 leading-relaxed">
         إليك قائمة بأرقام التواصل المباشر مع الفنيين المختصين حسب مجالات الخدمة. يمكنك الاتصال أو المراسلة عبر واتساب.
       </p>
 
-      <ContactCard contacts={CONTACTS} />
+      <div className="mb-12">
+        <ContactCard contacts={CONTACTS} />
+      </div>
 
-      {/* Google Map */}
-      <div className="w-full rounded-xl overflow-hidden border border-gray-100 shadow-sm mt-10">
+      {/* Google Map Section */}
+      <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-md">
         <iframe
           title="خريطة خدماتي KW"
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d17408.89872405616!2d48.0245132!3d29.3364041!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9d08cd68d2e3%3A0xea65814e3d172990!2z2LPYqtmE2KfZitiq!5e1!3m2!1sar!2skw!4v1750771538308!5m2!1sar!2skw"
-          className="w-full h-56"
+          className="w-full h-64 sm:h-80 md:h-96"
           loading="lazy"
         />
       </div>
 
-      <div className="text-xs text-gray-400 text-center mt-8">
+      <div className="text-xs text-gray-400 text-center mt-10">
         جميع الحقوق محفوظة &copy; {new Date().getFullYear()} خدماتي KW
       </div>
     </section>

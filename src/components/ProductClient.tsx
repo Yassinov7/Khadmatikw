@@ -17,7 +17,7 @@ export function ProductsClient({ categories, products }: Props) {
     : products;
 
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-6 pb-7">
       <h1 className="text-2xl font-bold text-primary mb-6 text-center">
         الخدمات المتوفرة
       </h1>
