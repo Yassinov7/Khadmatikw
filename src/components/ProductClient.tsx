@@ -19,7 +19,7 @@ export function ProductsClient({ categories, products }: Props) {
   return (
     <section className="flex flex-col gap-6">
       <h1 className="text-2xl font-bold text-primary mb-6 text-center">
-        الخدمات والمنتجات
+        الخدمات المتوفرة
       </h1>
       <CategoryBar
         categories={categories}
@@ -28,7 +28,7 @@ export function ProductsClient({ categories, products }: Props) {
       />
       {filteredProducts.length === 0 ? (
         <div className="text-center text-gray-500 py-10">
-          لا توجد منتجات مطابقة.
+          لا توجد خدمات مطابقة.
         </div>
       ) : (
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">

@@ -26,7 +26,6 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center gap-4">
           <Link href="/" className="hover:underline text-gray-600 font-medium">الرئيسية</Link>
           <Link href="/products" className="hover:underline text-gray-600 font-medium">الخدمات</Link>
-          <Link href="/offers" className="hover:underline text-gray-600 font-medium">العروض</Link>
           <Link href="/blog" className="hover:underline text-gray-600 font-medium">المدونة</Link>
           <Link href="/contact" className="hover:underline text-gray-600 font-medium">تواصل معنا</Link>
         </div>

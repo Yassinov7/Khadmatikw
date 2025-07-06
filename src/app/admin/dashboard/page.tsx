@@ -36,12 +36,6 @@ export default function AdminDashboardPage() {
           إدارة المنتجات
         </a>
         <a
-          href="/admin/offers"
-          className="block p-6 rounded-2xl shadow border hover:shadow-lg bg-secondary text-center font-bold text-lg transition"
-        >
-          إدارة العروض
-        </a>
-        <a
           href="/admin/blog"
           className="block p-6 rounded-2xl shadow border hover:shadow-lg bg-secondary text-center font-bold text-lg transition"
         >

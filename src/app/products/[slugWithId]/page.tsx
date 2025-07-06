@@ -9,7 +9,6 @@ function extractId(slugWithId: string): number | null {
   return match ? Number(match[1]) : null;
 }
 
-
 function extractKeywords(text?: string): string[] {
   if (!text) return [];
   const stopwords = ["من", "على", "إلى", "هذا", "في", "عن", "الذي", "و", "أو", "ثم", "مع", "أن", "كما"];
@@ -17,7 +16,7 @@ function extractKeywords(text?: string): string[] {
     .split(/[\s،.]+/)
     .map(w => w.trim())
     .filter(w => w.length > 2 && !stopwords.includes(w))
-    .slice(0, 10); // نحصرها لأهم 10 كلمات
+    .slice(0, 10);
 }
 
 export async function generateMetadata(
@@ -35,7 +34,8 @@ export async function generateMetadata(
     ...extractKeywords(product.description),
     ...(product.category?.name ? [product.category.name] : []),
   ];
-  const canUrl= `https://khadmatikw.com/products/${slugWithId}`;
+
+  const canUrl = `https://khadmatikw.com/products/${slugWithId}`;
   const keywords = [
     ...dynamicKeywords,
     "خدمات الكويت",
@@ -49,7 +49,7 @@ export async function generateMetadata(
 
   return {
     title: product.name,
-    description: product.description || "اكتشف هذا المنتج من خدماتي KW في الكويت. نوفر أفضل خدمات الصيانة والتركيب للشاشات والستلايت والكاميرات.",
+    description: product.description || "اكتشف هذه الخدمة من خدماتي KW في الكويت. نوفر أفضل خدمات الصيانة والتركيب للشاشات والستلايت والكاميرات.",
     openGraph: {
       title: product.name,
       description: product.description || "",
@@ -79,78 +79,31 @@ export default async function ProductPage(props: { params: Promise<{ slugWithId:
   if (!product) notFound();
 
   const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": product.name,
-  "description": product.description ?? "",
-  "image": product.image_url || "/default-product.png",
-  "category": product.category?.name ?? "",
-  "review": {
-    "@type": "Review",
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": "4.4",
-      "bestRating": "5"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "صياح الناجي"
-    }
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.4",
-    "reviewCount": "1"
-  },
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "KWD",
-    "priceValidUntil": "2028-12-31",
-    "price": (product.on_sale ? product.sale_price : product.price)?.toFixed(2) || "0.00",
-    "availability": "http://schema.org/InStock",
-    "itemCondition": "https://schema.org/NewCondition",
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "returnPolicyCategory": "https://schema.org/Returnable",
-      "merchantReturnDays": 1,
-      "returnMethod": "https://schema.org/ReturnByMail",
-      "returnFees": "https://schema.org/FreeReturn"
-    },
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingRate": {
-        "@type": "MonetaryAmount",
-        "value": "0.00",
-        "currency": "KWD"
-      },
-      "shippingDestination": {
-        "@type": "DefinedRegion",
-        "addressCountry": "KW"
-      },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 0.5,
-          "maxValue": 3,
-          "unitCode": "h"
-        },
-        "transitTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 2,
-          "maxValue": 4,
-          "unitCode": "h"
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": product.name,
+    "description": product.description ?? "",
+    "image": product.image_url || "/default-product.png",
+    "serviceType": product.category?.name ?? "",
+    "provider": {
+      "@type": "Organization",
+      "name": "خدماتي KW",
+      "areaServed": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "KW"
         }
       }
     }
-  }
-};
+  };
 
-
-  return <>
-    <ProductDetailsClient product={product} />
-    <script type="application/ld+json" suppressHydrationWarning>
-      {JSON.stringify(structuredData)}
-    </script>
-  </>;
+  return (
+    <>
+      <ProductDetailsClient product={product} />
+      <script type="application/ld+json" suppressHydrationWarning>
+        {JSON.stringify(structuredData)}
+      </script>
+    </>
+  );
 }

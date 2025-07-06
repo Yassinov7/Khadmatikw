@@ -6,24 +6,25 @@ import { Metadata } from "next";
 export const revalidate = 600;
 
 export const metadata: Metadata = {
-  title: "جميع المنتجات | خدماتي KW",
-  description: "استعرض جميع خدمات ومنتجات الشاشات، الستلايت والكاميرات في الكويت مع تفاصيل وصور وأسعار مميزة.",
+  title: "جميع الخدمات | خدماتي KW",
+  description: "استعرض خدمات الشاشات، الستلايت والكاميرات في الكويت مع تفاصيل وصور واضحة. خدماتنا مخصصة للصيانة والتركيب فقط.",
   keywords: [
-    "منتجات الشاشات الكويت",
-    "خدمات تركيب ستلايت",
+    "خدمات الشاشات الكويت",
+    "تركيب ستلايت",
     "كاميرات مراقبة",
-    "عروض خدماتي KW",
+    "خدمات فنية الكويت",
+    "خدماتي KW",
   ],
   openGraph: {
-    title: "جميع المنتجات | خدماتي KW",
-    description: "كل المنتجات والخدمات الفنية للشاشات والستلايت والكاميرات في الكويت. أسعار، صور، تفاصيل وأحدث العروض.",
+    title: "جميع الخدمات | خدماتي KW",
+    description: "كل الخدمات الفنية المتعلقة بالشاشات والستلايت والكاميرات في الكويت. استعرض التفاصيل والصور وتواصل معنا بسهولة.",
     url: "https://khadmatikw.com/products",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "منتجات وخدمات خدماتي KW",
-    description: "اكتشف أقوى خدمات ومنتجات الشاشات والستلايت والكاميرات وخدمات التركيب والصيانة في الكويت.",
+    title: "خدمات فنية من خدماتي KW",
+    description: "اكتشف أقوى خدمات الصيانة والتركيب للشاشات والستلايت والكاميرات في الكويت.",
   },
   alternates: {
     canonical: "https://khadmatikw.com/products",
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
+
 
 export default async function ProductsPage() {
   const { data: categories } = await supabase

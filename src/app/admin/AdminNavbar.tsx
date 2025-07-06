@@ -8,7 +8,6 @@ const links = [
   { label: "لوحة التحكم", href: "/admin/dashboard" },
   { label: "التصنيفات", href: "/admin/categories" },
   { label: "المنتجات", href: "/admin/products" },
-  { label: "العروض", href: "/admin/offers" },
   { label: "المدونة", href: "/admin/blog" },
 ];
 

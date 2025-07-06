@@ -5,7 +5,7 @@ import type { Product } from "@/types";
 
 export default function ProductDetailsClient({ product }: { product: Product }) {
   const whatsapp = product.contact_info?.whatsapp
-    ? `https://wa.me/${product.contact_info.whatsapp.replace(/[^0-9]/g, "")}?text=مرحبًا، أود الاستفسار عن المنتج: ${encodeURIComponent(product.name)}`
+    ? `https://wa.me/${product.contact_info.whatsapp.replace(/[^0-9]/g, "")}?text=مرحبًا، أود الاستفسار عن الخدمة: ${encodeURIComponent(product.name)}`
     : null;
 
   const phone = product.contact_info?.phone
@@ -13,12 +13,12 @@ export default function ProductDetailsClient({ product }: { product: Product }) 
     : null;
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-8">
+    <main className="max-w-5xl mx-auto px-4 py-10">
       <div className="bg-white rounded-2xl shadow-md border border-gray-100 flex flex-col md:flex-row overflow-hidden">
-        <div className="relative w-full md:w-1/2 h-64 bg-background">
+        <div className="relative w-full md:w-1/2 h-64 md:h-auto bg-background">
           <Image
             src={product.image_url || "/default-product.png"}
-            alt={`صورة المنتج: ${product.name}`}
+            alt={`صورة الخدمة: ${product.name}`}
             fill
             className="object-contain p-4"
             priority
@@ -26,29 +26,28 @@ export default function ProductDetailsClient({ product }: { product: Product }) 
         </div>
 
         <div className="p-6 flex flex-col gap-4 md:w-1/2">
+          {product.category?.name && (
+            <div className="text-sm text-gray-500 font-medium">{product.category.name}</div>
+          )}
+
           <h1 className="text-2xl font-bold text-primary">{product.name}</h1>
-          <p className="text-text leading-relaxed text-sm">{product.description}</p>
 
-          <div className="mt-2 text-xl font-bold">
-            {product.on_sale && product.sale_price ? (
-              <>
-                <span className="line-through text-gray-400 mr-2">{product.price} د.ك</span>
-                <span className="text-secondary px-2 text-2xl">{product.sale_price} د.ك</span>
-              </>
-            ) : (
-              <span className="text-primary">{product.price} د.ك</span>
-            )}
-          </div>
+          {product.description && (
+            <p className="text-gray-700 leading-relaxed text-sm whitespace-pre-line">
+              {product.description}
+            </p>
+          )}
 
-          <div className="flex flex-wrap gap-3 pt-2 mt-auto">
+          <div className="flex flex-wrap gap-3 pt-4 mt-auto">
             {whatsapp && (
               <a
                 href={whatsapp}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full shadow text-sm font-bold"
               >
-                <MessageCircle size={16} /> واتساب
+                <MessageCircle size={16} />
+                واتساب
               </a>
             )}
             {phone && (
@@ -56,7 +55,8 @@ export default function ProductDetailsClient({ product }: { product: Product }) 
                 href={phone}
                 className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-full shadow text-sm font-bold"
               >
-                <Phone size={16} /> اتصال
+                <Phone size={16} />
+                اتصال
               </a>
             )}
           </div>

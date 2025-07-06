@@ -4,7 +4,6 @@ import { Metadata } from "next";
 import { Monitor, SatelliteDish, Camera, PenTool } from "lucide-react";
 import { ContactCard } from "@/components/ContactCard";
 import { ProductCard } from "@/components/ProductCard";
-import { OfferCard } from "@/components/OfferCard";
 import BlogCard from "@/components/BlogCard";
 import { supabase } from "@/lib/supabase";
 
@@ -79,11 +78,9 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
    const { data: products } = await supabase.from("products").select("*").order("id", { ascending: false }).limit(6);
-  const { data: offers } = await supabase.from("offers").select("*, product:products(name, image_url)").order("id", { ascending: false }).limit(3);
   const { data: blogPosts } = await supabase.from("blog_posts").select("*").order("id", { ascending: false }).limit(3);
     const safeBlogs = blogPosts ?? [];
     const safeProducts = products ?? [];
-    const safeOffers = offers ?? [];
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 pt-10 font-[Noto Kufi Arabic,sans-serif]">
       <main className="w-full max-w-3xl flex flex-col items-center gap-6 mb-10">
@@ -107,11 +104,6 @@ export default async function HomePage() {
           <Link href="/products" className="w-full sm:w-auto">
             <button className="w-full px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition mb-2 sm:mb-0 bg-primary hover:bg-primary/80">
               استعرض الخدمات
-            </button>
-          </Link>
-          <Link href="/offers" className="w-full sm:w-auto">
-            <button className="w-full px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-secondary hover:bg-secondary/80">
-              عروض اليوم
             </button>
           </Link>
           <Link href="/contact" className="w-full sm:w-auto">
@@ -155,7 +147,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* العروض */}
+      {/* العروض
       {safeOffers?.length > 0 && (
         <section className="w-full max-w-6xl mb-12">
           <h2 className="text-2xl font-bold text-secondary mb-4 text-center">أحدث العروض</h2>
@@ -165,7 +157,7 @@ export default async function HomePage() {
             ))}
           </div>
         </section>
-      )}
+      )} */}
 
       {/* المدونة */}
       {safeBlogs?.length > 0 && (
@@ -209,7 +201,6 @@ export default async function HomePage() {
       <div className="text-sm text-center mt-8 text-gray-500 pb-3">
         تصفح صفحات الموقع:
         <Link href="/products" className="text-primary hover:underline font-medium mx-1">الخدمات</Link>|
-        <Link href="/offers" className="text-secondary hover:underline font-medium mx-1">العروض</Link>|
         <Link href="/blog" className="text-primary hover:underline font-medium mx-1">المدونة</Link>|
         <Link href="/contact" className="text-secondary hover:underline font-medium mx-1">التواصل</Link>
       </div>
