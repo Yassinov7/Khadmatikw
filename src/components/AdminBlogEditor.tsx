@@ -5,10 +5,15 @@ import Underline from "@tiptap/extension-underline";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 import DOMPurify from "dompurify"; // ✅ جديد
+import Table from "@tiptap/extension-table";
+import TableRow from "@tiptap/extension-table-row";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
 
 import {
   Bold, Italic, Underline as UnderlineIcon, List, ListOrdered,
-  Link as LinkIcon, Image as ImageIcon, Eraser, Type, Eye
+  Link as LinkIcon, Image as ImageIcon, Eraser, Type, Eye,
+  TableIcon
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -32,6 +37,12 @@ export default function AdminBlogEditor({ value, onChange }: Props) {
       Underline,
       Link.configure({ openOnClick: false }),
       Image,
+      Table.configure({
+      resizable: true,
+        }),
+        TableRow,
+        TableHeader,
+        TableCell,
     ],
     content: value,
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
@@ -115,6 +126,12 @@ export default function AdminBlogEditor({ value, onChange }: Props) {
         <button onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={iconBtnClass}>
           <Type className={iconColor(editor.isActive("heading", { level: 2 }))} size={18} />
           <span className="text-xs ml-1">H2</span>
+        </button>
+        <button
+          onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+          className={iconBtnClass}
+        >
+          <TableIcon className="text-gray-500" size={18} />
         </button>
         <button
           type="button"
