@@ -28,7 +28,7 @@ export function Navbar() {
             priority
           />
           <span className="text-xl font-extrabold text-primary tracking-wide " style={{ letterSpacing: "2px" }}>
-          ستلايت<span className="text-secondary">الرجاء</span>
+          ستلايت<span className="text-secondary"> الرجاء </span>
           </span>
         </Link>
 
