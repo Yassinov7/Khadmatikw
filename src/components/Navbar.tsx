@@ -21,14 +21,14 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-2" aria-label="الانتقال للرئيسية">
           <Image
             src="/logo.png"
-            alt="شعار خدماتي KW"
+            alt="شعار ستلايت الرجاء"
             width={40}
             height={40}
             className="rounded border border-primary shadow"
             priority
           />
           <span className="text-xl font-extrabold text-primary tracking-wide " style={{ letterSpacing: "2px" }}>
-            خدماتي <span className="text-secondary">KW</span>
+          ستلايت<span className="text-secondary">الرجاء</span>
           </span>
         </Link>
 

@@ -4,7 +4,7 @@ import { slugify } from '@/utils/slugify';
 
 export const revalidate = 3600;
 
-const BASE_URL = 'https://khadmatikw.com';
+const BASE_URL = 'https://satellitealrajaa.com';
 
 const formatDate = (date: string | Date | null) =>
   date ? new Date(date).toISOString() : new Date().toISOString();

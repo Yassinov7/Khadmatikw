@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase";
 import { slugify } from "@/utils/slugify";
 
-const BASE_URL = "https://khadmatikw.vercel.app";
+const BASE_URL = "https://satellitealrajaa.com";
 
 export async function GET() {
   const staticRoutes = [

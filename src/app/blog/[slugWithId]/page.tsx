@@ -72,9 +72,9 @@ export async function generateMetadata(
 
   const plainText = post.content.replace(/<[^>]+>/g, " ");
   const description = plainText.slice(0, 120);
-  const canUrl = `https://khadmatikw.com/blog/${slugWithId}`;
+  const canUrl = `https://satellitealrajaa.com/blog/${slugWithId}`;
   const baseKeywords = [
-    "خدماتي KW",
+    "ستلايت الرجاء",
     "مدونة فنية",
     "الشاشات",
     "الستلايت",

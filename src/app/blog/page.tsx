@@ -7,8 +7,8 @@ import { Metadata } from "next";
 export const revalidate = 600;
 
 export const metadata: Metadata = {
-  title: "مدونة خدماتي KW",
-  description: "تابع أحدث المقالات والنصائح حول الشاشات والستلايت والكاميرات والصيانة والتركيب في الكويت. كل جديد من خبراء خدماتي KW.",
+  title: "مدونة ستلايت الرجاء",
+  description: "تابع أحدث المقالات والنصائح حول الشاشات والستلايت والكاميرات والصيانة والتركيب في الكويت. كل جديد من خبراء ستلايت الرجاء .",
   keywords: [
     "مدونة فنية",
     "خدمات الكويت",
@@ -18,20 +18,20 @@ export const metadata: Metadata = {
     "تركيب شاشات",
     "صيانة الكاميرات",
     "نصائح فنية",
-    "خدماتي KW",
+    "ستلايت الرجاء ",
   ],
   openGraph: {
-    title: "مدونة خدماتي KW",
-    description: "مقالات ونصائح فنية حول الشاشات، الستلايت، الكاميرات والصيانة في الكويت. اكتشف أحدث التدوينات من خدماتي KW.",
-    url: "https://khadmatikw.com/blog",
+    title: "مدونة ستلايت الرجاء",
+    description: "مقالات ونصائح فنية حول الشاشات، الستلايت، الكاميرات والصيانة في الكويت. اكتشف أحدث التدوينات من ستلايت الرجاء .",
+    url: "https://satellitealrajaa.com/blog",
     type: "website",
   },
   alternates: {
-    canonical: "https://khadmatikw.com/blog",
+    canonical: "https://satellitealrajaa.com/blog",
   },
   twitter: {
     card: "summary_large_image",
-    title: "مدونة خدماتي KW",
+    title: "مدونة ستلايت الرجاء",
     description: "تابع المقالات والدروس والنصائح حول الخدمات الفنية في الكويت.",
   },
   robots: {

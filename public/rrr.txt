@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /admin/
-Allow: /
-Allow: /sitemap.xml
-
-Sitemap: https://khadmatikw.com/sitemap.xml

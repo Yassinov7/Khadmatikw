@@ -5,14 +5,14 @@ import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://khadmatikw.com/"),
-  title: "خدماتي KW",
+  metadataBase: new URL("https://satellitealrajaa.com/"),
+  title: "ستلايت الرجاء",
   description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
   openGraph: {
-    title: "خدماتي KW",
+    title: "ستلايت الرجاء",
   description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
-    url: "https://khadmatikw.com",
-    siteName: "خدماتي KW",
+    url: "https://satellitealrajaa.com",
+    siteName: "ستلايت الرجاء",
     locale: "ar_KW",
     type: "website",
   },

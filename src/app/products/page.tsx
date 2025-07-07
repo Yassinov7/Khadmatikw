@@ -6,28 +6,28 @@ import { Metadata } from "next";
 export const revalidate = 600;
 
 export const metadata: Metadata = {
-  title: "جميع الخدمات | خدماتي KW",
+  title: "جميع الخدمات | ستلايت الرجاء",
   description: "استعرض خدمات الشاشات، الستلايت والكاميرات في الكويت مع تفاصيل وصور واضحة. خدماتنا مخصصة للصيانة والتركيب فقط.",
   keywords: [
     "خدمات الشاشات الكويت",
     "تركيب ستلايت",
     "كاميرات مراقبة",
     "خدمات فنية الكويت",
-    "خدماتي KW",
+    "ستلايت الرجاء",
   ],
   openGraph: {
-    title: "جميع الخدمات | خدماتي KW",
+    title: "جميع الخدمات | ستلايت الرجاء",
     description: "كل الخدمات الفنية المتعلقة بالشاشات والستلايت والكاميرات في الكويت. استعرض التفاصيل والصور وتواصل معنا بسهولة.",
-    url: "https://khadmatikw.com/products",
+    url: "https://satellitealrajaa.com/products",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "خدمات فنية من خدماتي KW",
+    title: "خدمات فنية من ستلايت الرجاء",
     description: "اكتشف أقوى خدمات الصيانة والتركيب للشاشات والستلايت والكاميرات في الكويت.",
   },
   alternates: {
-    canonical: "https://khadmatikw.com/products",
+    canonical: "https://satellitealrajaa.com/products",
   },
   robots: {
     index: true,

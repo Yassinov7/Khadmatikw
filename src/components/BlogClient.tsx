@@ -22,7 +22,7 @@ export function BlogClient({ blogs }: Props) {
   return (
     <section className="flex flex-col gap-6 pb-6">
       <h1 className="text-2xl font-bold text-primary mb-6 text-center">
-        مدونة خدماتي KW
+        مدونة ستلايت الرجاء
       </h1>
       {/* دعم التصنيفات مستقبلاً */}
       {/* <BlogCategoryBar

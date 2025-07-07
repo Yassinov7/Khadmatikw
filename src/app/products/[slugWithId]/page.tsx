@@ -21,22 +21,22 @@ export async function generateMetadata(
   const product = await getProductById(id);
   if (!product) return {};
 
-  const canUrl = `https://khadmatikw.com/products/${slugWithId}`;
+  const canUrl = `https://satellitealrajaa.com/products/${slugWithId}`;
 
   return {
     title: product.name,
-    description: "صفحة معلومات ضمن موقع خدماتي KW.",
+    description: "صفحة معلومات ضمن موقع ستلايت الرجاء.",
     openGraph: {
       title: product.name,
-      description: "صفحة استعراض عامة ضمن خدماتي KW.",
+      description: "صفحة استعراض عامة ضمن ستلايت الرجاء.",
       images: [product.image_url || "/default-product.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: product.name,
-      description: "تعرف على محتوى هذه الصفحة من خدماتي KW.",
+      description: "تعرف على محتوى هذه الصفحة من ستلايت الرجاء.",
     },
-    keywords: ["خدماتي KW", "معلومات", "صفحة عامة", "الكويت"],
+    keywords: ["ستلايت الرجاء", "معلومات", "صفحة عامة", "الكويت"],
     robots: "index, follow",
     alternates: {
       canonical: canUrl,

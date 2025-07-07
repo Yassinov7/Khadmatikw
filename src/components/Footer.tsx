@@ -39,7 +39,7 @@ export function Footer() {
         <div className="text-center md:text-end text-xs text-gray-500">
           <div>
             جميع الحقوق محفوظة &copy; {new Date().getFullYear()}{" "}
-            <span className="text-primary font-bold">خدماتي KW</span>
+            <span className="text-primary font-bold">ستلايت الرجاء</span>
           </div>
           <div className="mt-1 text-[11px] text-gray-500 font-semibold">
             تم التطوير بكل حب بواسطة{" "}

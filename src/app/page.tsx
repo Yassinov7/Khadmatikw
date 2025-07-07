@@ -62,17 +62,17 @@ const CONTACTS = [
 ];
 
 export const metadata: Metadata = {
-  title: "خدماتي KW | أفضل خدمات الشاشات والستلايت والكاميرات في الكويت",
-  description: "منصة خدماتي KW توفر جميع خدمات الشاشات، الستلايت، الريسيفر، تركيب وصيانة الكاميرات والأنظمة الذكية في الكويت. تواصل معنا للعروض والخصومات والدعم الفني السريع.",
+  title: "ستلايت الرجاء  | أفضل خدمات الشاشات والستلايت والكاميرات في الكويت",
+  description: "منصة ستلايت الرجاء  توفر جميع خدمات الشاشات، الستلايت، الريسيفر، تركيب وصيانة الكاميرات والأنظمة الذكية في الكويت. تواصل معنا للعروض والخصومات والدعم الفني السريع.",
   keywords: [
     "خدمات الشاشات في الكويت",
     "تركيب ستلايت",
     "كاميرات مراقبة الكويت",
-    "خدماتي KW",
+    "ستلايت الرجاء ",
     "أسعار الكاميرات",
   ],
   alternates: {
-    canonical: "https://khadmatikw.com/",
+    canonical: "https://satellitealrajaa.com/",
   },
 };
 
@@ -86,14 +86,14 @@ export default async function HomePage() {
       <main className="w-full max-w-3xl flex flex-col items-center gap-6 mb-10">
         <Image
           src="/logo.png"
-          alt="شعار خدماتي KW"
+          alt="شعار ستلايت الرجاء "
           width={120}
           height={120}
           priority
           className="rounded-xl mb-2"
         />
         <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center text-primary">
-          خدماتي KW
+          ستلايت الرجاء 
         </h1>
         <p className="text-xl md:text-2xl text-center mb-4 text-secondary">
           كل حلول الشاشات، الستلايت والكاميرات في الكويت
@@ -170,9 +170,9 @@ export default async function HomePage() {
           </div>
         </section>
       )}
-      {/* لماذا تختار خدماتي KW؟ */}
+      {/* لماذا تختار ستلايت الرجاء ؟ */}
 <section className="w-full max-w-5xl my-16 px-4 text-center">
-  <h2 className="text-3xl font-bold text-secondary mb-6">لماذا تختار خدماتي KW؟</h2>
+  <h2 className="text-3xl font-bold text-secondary mb-6">لماذا تختار ستلايت الرجاء ؟</h2>
   <p className="text-gray-600 text-lg mb-10">
     نقدم لك كل ما تحتاجه من خدمات التوصيل والتركيب والدعم الفني للأجهزة الإلكترونية باحترافية، وبخبرة طويلة في السوق الكويتي.
   </p>

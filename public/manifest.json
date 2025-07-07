@@ -1,13 +1,13 @@
 {
-  "name": "خدماتي KW",
-  "short_name": "خدماتي",
+  "name": "Satellite Alrajaa",
+  "short_name": "ستلايت الرجاء",
   "description": "كل خدمات الشاشات، الستلايت والكاميرات في الكويت.",
   "lang": "ar",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#1D4ED8",
-  "background_color": "#F9FAFB",
+  "background_color": "#F5FbFC",
   "scope": "/",
   "icons": [
     {

@@ -4,8 +4,8 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "الصفحة غير موجودة | خدماتي KW",
-  description: "الرابط الذي تحاول الوصول إليه غير متوفر أو تم حذفه. تصفح خدمات وعروض خدماتي KW.",
+  title: "الصفحة غير موجودة | ستلايت الرجاء ",
+  description: "الرابط الذي تحاول الوصول إليه غير متوفر أو تم حذفه. تصفح خدمات وعروضستلايت الرجاء .",
   robots: "noindex, follow",
 };
 
