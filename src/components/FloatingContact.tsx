@@ -3,8 +3,8 @@
 import { MessageCircle, Phone } from "lucide-react";
 
 export function FloatingContact() {
-  const phone = "965650266068";
-  const phonecall = "965650266068";
+  const phone = "96550266068";
+  const phonecall = "96550266068";
 
   return (
     <>
