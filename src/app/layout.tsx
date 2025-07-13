@@ -6,7 +6,7 @@ import { FloatingContact } from "@/components/FloatingContact";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://satellitealrajaa.com/"),
-  title: "ستلايت الرجاء",
+  title: "ستلايت الرجاء | 50266068",
   description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
   openGraph: {
     title: "ستلايت الرجاء",

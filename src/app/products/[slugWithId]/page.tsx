@@ -24,16 +24,16 @@ export async function generateMetadata(
   const canUrl = `https://satellitealrajaa.com/products/${slugWithId}`;
 
   return {
-    title: product.name,
+    title: `${product.name} | 50266068`,
     description: "صفحة معلومات ضمن موقع ستلايت الرجاء.",
     openGraph: {
-      title: product.name,
+      title: `${product.name} | 50266068`,
       description: "صفحة استعراض عامة ضمن ستلايت الرجاء.",
       images: [product.image_url || "/default-product.png"],
     },
     twitter: {
       card: "summary_large_image",
-      title: product.name,
+      title: `${product.name} | 50266068`,
       description: "تعرف على محتوى هذه الصفحة من ستلايت الرجاء.",
     },
     keywords: ["ستلايت الرجاء", "معلومات", "صفحة عامة", "الكويت"],

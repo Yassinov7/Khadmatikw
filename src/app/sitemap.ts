@@ -10,7 +10,7 @@ const formatDate = (date: string | Date | null) =>
   date ? new Date(date).toISOString() : new Date().toISOString();
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticRoutes = ['', '/products', '/offers', '/blog', '/contact'];
+  const staticRoutes = ['', '/products', '/blog', '/contact'];
 
   // المنتجات
   const { data: products } = await supabase
@@ -18,9 +18,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .select('id, name, created_at');
 
   // العروض
-  const { data: offers } = await supabase
-    .from('offers')
-    .select('id, title, created_at');
+  // const { data: offers } = await supabase
+  //   .from('offers')
+  //   .select('id, title, created_at');
 
   // المدونات
   const { data: blogPosts } = await supabase
@@ -44,12 +44,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
 
     // العروض
-    ...(offers || []).map((offer) => ({
-      url: `${BASE_URL}/offers/${slugify(offer.title)}-${offer.id}`,
-      lastModified: formatDate(offer.created_at),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    })),
+    // ...(offers || []).map((offer) => ({
+    //   url: `${BASE_URL}/offers/${slugify(offer.title)}-${offer.id}`,
+    //   lastModified: formatDate(offer.created_at),
+    //   changeFrequency: 'weekly' as const,
+    //   priority: 0.8,
+    // })),
 
     // المدونات
     ...(blogPosts || []).map((post) => ({

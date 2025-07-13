@@ -11,28 +11,28 @@ const CONTACTS = [
     name: "خبير",
     role: "تركيب شاشات",
     phone: "96550266068",
-    whatsapp: "96565013345",
+    whatsapp: "96550266068",
     icon: <Tv2 size={28} className="text-primary" />,
   },
   {
     name: "خبير",
     role: "صيانة ستلايت",
     phone: "96550266068",
-    whatsapp: "96565013345",
+    whatsapp: "96550266068",
     icon: <SatelliteDish size={28} className="text-primary" />,
   },
   {
     name: "متخصص",
     role: "كاميرات مراقبة",
     phone: "96550266068",
-    whatsapp: "96565013345",
+    whatsapp: "96550266068",
     icon: <Camera size={28} className="text-primary" />,
   },
   {
     name: "فني",
     role: "صيانة عامة",
     phone: "96550266068",
-    whatsapp: "96565013345",
+    whatsapp: "96550266068",
     icon: <Wrench size={28} className="text-primary" />,
   },
 ];
@@ -96,17 +96,17 @@ export async function generateMetadata(
   const keywords: string[] = [...new Set([...titleWords, ...contentWords, ...baseKeywords])];
 
   return {
-    title: post.title,
+    title: `${post.title} | 50266068`,
     description,
     keywords,
     openGraph: {
-      title: post.title,
+      title: `${post.title} | 50266068`,
       description,
       images: [post.cover_url || "/default-blog.png"],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: `${post.title} | 50266068`,
       description,
     },
     robots: "index, follow",

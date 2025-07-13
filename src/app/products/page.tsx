@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export const revalidate = 600;
 
 export const metadata: Metadata = {
-  title: "جميع الخدمات | ستلايت الرجاء",
+  title: "جميع الخدمات | ستلايت الرجاء | 50266068",
   description: "استعرض خدمات الشاشات، الستلايت والكاميرات في الكويت مع تفاصيل وصور واضحة. خدماتنا مخصصة للصيانة والتركيب فقط.",
   keywords: [
     "خدمات الشاشات الكويت",

@@ -7,7 +7,7 @@ import { Metadata } from "next";
 export const revalidate = 600;
 
 export const metadata: Metadata = {
-  title: "مدونة ستلايت الرجاء",
+  title: "مدونة ستلايت الرجاء | 50266068",
   description: "تابع أحدث المقالات والنصائح حول الشاشات والستلايت والكاميرات والصيانة والتركيب في الكويت. كل جديد من خبراء ستلايت الرجاء .",
   keywords: [
     "مدونة فنية",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "ستلايت الرجاء ",
   ],
   openGraph: {
-    title: "مدونة ستلايت الرجاء",
+    title: "مدونة ستلايت الرجاء | 50266068",
     description: "مقالات ونصائح فنية حول الشاشات، الستلايت، الكاميرات والصيانة في الكويت. اكتشف أحدث التدوينات من ستلايت الرجاء .",
     url: "https://satellitealrajaa.com/blog",
     type: "website",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "مدونة ستلايت الرجاء",
+    title: "مدونة ستلايت الرجاء | 50266068",
     description: "تابع المقالات والدروس والنصائح حول الخدمات الفنية في الكويت.",
   },
   robots: {
