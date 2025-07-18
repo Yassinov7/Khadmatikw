@@ -7,6 +7,8 @@ import { ProductCard } from "@/components/ProductCard";
 import BlogCard from "@/components/BlogCard";
 import { supabase } from "@/lib/supabase";
 
+export const revalidate = 600;
+
 const features = [
   {
     title: "تركيب وصيانة الشاشات",

@@ -31,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticRoutes.map((route) => ({
       url: `${BASE_URL}${route}`,
       lastModified: new Date().toISOString(),
-      changeFrequency: 'weekly' as const,
+      changeFrequency: 'daily' as const,
       priority: 1.0,
     })),
 
@@ -39,8 +39,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...(products || []).map((product) => ({
       url: `${BASE_URL}/products/${slugify(product.name)}-${product.id}`,
       lastModified: formatDate(product.created_at),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     })),
 
     // العروض
@@ -55,8 +55,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...(blogPosts || []).map((post) => ({
       url: `${BASE_URL}/blog/${slugify(post.title)}-${post.id}`,
       lastModified: formatDate(post.created_at),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     })),
   ];
 
