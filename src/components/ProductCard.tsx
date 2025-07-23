@@ -23,14 +23,17 @@ export function ProductCard({ product }: { product: Product }) {
         href={`/products/${slugify(product.name)}-${product.id}`}
         className="relative w-full h-44 bg-gray-50 block group"
       >
-        <Image
-          src={product.image_url || "/default-product.png"}
-          alt={`صورة الخدمة: ${product.name}`}
-          fill
-          sizes="(max-width: 768px) 100vw, 300px"
-          className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-          itemProp="image"
-        />
+        <div className="relative w-full h-40 sm:h-48 bg-gray-50 rounded-xl overflow-hidden group">
+  <Image
+    src={product.image_url || "/default-product.png"}
+    alt={`صورة الخدمة: ${product.name}`}
+    fill
+    sizes="(max-width: 768px) 100vw, 300px"
+    className="object-contain transition-transform duration-300 group-hover:scale-105"
+    itemProp="image"
+  />
+</div>
+
       </Link>
 
       <div className="flex flex-col flex-1 p-4 gap-3">

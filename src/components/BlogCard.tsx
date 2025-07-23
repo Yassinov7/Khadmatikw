@@ -29,18 +29,19 @@ export function BlogCard({ post }: { post: Blog }) {
       itemType="https://schema.org/Article"
     >
       <Link href={href} className="block group">
-        <div className="relative aspect-video bg-gray-100">
-          <Image
-            src={post.cover_url || "/default-blog.png"}
-            alt={`غلاف: ${post.title}`}
-            fill
-            sizes="(max-width: 768px) 100vw, 300px"
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-            priority
-            itemProp="image"
-          />
-        </div>
-      </Link>
+  <div className="relative aspect-video bg-gray-100 overflow-hidden">
+    <Image
+      src={post.cover_url || "/default-blog.png"}
+      alt={`غلاف: ${post.title}`}
+      fill
+      sizes="(max-width: 768px) 100vw, 300px"
+      className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+      priority
+      itemProp="image"
+    />
+  </div>
+</Link>
+
 
       <div className="p-4 flex flex-col flex-1 gap-3">
         <Link href={href}>

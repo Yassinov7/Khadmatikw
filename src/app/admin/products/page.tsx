@@ -107,79 +107,88 @@ export default function AdminProductsPage() {
   if (!user) return null;
 
   return (
-    <section className="max-w-6xl mx-auto py-8 px-4">
-      <h2 className="text-2xl font-bold text-primary mb-6 text-center">إدارة الخدمات</h2>
-      <div className="mb-6 text-end">
-        <Link
-          href="/admin/products/add"
-          className="px-5 py-2 rounded-xl font-bold bg-primary text-white hover:bg-primary/90 transition"
-        >
-          + إضافة خدمة جديدة
-        </Link>
-      </div>
+    <section className="max-w-6xl mx-auto py-8 px-4 min-w-0">
+  <h2 className="text-2xl font-bold text-primary mb-6 text-center">إدارة الخدمات</h2>
 
-      {fetching ? (
-        <div className="text-center py-10 text-gray-400">...جار التحميل</div>
-      ) : products.length === 0 ? (
-        <div className="text-center text-gray-400 py-8">لا يوجد خدمات حالياً.</div>
-      ) : (
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((prod) => (
-            <div key={prod.id} className="bg-white rounded-xl shadow border p-4 flex flex-col h-full">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="relative w-20 h-20 rounded-lg border bg-gray-50 overflow-hidden">
-                  <Image
-                    src={prod.image_url?.trim() || '/default-product.png'}
-                    alt={prod.name}
-                    fill
-                    className="object-contain"
-                    sizes="80px"
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="font-bold text-lg text-primary truncate">{prod.name}</div>
-                  <div className="text-xs text-gray-500 mt-1">
-                    {prod.category_id && categoriesMap[prod.category_id] ? categoriesMap[prod.category_id] : 'بدون تصنيف'}
-                  </div>
-                </div>
-              </div>
+  <div className="mb-6 text-end">
+    <Link
+      href="/admin/products/add"
+      className="inline-block px-5 py-2 rounded-xl font-bold bg-primary text-white hover:bg-primary/90 transition"
+    >
+      + إضافة خدمة جديدة
+    </Link>
+  </div>
 
-              <div className="text-sm text-gray-600 flex-1 mb-2">
-                {prod.description?.slice(0, 60) || <span className="text-gray-300">لا يوجد وصف</span>}
-              </div>
+  {fetching ? (
+    <div className="text-center py-10 text-gray-400">...جار التحميل</div>
+  ) : products.length === 0 ? (
+    <div className="text-center text-gray-400 py-8">لا يوجد خدمات حالياً.</div>
+  ) : (
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {products.map((prod) => (
+        <div key={prod.id} className="bg-white rounded-2xl shadow border p-4 flex flex-col h-full w-full overflow-hidden">
+  {/* صورة المنتج */}
+  <div className="w-full h-40 relative rounded-xl bg-gray-50 overflow-hidden mb-4 shrink-0">
+    <Image
+      src={prod.image_url?.trim() || '/default-product.png'}
+      alt={prod.name}
+      fill
+      className="object-contain p-4"
+      sizes="100vw"
+    />
+  </div>
 
-              <div className="text-xs text-gray-500 mb-2 mt-1">
-                {prod.contact_info?.phone && <div>📞 {prod.contact_info.phone}</div>}
-                {prod.contact_info?.whatsapp && <div>💬 واتساب: {prod.contact_info.whatsapp}</div>}
-              </div>
+  {/* اسم وتصنيف */}
+  <div className="mb-3 overflow-hidden">
+    <div className="font-bold text-lg text-primary truncate">{prod.name}</div>
+    <div className="text-xs text-gray-500 mt-1">
+      {prod.category_id && categoriesMap[prod.category_id]
+        ? categoriesMap[prod.category_id]
+        : 'بدون تصنيف'}
+    </div>
+  </div>
 
-              <div className="flex gap-2 mt-auto pt-3">
-                <Link
-                  href={`/admin/products/${prod.id}/edit`}
-                  className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg font-bold hover:bg-blue-200"
-                >
-                  تعديل
-                </Link>
-                <button
-                  onClick={() => openDeleteModal(prod)}
-                  className="bg-red-100 text-red-700 px-3 py-1 rounded-lg font-bold hover:bg-red-200"
-                >
-                  حذف
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+  {/* الوصف */}
+  <div className="text-sm text-gray-600 flex-1 mb-3 line-clamp-2 overflow-hidden">
+    {prod.description || <span className="text-gray-300">لا يوجد وصف</span>}
+  </div>
 
-      <ConfirmModal
-        open={deleteModal.open}
-        onClose={closeDeleteModal}
-        onConfirm={handleDelete}
-        product={deleteModal.product}
-      />
+  {/* تواصل */}
+  <div className="text-xs text-gray-500 space-y-1 mb-4 overflow-hidden">
+    {prod.contact_info?.phone && <div className="truncate">📞 {prod.contact_info.phone}</div>}
+    {prod.contact_info?.whatsapp && <div className="truncate">💬 واتساب: {prod.contact_info.whatsapp}</div>}
+  </div>
 
-      {error && <div className="text-center text-red-500 mt-4">{error}</div>}
-    </section>
+  {/* الأزرار */}
+  <div className="flex flex-col sm:flex-row gap-2 mt-auto pt-3">
+    <Link
+      href={`/admin/products/${prod.id}/edit`}
+      className="flex-1 text-center bg-blue-100 text-blue-700 px-3 py-1.5 rounded-lg font-bold hover:bg-blue-200"
+    >
+      تعديل
+    </Link>
+    <button
+      onClick={() => openDeleteModal(prod)}
+      className="flex-1 text-center bg-red-100 text-red-700 px-3 py-1.5 rounded-lg font-bold hover:bg-red-200"
+    >
+      حذف
+    </button>
+  </div>
+</div>
+
+      ))}
+    </div>
+  )}
+
+  <ConfirmModal
+    open={deleteModal.open}
+    onClose={closeDeleteModal}
+    onConfirm={handleDelete}
+    product={deleteModal.product}
+  />
+
+  {error && <div className="text-center text-red-500 mt-4">{error}</div>}
+</section>
+
   );
 }
