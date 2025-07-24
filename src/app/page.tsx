@@ -104,12 +104,12 @@ export default async function HomePage() {
 
         <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full justify-center">
           <Link href="/products" className="w-full sm:w-auto">
-            <button className="w-full px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition mb-2 sm:mb-0 bg-primary hover:bg-primary/80">
+            <button className="w-full px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition mb-2 sm:mb-0 bg-primary hover:bg-primary/40">
               استعرض الخدمات
             </button>
           </Link>
           <Link href="/contact" className="w-full sm:w-auto">
-            <button className="w-full px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-primary hover:bg-primary/80">
+            <button className="w-full px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-secondary hover:bg-secondary/60">
               تواصل معنا
             </button>
           </Link>

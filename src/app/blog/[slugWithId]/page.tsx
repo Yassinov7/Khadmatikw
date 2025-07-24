@@ -5,6 +5,9 @@ import { slugify } from "@/utils/slugify";
 import { Camera, SatelliteDish, Tv2, Wrench } from "lucide-react";
 import Image from "next/image";
 import { ContactCard } from "@/components/ContactCard";
+import Link from "next/link";
+
+export const revalidate = 600;
 
 const CONTACTS = [
   {
@@ -155,7 +158,18 @@ export default async function BlogPostPage(props: { params: Promise<{ slugWithId
     dir="rtl"
     dangerouslySetInnerHTML={{ __html: post.content }}
   />
-
+  <div className="flex flex-wrap gap-3 pt-4 mt-auto">
+    <Link href="/contact" className="w-auto ">
+        <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-primary hover:bg-primary/80">
+            شاهد خدمات موقعنا 
+        </button>
+    </Link>
+    <Link href="/contact" className="w-auto ">
+        <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-secondary hover:bg-secondary/80 ">
+            شاهد التدوينات الأخرى
+        </button>
+    </Link>
+  </div>
   <section className="mt-12 bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
     <h2 className="text-xl font-bold text-primary text-center mb-4">فنيونا جاهزون لخدمتك</h2>
     <p className="text-center text-gray-700 text-sm mb-6">

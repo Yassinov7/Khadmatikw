@@ -2,6 +2,9 @@
 import Image from "next/image";
 import { Phone, MessageCircle } from "lucide-react";
 import type { Product } from "@/types";
+import Link from "next/link";
+
+export const revalidate = 600;
 
 export default function ProductDetailsClient({ product }: { product: Product }) {
   const whatsapp = product.contact_info?.whatsapp
@@ -59,6 +62,13 @@ export default function ProductDetailsClient({ product }: { product: Product }) 
                 اتصال
               </a>
             )}
+          </div>
+          <div className="flex flex-wrap gap-3 pt-4 mt-auto">
+            <Link href="/products" className="w-full sm:w-auto">
+            <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-secondary hover:bg-secondary/60">
+            شاهد باقي الخدمات
+            </button>
+          </Link>
           </div>
         </div>
       </div>
