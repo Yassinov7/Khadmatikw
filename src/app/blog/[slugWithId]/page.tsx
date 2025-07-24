@@ -169,6 +169,11 @@ export default async function BlogPostPage(props: { params: Promise<{ slugWithId
             شاهد التدوينات الأخرى
         </button>
     </Link>
+    <Link href="/" className="w-auto ">
+        <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-primary hover:bg-primary/80 ">
+            العودة للصفحة الرئيسية
+        </button>
+    </Link>
   </div>
   <section className="mt-12 bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
     <h2 className="text-xl font-bold text-primary text-center mb-4">فنيونا جاهزون لخدمتك</h2>

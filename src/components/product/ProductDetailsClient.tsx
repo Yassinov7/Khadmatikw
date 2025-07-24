@@ -65,10 +65,15 @@ export default function ProductDetailsClient({ product }: { product: Product }) 
           </div>
           <div className="flex flex-wrap gap-3 pt-4 mt-auto">
             <Link href="/products" className="w-full sm:w-auto">
-            <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-secondary hover:bg-secondary/60">
+            <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-secondary hover:bg-secondary/80">
             شاهد باقي الخدمات
             </button>
           </Link>
+          <Link href="/contact" className="w-auto ">
+        <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-primary hover:bg-primary/80 ">
+            العودة للصفحة الرئيسية
+        </button>
+    </Link>
           </div>
         </div>
       </div>
