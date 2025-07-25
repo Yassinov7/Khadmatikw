@@ -100,8 +100,16 @@ export default async function HomePage() {
         <p className="text-xl md:text-2xl text-center mb-4 text-secondary">
           كل حلول الشاشات، الستلايت والكاميرات في الكويت
         </p>
-
-
+        <p className="text-xl md:text-2xl text-center mb-4 text-secondary/60">
+          فني ستلايت محترف , جميع مناطق الكويت 
+        <br />
+        تركيب وصيانة ستلايت 
+        <br />
+        محل ستلايت الرجاء جاهز للخدمة 24 ساعة , 
+        </p>
+        <p className="text-xl md:text-2xl text-center mb-4 text-cyan-600">
+        ريسيفر انترنت ، اشتراكات IPTV ، اشتراك برلين، اشتراك سبايدر ، افضل الخدمات وافضل الاسعار 
+        </p>
         <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full justify-center">
           <Link href="/products" className="w-full sm:w-auto">
             <button className="w-full px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition mb-2 sm:mb-0 bg-primary hover:bg-primary/80">
