@@ -2,11 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, X, Home, Layers, PhoneCall, Blinds } from "lucide-react";
+import { Menu, X, Home, Layers, PhoneCall, Blinds, Satellite, Camera  } from "lucide-react";
 
 const links = [
   { label: "الرئيسية", href: "/", icon: <Home size={20} className="md:mr-2 text-secondary" /> },
   { label: "الخدمات", href: "/products", icon: <Layers size={20} className="md:mr-2 text-secondary" /> },
+  { label: "الستلايت", href: "/satellite-service", icon: <Satellite size={20} className="md:mr-2 text-secondary" /> },
+  { label: "كاميرات", href: "/camera-service", icon: <Camera size={20} className="md:mr-2 text-secondary" /> },
   { label: "المدونة", href: "/blog", icon: <Blinds size={20} className="md:mr-2 text-secondary" /> },
   { label: "تواصل معنا", href: "/contact", icon: <PhoneCall size={20} className="md:mr-2 text-secondary" /> },
 ];
