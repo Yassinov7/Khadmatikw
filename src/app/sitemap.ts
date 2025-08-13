@@ -10,7 +10,7 @@ const formatDate = (date: string | Date | null) =>
   date ? new Date(date).toISOString() : new Date().toISOString();
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticRoutes = ['', '/products', '/blog', '/contact', 'satellite-service', 'camera-service'];
+  const staticRoutes = ['', '/products', '/blog', '/contact', '/satellite-service', '/camera-service'];
 
   // المنتجات
   const { data: products } = await supabase
