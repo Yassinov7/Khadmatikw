@@ -97,19 +97,19 @@ export default async function HomePage() {
         <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center text-primary">
           ستلايت الرجاء 
         </h1>
-        <p className="text-xl md:text-2xl text-center mb-4 text-secondary">
-          كل حلول الشاشات، الستلايت والكاميرات في الكويت
-        </p>
-        <p className="text-xl md:text-2xl text-center mb-4 text-secondary/60">
-          فني ستلايت محترف , جميع مناطق الكويت 
-        <br />
-        تركيب وصيانة ستلايت 
-        <br />
-        محل ستلايت الرجاء جاهز للخدمة 24 ساعة , 
-        </p>
-        <p className="text-xl md:text-2xl text-center mb-4 text-cyan-600">
-        ريسيفر انترنت ، اشتراكات IPTV ، اشتراك برلين، اشتراك سبايدر ، افضل الخدمات وافضل الاسعار 
-        </p>
+        <p className="text-xl md:text-2xl text-center mb-4 text-secondary font-medium">
+  كل حلول الشاشات، الستلايت، والكاميرات تحت سقف واحد في الكويت.
+</p>
+<p className="text-lg md:text-xl text-center mb-4 text-secondary/70 leading-relaxed">
+  فني ستلايت محترف يغطي جميع مناطق الكويت.<br />
+  تركيب وصيانة ستلايت بجودة عالية وبسرعة فائقة.<br />
+  محل ستلايت الرجاء جاهز لخدمتكم على مدار الساعة.
+</p>
+<p className="text-lg md:text-xl text-center mb-4 text-cyan-600 font-semibold">
+  استمتع بأفضل اشتراكات IPTV، اشتراك برلين، واشتراك سبايدر.<br />
+  جودة عالية، أسعار مناسبة، وخدمة سريعة ومضمونة.
+</p>
+
         <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full justify-center">
           <Link href="/products" className="w-full sm:w-auto">
             <button className="w-full px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition mb-2 sm:mb-0 bg-primary hover:bg-primary/80">
