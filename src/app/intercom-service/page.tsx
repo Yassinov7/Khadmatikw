@@ -1,4 +1,4 @@
-// app/[lang]/camera-service/page.tsx
+// app/intercom-service/page.tsx
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,38 +12,38 @@ const kuwaitCities = [
 
 // الخدمات والكلمات المفتاحية
 const servicesKeywords = [
-  "فني كاميرات الكويت",
-  "تركيب كاميرات مراقبة",
-  "صيانة كاميرات",
-  "خدمة كاميرات احترافية",
-  "تصليح كاميرات المراقبة",
-  "كاميرات IP",
-  "كاميرات لاسلكية",
-  "كاميرات داخلية وخارجية"
+  "فني انتركم الكويت",
+  "تركيب انتركم",
+  "صيانة انتركم",
+  "خدمة انتركم احترافية",
+  "تصليح انتركم",
+  "انتركم فيديو",
+  "انتركم صوتي",
+  "انتركم ذكي"
 ].join(", ");
 
 // Metadata
 export const metadata: Metadata = {
-  title: "فني كاميرات مراقبة في الكويت – تركيب وصيانة احترافية",
+  title: "فني انتركم الكويت – تركيب وصيانة احترافية",
   description:
-    "خدمة تركيب وصيانة كاميرات المراقبة في الكويت بجودة عالية وخبرة مميزة. نقدم جميع أنواع الكاميرات الداخلية والخارجية مع صيانة وضمان.",
+    "خدمة تركيب وصيانة أنظمة الانتركم في الكويت بجودة عالية وخبرة مميزة. نقدم جميع أنواع الانتركم الصوتي والفيديو مع صيانة وضمان.",
   keywords: `${servicesKeywords}, ${kuwaitCities.join(", ")}`,
   openGraph: {
-    title: "فني كاميرات مراقبة في الكويت – تركيب وصيانة احترافية",
+    title: "فني انتركم الكويت – تركيب وصيانة أنظمة الاتصال الداخلي",
     description:
-      "أفضل خدمات تركيب وصيانة كاميرات المراقبة في جميع مدن الكويت، مع ضمان الجودة وخدمة ما بعد البيع.",
-    url: "https://satellitealrajaa.com/camera-service",
-    images: ["/camera-service-og.jpg"],
+      "خدمة تركيب وصيانة أنظمة الانتركم في الكويت، مع ضمان الجودة وخدمة ما بعد البيع. تواصل معنا الآن للحصول على أفضل خدمة سريعة وموثوقة.",
+    url: "https://satellitealrajaa.com/intercom-service",
+    images: ["/intercom-service-og.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "فني كاميرات مراقبة في الكويت",
+    title: "فني انتركم الكويت",
     description:
-      "خدمة احترافية لتركيب وصيانة كاميرات المراقبة الداخلية والخارجية مع ضمان.",
+      "خدمة احترافية لتركيب وصيانة أنظمة الانتركم الصوتي والفيديو مع ضمان.",
   },
   alternates: {
-    canonical: "https://satellitealrajaa.com/camera-service",
+    canonical: "https://satellitealrajaa.com/intercom-service",
   },
   robots: {
     index: true,
@@ -51,22 +51,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CameraServicePage() {
+export default function IntercomServicePage() {
   const serviceDescriptions = [
-    { title: "تركيب كاميرات مراقبة", desc: "تركيب جميع أنواع الكاميرات الداخلية والخارجية." },
-    { title: "صيانة الكاميرات", desc: "كشف وإصلاح الأعطال بدقة لضمان أفضل أداء." },
-    { title: "توصيل شبكي", desc: "ربط الكاميرات بالشبكة الداخلية أو الإنترنت." },
-    { title: "كاميرات IP", desc: "حلول كاميرات المراقبة عبر بروتوكول الإنترنت." },
-    { title: "كاميرات لاسلكية", desc: "تركيب كاميرات بدون أسلاك بجودة عالية." },
+    { title: "تركيب انتركم فيديو", desc: "تركيب أنظمة انتركم بالفيديو عالية الوضوح للمنازل والمكاتب." },
+    { title: "صيانة الانتركم", desc: "كشف وإصلاح الأعطال بدقة لضمان أفضل أداء للنظام." },
+    { title: "انتركم صوتي", desc: "تركيب وصيانة أنظمة الانتركم الصوتي التقليدية والحديثة." },
+    { title: "انتركم ذكي", desc: "حلول الانتركم الذكي مع إمكانية التحكم عن بُعد." },
+    { title: "توصيل شبكي", desc: "ربط أنظمة الانتركم بالشبكة الداخلية أو الإنترنت." },
     { title: "خدمة ما بعد البيع", desc: "دعم فني وصيانة دورية لضمان استمرارية العمل." },
   ];
 
   const works = [
-    "/sattech/cworks/work1.jpg",
-    "/sattech/cworks/work2.jpg",
-    "/sattech/cworks/work3.jpg",
-    "/sattech/cworks/work4.webp",
-    "/sattech/cworks/work5.jpg",
+    "/sattech/intercom/work2.jpg",
+    "/sattech/intercom/work1.jpeg",
+    "/sattech/intercom/work3.jpg",
+    "/sattech/intercom/work4.jpeg",
+    "/sattech/intercom/work6.jpg",
   ];
 
   return (
@@ -74,10 +74,10 @@ export default function CameraServicePage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/80 to-green-600 text-white min-h-[60vh] flex flex-col justify-center items-center text-center p-6">
         <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
-          فني كاميرات مراقبة محترف في الكويت
+          فني انتركم الكويت
         </h1>
         <p className="text-lg sm:text-xl mb-6 max-w-2xl">
-          تركيب وصيانة كاميرات المراقبة الداخلية والخارجية بجودة عالية في جميع مدن الكويت.
+          تركيب وصيانة أنظمة الانتركم الصوتي والفيديو بجودة عالية في جميع مدن الكويت.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <a
@@ -87,7 +87,7 @@ export default function CameraServicePage() {
             <Phone size={18} /> اتصال مباشر
           </a>
           <a
-            href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن خدمات تركيب وصيانة الكاميرات."
+            href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن خدمات تركيب وصيانة الانتركم."
             target="_blank"
             rel="noopener noreferrer"
             className="bg-green-600 text-white font-bold px-6 py-3 rounded-full shadow hover:bg-green-700 transition flex items-center gap-2"
@@ -122,7 +122,7 @@ export default function CameraServicePage() {
               key={i}
               className="relative w-full h-32 sm:h-40 rounded-xl overflow-hidden shadow hover:shadow-lg transition"
             >
-              <Image src={img} alt={`عمل كاميرات ${i + 1}`} fill className="object-cover" />
+              <Image src={img} alt={`عمل انتركم ${i + 1}`} fill className="object-cover" />
             </div>
           ))}
         </div>
@@ -133,25 +133,25 @@ export default function CameraServicePage() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">لماذا تختارنا؟</h2>
           <p className="text-gray-600 text-lg mb-6">
-            نقدم أفضل خدمة تركيب وصيانة كاميرات المراقبة بأسعار مناسبة وجودة عالية مع ضمان الخدمة.
+            نقدم أفضل خدمة تركيب وصيانة أنظمة الانتركم بأسعار مناسبة وجودة عالية مع ضمان الخدمة.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <div className="flex flex-col items-center">
-                          <Image src="/sattech/fast.png" alt="سرعة" width={60} height={60} />
-                          <span className="mt-2 text-gray-700 font-medium">سرعة الاستجابة</span>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <Image src="/sattech/quality.avif" alt="جودة" width={60} height={60} />
-                          <span className="mt-2 text-gray-700 font-medium">جودة مضمونة</span>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <Image src="/sattech/trusted.png" alt="ثقة" width={60} height={60} />
-                          <span className="mt-2 text-gray-700 font-medium">احترافية وثقة</span>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <Image src="/sattech/safe.png" alt="امان" width={60} height={60} />
-                          <span className="mt-2 text-gray-700 font-medium">امان المنتجات</span>
-                        </div>
+              <Image src="/sattech/fast.png" alt="سرعة" width={60} height={60} />
+              <span className="mt-2 text-gray-700 font-medium">سرعة الاستجابة</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image src="/sattech/quality.avif" alt="جودة" width={60} height={60} />
+              <span className="mt-2 text-gray-700 font-medium">جودة مضمونة</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image src="/sattech/trusted.png" alt="ثقة" width={60} height={60} />
+              <span className="mt-2 text-gray-700 font-medium">احترافية وثقة</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image src="/sattech/safe.png" alt="امان" width={60} height={60} />
+              <span className="mt-2 text-gray-700 font-medium">امان المنتجات</span>
+            </div>
           </div>
         </div>
       </section>
@@ -186,7 +186,7 @@ export default function CameraServicePage() {
             <Phone size={20} /> اتصال مباشر
           </a>
           <a
-            href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن خدمات تركيب وصيانة الكاميرات."
+            href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن خدمات تركيب وصيانة الانتركم."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-full font-bold shadow"

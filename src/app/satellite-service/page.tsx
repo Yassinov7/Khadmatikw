@@ -27,14 +27,14 @@ export const metadata: Metadata = {
   title: "فني ستلايت محترف في الكويت – تركيب وصيانة واشتراكات IPTV",
   description:
     "خدمة تركيب وصيانة الستلايت في الكويت، بالإضافة لاشتراكات IPTV واشتراك برلين وسبايدر. تواصل معنا الآن للحصول على أفضل خدمة سريعة وموثوقة في جميع مدن الكويت.",
-  keywords: [...servicesKeywords, ...kuwaitCities],
+  keywords: `${servicesKeywords.join(", ")}, ${kuwaitCities.join(", ")}`,
   openGraph: {
     title: "فني ستلايت محترف في الكويت – تركيب وصيانة واشتراكات IPTV",
     description:
       "خدمة تركيب وصيانة الستلايت في الكويت، بالإضافة لاشتراكات IPTV واشتراك برلين وسبايدر. تواصل معنا الآن للحصول على أفضل خدمة سريعة وموثوقة في جميع مدن الكويت.",
     url: "https://satellitealrajaa.com/satellite-service",
     type: "website",
-    images: ["/default-blog.png"]
+    images: ["/satellite-service-og.jpg"]
   },
   twitter: {
     card: "summary_large_image",

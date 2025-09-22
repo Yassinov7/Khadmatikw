@@ -30,6 +30,7 @@ export function Footer() {
           <Link href="/contact" className="hover:underline text-gray-800 font-medium">تواصل معنا</Link>
           <Link href="/satellite-service" className="hover:underline text-gray-800 font-medium">فني ستلايت</Link>
           <Link href="/camera-service" className="hover:underline text-gray-800 font-medium">فني كاميرات</Link>
+          <Link href="/intercom-service" className="hover:underline text-gray-800 font-medium">فني انتركم</Link>
         </div>
 
         {/* الموقع */}
