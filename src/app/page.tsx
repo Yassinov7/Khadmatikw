@@ -211,8 +211,11 @@ export default async function HomePage() {
       <div className="text-sm text-center mt-8 text-gray-500 pb-3">
         تصفح صفحات الموقع:
         <Link href="/products" className="text-primary hover:underline font-medium mx-1">الخدمات</Link>|
-        <Link href="/blog" className="text-primary hover:underline font-medium mx-1">المدونة</Link>|
-        <Link href="/contact" className="text-secondary hover:underline font-medium mx-1">التواصل</Link>
+        <Link href="/blog" className="text-secondary hover:underline font-medium mx-1">المدونة</Link>|
+        <Link href="/contact" className="text-primary hover:underline font-medium mx-1">التواصل</Link>|
+        <Link href="/satellite-service" className="text-secondary hover:underline font-medium mx-1">فني ستلايت</Link>|
+        <Link href="/camera-service" className="text-primary hover:underline font-medium mx-1">فني كاميرات</Link>|
+        <Link href="/intercom-service" className="text-secondary hover:underline font-medium mx-1">فني انتركم</Link>
       </div>
     </div>
   );
