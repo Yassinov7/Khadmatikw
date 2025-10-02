@@ -20,26 +20,30 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <form onSubmit={handleLogin} className="max-w-xs mx-auto mt-32 bg-white rounded-xl shadow p-6 flex flex-col gap-4">
-      <h2 className="text-xl font-bold text-center text-primary">تسجيل دخول المسؤول</h2>
-      <input
-        type="email"
-        placeholder="البريد الإلكتروني"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        className="border rounded p-2"
-        required
-      />
-      <input
-        type="password"
-        placeholder="كلمة المرور"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        className="border rounded p-2"
-        required
-      />
-      {error && <div className="text-red-500 text-sm text-center">{error}</div>}
-      <button type="submit" className="bg-accent w-full">دخول</button>
-    </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <form onSubmit={handleLogin} className="w-full max-w-sm bg-white rounded-xl shadow p-6 flex flex-col gap-4">
+        <h2 className="text-xl font-bold text-center text-primary">تسجيل دخول المسؤول</h2>
+        <input
+          type="email"
+          placeholder="البريد الإلكتروني"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          className="border rounded p-3"
+          required
+        />
+        <input
+          type="password"
+          placeholder="كلمة المرور"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          className="border rounded p-3"
+          required
+        />
+        {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+        <button type="submit" className="bg-primary text-white w-full py-3 rounded-lg font-bold hover:bg-primary/90 transition">
+          دخول
+        </button>
+      </form>
+    </div>
   );
 }

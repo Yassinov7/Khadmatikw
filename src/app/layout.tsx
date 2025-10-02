@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
   openGraph: {
     title: "ستلايت الرجاء",
-  description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
+    description: "كل خدماتك التي تريدها في الكويت متوفرة لدينا وبافضل الاسعار وانسب العروض، خدمات الشاشات، الستلايت والكاميرات بالكويت.",
     url: "https://satellitealrajaa.com",
     siteName: "ستلايت الرجاء",
     locale: "ar_KW",
@@ -38,12 +38,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/icon-512x512.png" sizes="512x512" />
       </head>
       <body className="antialiased bg-background min-h-screen flex flex-col"
-      style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
+        style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
         <Navbar />
         <main className="flex-1 container mx-auto px-4 pt-8">
           {children}
-          <FloatingContact />
         </main>
+        <FloatingContact />
         <Footer />
       </body>
     </html>

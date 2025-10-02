@@ -23,20 +23,31 @@ export type Product = {
   };
 };
 
-// export type Offer = {
-//   id: number;
-//   title: string;
-//   description?: string;
-//   discount_percent?: number;
-//   start_date?: string;
-//   end_date?: string;
-//   product?: { name: string; image_url?: string; category_id?: number };
-//   contact_info?: {
-//     phone?: string;
-//     whatsapp?: string;
-//     [key: string]: string | undefined;
-//   };
-// };
+export type Offer = {
+  id: number;
+  title: string;
+  description?: string;
+  // Remove direct price attributes to avoid price sensitivity
+  // Instead focus on benefits and features
+  benefits?: string[]; // List of key benefits
+  features?: string[]; // List of features
+  start_date?: string;
+  end_date?: string;
+  image_url?: string; // Banner or promotional image
+  product?: {
+    id: number;
+    name: string;
+    image_url?: string;
+    category_id?: number;
+    category?: { name: string };
+  };
+  contact_info?: {
+    phone?: string;
+    whatsapp?: string;
+    [key: string]: string | undefined;
+  };
+  // SEO fields removed - using slug generation with ID instead
+};
 
 export type Blog = {
   id: number;
@@ -44,5 +55,4 @@ export type Blog = {
   cover_url?: string;
   content: string;
   created_at: string;
-  // category_id?: number; // لدعم التصنيفات مستقبلاً
 };

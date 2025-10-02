@@ -4,8 +4,10 @@ import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+// @ts-ignore
 import { useAdminAuth } from '../AdminAuthContext';
 import type { Product } from '@/types';
+import { Search, Filter, X } from 'lucide-react';
 
 type ConfirmModalProps = {
   open: boolean;
@@ -14,11 +16,16 @@ type ConfirmModalProps = {
   product?: Product;
 };
 
+type Category = {
+  id: number;
+  name: string;
+};
+
 function ConfirmModal({ open, onClose, onConfirm, product }: ConfirmModalProps) {
   if (!open) return null;
   return (
-    <div className="fixed inset-0 bg-black/30 z-50 flex items-center justify-center">
-      <div className="bg-white rounded-2xl shadow-xl p-6 min-w-[320px] max-w-xs text-center">
+    <div className="fixed inset-0 bg-black/30 z-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-xl p-6 min-w-[300px] max-w-sm text-center">
         <h2 className="text-lg font-bold mb-4 text-red-600">تأكيد الحذف</h2>
         <p>هل أنت متأكد من حذف الخدمة:</p>
         <div className="my-2 font-bold text-primary">{product?.name}</div>
@@ -26,10 +33,10 @@ function ConfirmModal({ open, onClose, onConfirm, product }: ConfirmModalProps) 
           {product?.description?.slice(0, 60)}
         </div>
         <div className="flex gap-2 justify-center mt-2">
-          <button className="bg-gray-200 text-gray-700 px-4 py-1 rounded-lg" onClick={onClose}>
+          <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg" onClick={onClose}>
             إلغاء
           </button>
-          <button className="bg-red-600 text-white px-4 py-1 rounded-lg" onClick={() => product?.id && onConfirm(product.id)}>
+          <button className="bg-red-600 text-white px-4 py-2 rounded-lg" onClick={() => product?.id && onConfirm(product.id)}>
             حذف نهائي
           </button>
         </div>
@@ -39,21 +46,38 @@ function ConfirmModal({ open, onClose, onConfirm, product }: ConfirmModalProps) 
 }
 
 export default function AdminProductsPage() {
+  // @ts-ignore
   const { user, loading } = useAdminAuth();
   const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [categoriesMap, setCategoriesMap] = useState<Record<number, string>>({});
   const [fetching, setFetching] = useState(true);
   const [error, setError] = useState('');
   const [deleteModal, setDeleteModal] = useState<{ open: boolean; product?: Product }>({ open: false });
 
+  // Filter states
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<number | ''>('');
+  const [showFilters, setShowFilters] = useState(false);
+
   useEffect(() => {
+    // @ts-ignore
     if (!loading && !user) router.replace('/admin/login');
   }, [user, loading, router]);
 
   useEffect(() => {
-    if (user) fetchProducts();
+    // @ts-ignore
+    if (user) {
+      fetchProducts();
+      fetchCategories();
+    }
   }, [user]);
+
+  useEffect(() => {
+    applyFilters();
+  }, [products, searchTerm, selectedCategory]);
 
   async function fetchProducts() {
     setFetching(true);
@@ -76,6 +100,42 @@ export default function AdminProductsPage() {
     });
     setCategoriesMap(catMap);
     setFetching(false);
+  }
+
+  async function fetchCategories() {
+    const { data, error } = await supabase
+      .from('categories')
+      .select('id, name')
+      .order('name', { ascending: true });
+
+    if (!error && data) {
+      setCategories(data as Category[]);
+    }
+  }
+
+  function applyFilters() {
+    let result = [...products];
+
+    // Apply search filter
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      result = result.filter(product =>
+        product.name.toLowerCase().includes(term) ||
+        (product.description && product.description.toLowerCase().includes(term))
+      );
+    }
+
+    // Apply category filter
+    if (selectedCategory !== '') {
+      result = result.filter(product => product.category_id === selectedCategory);
+    }
+
+    setFilteredProducts(result);
+  }
+
+  function clearFilters() {
+    setSearchTerm('');
+    setSelectedCategory('');
   }
 
   function openDeleteModal(product: Product) {
@@ -104,91 +164,170 @@ export default function AdminProductsPage() {
   }
 
   if (loading) return <div className="text-center mt-20">جار التحقق...</div>;
+  // @ts-ignore
   if (!user) return null;
 
+  const hasActiveFilters = searchTerm !== '' || selectedCategory !== '';
+
   return (
-    <section className="max-w-6xl mx-auto py-8 px-4 min-w-0">
-  <h2 className="text-2xl font-bold text-primary mb-6 text-center">إدارة الخدمات</h2>
+    <section className="p-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
+        <h1 className="text-2xl font-bold">إدارة الخدمات</h1>
+        <Link
+          href="/admin/products/add"
+          className="inline-block px-4 py-2 rounded-lg font-bold bg-primary text-white hover:bg-primary/90 transition w-full sm:w-auto text-center"
+        >
+          + إضافة خدمة جديدة
+        </Link>
+      </div>
 
-  <div className="mb-6 text-end">
-    <Link
-      href="/admin/products/add"
-      className="inline-block px-5 py-2 rounded-xl font-bold bg-primary text-white hover:bg-primary/90 transition"
-    >
-      + إضافة خدمة جديدة
-    </Link>
-  </div>
+      {/* Search and Filters */}
+      <div className="bg-white rounded-xl shadow p-4 mb-6">
+        <div className="flex flex-col md:flex-row gap-4">
+          {/* Search Input */}
+          <div className="relative flex-1">
+            <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="البحث بالاسم أو الوصف..."
+              className="w-full pr-10 pl-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
 
-  {fetching ? (
-    <div className="text-center py-10 text-gray-400">...جار التحميل</div>
-  ) : products.length === 0 ? (
-    <div className="text-center text-gray-400 py-8">لا يوجد خدمات حالياً.</div>
-  ) : (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((prod) => (
-        <div key={prod.id} className="bg-white rounded-2xl shadow border p-4 flex flex-col h-full w-full overflow-hidden">
-  {/* صورة المنتج */}
-  <div className="w-full h-40 relative rounded-xl bg-gray-50 overflow-hidden mb-4 shrink-0">
-    <Image
-      src={prod.image_url?.trim() || '/default-product.png'}
-      alt={prod.name}
-      fill
-      className="object-contain p-4"
-      sizes="100vw"
-    />
-  </div>
+          {/* Filter Button */}
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+          >
+            <Filter className="w-5 h-5" />
+            <span>تصفية</span>
+          </button>
+        </div>
 
-  {/* اسم وتصنيف */}
-  <div className="mb-3 overflow-hidden">
-    <div className="font-bold text-lg text-primary truncate">{prod.name}</div>
-    <div className="text-xs text-gray-500 mt-1">
-      {prod.category_id && categoriesMap[prod.category_id]
-        ? categoriesMap[prod.category_id]
-        : 'بدون تصنيف'}
-    </div>
-  </div>
+        {/* Advanced Filters */}
+        {showFilters && (
+          <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">التصنيف</label>
+                <select
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value as number | '')}
+                >
+                  <option value="">جميع التصنيفات</option>
+                  {categories.map(category => (
+                    <option key={category.id} value={category.id}>{category.name}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
-  {/* الوصف */}
-  <div className="text-sm text-gray-600 flex-1 mb-3 line-clamp-2 overflow-hidden">
-    {prod.description || <span className="text-gray-300">لا يوجد وصف</span>}
-  </div>
+            {/* Clear Filters Button */}
+            {hasActiveFilters && (
+              <div className="mt-4">
+                <button
+                  onClick={clearFilters}
+                  className="flex items-center gap-1 text-sm text-red-600 hover:text-red-800"
+                >
+                  <X className="w-4 h-4" />
+                  <span>مسح التصفيات</span>
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 
-  {/* تواصل */}
-  <div className="text-xs text-gray-500 space-y-1 mb-4 overflow-hidden">
-    {prod.contact_info?.phone && <div className="truncate">📞 {prod.contact_info.phone}</div>}
-    {prod.contact_info?.whatsapp && <div className="truncate">💬 واتساب: {prod.contact_info.whatsapp}</div>}
-  </div>
+      {fetching ? (
+        <div className="text-center py-10 bg-white rounded-lg shadow">جاري التحميل...</div>
+      ) : filteredProducts.length === 0 ? (
+        <div className="text-center py-10 bg-white rounded-lg shadow">
+          <p className="text-gray-500 mb-4">
+            {hasActiveFilters ? 'لا توجد خدمات تطابق التصفيات المحددة' : 'لا يوجد خدمات حالياً'}
+          </p>
+          {!hasActiveFilters && (
+            <Link href="/admin/products/add">
+              <button className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition">
+                إضافة خدمة جديدة
+              </button>
+            </Link>
+          )}
+          {hasActiveFilters && (
+            <button
+              onClick={clearFilters}
+              className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition"
+            >
+              مسح التصفيات
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredProducts.map((prod) => (
+            <div key={prod.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col h-full">
+              {/* صورة المنتج */}
+              <div className="relative h-48">
+                <Image
+                  src={prod.image_url?.trim() || '/default-product.png'}
+                  alt={prod.name}
+                  fill
+                  className="object-contain p-4"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                />
+              </div>
 
-  {/* الأزرار */}
-  <div className="flex flex-col sm:flex-row gap-2 mt-auto pt-3">
-    <Link
-      href={`/admin/products/${prod.id}/edit`}
-      className="flex-1 text-center bg-blue-100 text-blue-700 px-3 py-1.5 rounded-lg font-bold hover:bg-blue-200"
-    >
-      تعديل
-    </Link>
-    <button
-      onClick={() => openDeleteModal(prod)}
-      className="flex-1 text-center bg-red-100 text-red-700 px-3 py-1.5 rounded-lg font-bold hover:bg-red-200"
-    >
-      حذف
-    </button>
-  </div>
-</div>
+              {/* اسم وتصنيف */}
+              <div className="p-4 flex flex-col flex-grow">
+                <div className="font-bold text-lg text-gray-800 mb-1 truncate">{prod.name}</div>
+                <div className="text-xs text-gray-500 mb-3">
+                  {prod.category_id && categoriesMap[prod.category_id]
+                    ? categoriesMap[prod.category_id]
+                    : 'بدون تصنيف'}
+                </div>
 
-      ))}
-    </div>
-  )}
+                {/* الوصف */}
+                <div className="text-sm text-gray-600 mb-3 line-clamp-2 flex-grow">
+                  {prod.description || <span className="text-gray-300">لا يوجد وصف</span>}
+                </div>
 
-  <ConfirmModal
-    open={deleteModal.open}
-    onClose={closeDeleteModal}
-    onConfirm={handleDelete}
-    product={deleteModal.product}
-  />
+                {/* تواصل */}
+                <div className="text-xs text-gray-500 space-y-1 mb-4">
+                  {prod.contact_info?.phone && <div className="truncate">📞 {prod.contact_info.phone}</div>}
+                  {prod.contact_info?.whatsapp && <div className="truncate">💬 واتساب: {prod.contact_info.whatsapp}</div>}
+                </div>
 
-  {error && <div className="text-center text-red-500 mt-4">{error}</div>}
-</section>
+                {/* الأزرار */}
+                <div className="flex gap-2 mt-auto pt-2">
+                  <Link
+                    href={`/admin/products/${prod.id}/edit`}
+                    className="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-2 px-3 rounded-lg font-medium transition text-sm"
+                  >
+                    تعديل
+                  </Link>
+                  <button
+                    onClick={() => openDeleteModal(prod)}
+                    className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded-lg font-medium transition text-sm"
+                  >
+                    حذف
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
+      <ConfirmModal
+        open={deleteModal.open}
+        onClose={closeDeleteModal}
+        onConfirm={handleDelete}
+        product={deleteModal.product}
+      />
+
+      {error && <div className="text-center text-red-500 mt-4">{error}</div>}
+    </section>
   );
 }

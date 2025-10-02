@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
 
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-background: #F9FAFB;
@@ -16,6 +16,97 @@ body {
   font-family: 'Noto Kufi Arabic', Arial, Helvetica, sans-serif;
   direction: rtl;
 }
+
 .btn {
-  @apply text-sm px-2 py-1 border rounded bg-white hover:bg-gray-100;
+  @apply text-sm px-4 py-2 border rounded-lg bg-white hover:bg-gray-100 transition-colors;
+}
+
+/* Admin Panel Styles */
+.admin-container {
+  @apply container mx-auto px-4 py-6;
+}
+
+.admin-card {
+  @apply bg-white rounded-xl shadow-md overflow-hidden;
+}
+
+.admin-form {
+  @apply bg-white rounded-xl shadow-md p-6;
+}
+
+.admin-form-group {
+  @apply mb-4;
+}
+
+.admin-form-label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.admin-form-input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition;
+}
+
+.admin-form-textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition;
+}
+
+.admin-form-select {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition;
+}
+
+.admin-btn-primary {
+  @apply px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all;
+}
+
+.admin-btn-secondary {
+  @apply px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all;
+}
+
+.admin-btn-danger {
+  @apply px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all;
+}
+
+.admin-table {
+  @apply min-w-full divide-y divide-gray-200;
+}
+
+.admin-table-header {
+  @apply bg-gray-50;
+}
+
+.admin-table-cell {
+  @apply px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.admin-table-row {
+  @apply bg-white divide-y divide-gray-200;
+}
+
+.admin-table-data {
+  @apply px-4 py-3 whitespace-nowrap text-sm text-gray-500;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .admin-mobile-stack {
+    @apply flex-col;
+  }
+
+  .admin-mobile-full-width {
+    @apply w-full;
+  }
+}
+
+/* Animation for hover effects */
+.hover-lift {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+}
+
+/* Gradient backgrounds */
+.gradient-primary {
+  @apply bg-gradient-to-r from-primary to-secondary;
+}
+
+.gradient-secondary {
+  @apply bg-gradient-to-r from-secondary to-primary;
 }

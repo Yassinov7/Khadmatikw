@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getAllBlogPostIds, getBlogPostById } from "@/lib/api";
 import type { Metadata } from "next";
 import { slugify } from "@/utils/slugify";
-import { Camera, SatelliteDish, Tv2, Wrench } from "lucide-react";
+import { Camera, SatelliteDish, Tv2, Wrench, Calendar, User, Share2, Clock, Bookmark } from "lucide-react";
 import Image from "next/image";
 import { ContactCard } from "@/components/ContactCard";
 import Link from "next/link";
@@ -55,6 +55,7 @@ function formatDate(dateString: string) {
     day: "numeric",
   });
 }
+
 // إنشاء المسارات الساكنة
 export async function generateStaticParams() {
   const posts = await getAllBlogPostIds();
@@ -74,7 +75,7 @@ export async function generateMetadata(
   if (!post) return {};
 
   const plainText = post.content.replace(/<[^>]+>/g, " ");
-  const description = plainText.slice(0, 120);
+  const description = plainText.slice(0, 160);
   const canUrl = `https://satellitealrajaa.com/blog/${slugWithId}`;
   const baseKeywords = [
     "ستلايت الرجاء",
@@ -99,28 +100,43 @@ export async function generateMetadata(
   const keywords: string[] = [...new Set([...titleWords, ...contentWords, ...baseKeywords])];
 
   return {
-    title: `${post.title} | 50266068`,
+    title: `${post.title} | مدونة ستلايت الرجاء | 50266068`,
     description,
     keywords,
     openGraph: {
-      title: `${post.title} | 50266068`,
+      title: `${post.title} | مدونة ستلايت الرجاء`,
       description,
       images: [post.cover_url || "/default-blog.png"],
+      url: canUrl,
+      siteName: "ستلايت الرجاء",
+      locale: "ar_KW",
+      type: "article",
+      publishedTime: post.created_at,
+      modifiedTime: post.created_at,
+      authors: ["ستلايت الرجاء"],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} | 50266068`,
+      title: `${post.title} | مدونة ستلايت الرجاء`,
       description,
+      images: [post.cover_url || "/default-blog.png"],
     },
-    robots: "index, follow",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     alternates: {
       canonical: `${canUrl}`,
     },
   };
 }
-
-
-
 
 // صفحة تفاصيل التدوينة
 export default async function BlogPostPage(props: { params: Promise<{ slugWithId: string }> }) {
@@ -131,60 +147,153 @@ export default async function BlogPostPage(props: { params: Promise<{ slugWithId
   const post = await getBlogPostById(id);
   if (!post) notFound();
 
+  // Structured data for SEO
+  const blogStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://satellitealrajaa.com/blog/${slugWithId}`
+    },
+    "headline": post.title,
+    "description": post.content.replace(/<[^>]+>/g, " ").slice(0, 160),
+    "datePublished": post.created_at,
+    "dateModified": post.created_at,
+    "image": post.cover_url || "/default-blog.png",
+    "author": {
+      "@type": "Organization",
+      "name": "ستلايت الرجاء",
+      "url": "https://satellitealrajaa.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ستلايت الرجاء",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://satellitealrajaa.com/logo.png"
+      }
+    },
+    "articleSection": "Technical Blog",
+    "articleBody": post.content.replace(/<[^>]+>/g, " ")
+  };
+
   return (
-    <article className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6 my-10">
+    <article className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-6 my-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogStructuredData) }}
+      />
 
-  <div className="w-full h-64 mb-6 relative rounded-xl overflow-hidden group bg-gray-50 shadow-sm">
-    <Image
-      src={post.cover_url || "/default-blog.png"}
-      alt={post.title}
-      fill
-      className="object-cover transition-transform duration-300 group-hover:scale-105"
-      priority
-    />
-  </div>
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
+        <Link href="/" className="hover:text-primary">الرئيسية</Link>
+        <span>/</span>
+        <Link href="/blog" className="hover:text-primary">المدونة</Link>
+        <span>/</span>
+        <span className="text-primary line-clamp-1">{post.title}</span>
+      </nav>
 
-  <h1 className="text-3xl font-extrabold text-primary mb-2 leading-snug">{post.title}</h1>
+      {/* Featured Image */}
+      <div className="w-full h-80 mb-8 relative rounded-2xl overflow-hidden group bg-gradient-to-r from-primary/5 to-secondary/5 shadow-lg">
+        <Image
+          src={post.cover_url || "/default-blog.png"}
+          alt={`صورة توضيحية لـ ${post.title} - ستلايت الرجاء`}
+          fill
+          className="object-contain p-6"
+          priority
+        />
+        <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm text-primary font-bold px-4 py-2 rounded-full flex items-center gap-2 shadow-md">
+          <Bookmark size={18} />
+          مقالة
+        </div>
+      </div>
 
-  <div className="flex items-center gap-2 text-xs text-gray-400 mb-6">
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10m-12 5h14M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>
-    {formatDate(post.created_at)}
-  </div>
+      {/* Article Header */}
+      <header className="mb-8">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-6 leading-tight">
+          {post.title}
+        </h1>
 
-  <div
-    className="prose prose-slate max-w-none text-lg leading-loose prose-headings:text-blue-900 prose-p:text-gray-800"
-    dir="rtl"
-    dangerouslySetInnerHTML={{ __html: post.content }}
-  />
-  <div className="flex flex-wrap gap-3 pt-4 mt-auto">
-    <Link href="/contact" className="w-auto ">
-        <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-primary hover:bg-primary/80">
-            شاهد خدمات موقعنا 
-        </button>
-    </Link>
-    <Link href="/contact" className="w-auto ">
-        <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-secondary hover:bg-secondary/80 ">
-            شاهد التدوينات الأخرى
-        </button>
-    </Link>
-    <Link href="/" className="w-auto ">
-        <button className="w-auto px-8 py-3 rounded-lg text-white text-lg font-bold shadow transition bg-primary hover:bg-primary/80 ">
-            العودة للصفحة الرئيسية
-        </button>
-    </Link>
-  </div>
-  <section className="mt-12 bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
-    <h2 className="text-xl font-bold text-primary text-center mb-4">فنيونا جاهزون لخدمتك</h2>
-    <p className="text-center text-gray-700 text-sm mb-6">
-      إليك قائمة بأرقام التواصل المباشر مع الفنيين المختصين حسب مجالات الخدمة. يمكنك الاتصال أو المراسلة عبر واتساب.
-    </p>
-    <ContactCard contacts={CONTACTS} />
-  </section>
+        {/* Meta Information */}
+        <div className="flex flex-wrap items-center gap-6 p-4 bg-gray-50 rounded-2xl mb-6">
+          <div className="flex items-center gap-2 text-gray-600">
+            <User className="text-primary" size={20} />
+            <span className="font-bold">ستلايت الرجاء</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-600">
+            <Calendar className="text-primary" size={20} />
+            <time>{formatDate(post.created_at)}</time>
+          </div>
+          <div className="flex items-center gap-2 text-gray-600">
+            <Clock className="text-primary" size={20} />
+            <span>قراءة 3 دقائق</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-600">
+            <Share2 className="text-primary" size={20} />
+            <span>مشاركة</span>
+          </div>
+        </div>
+      </header>
 
-</article>
+      {/* Article Content */}
+      <div
+        className="prose prose-lg max-w-none text-gray-800 leading-relaxed prose-headings:text-primary prose-p:text-gray-700 prose-a:text-primary hover:prose-a:text-secondary prose-strong:text-primary prose-blockquote:border-primary prose-li:marker:text-primary"
+        dir="rtl"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
 
-    
+      {/* Article Footer */}
+      <footer className="mt-12 pt-8 border-t border-gray-200">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div className="flex items-center gap-3">
+            <div className="bg-gradient-to-r from-primary to-secondary rounded-full p-1">
+              <div className="bg-white rounded-full p-1">
+                <User size={24} className="text-primary" />
+              </div>
+            </div>
+            <div>
+              <div className="font-bold text-gray-800">ستلايت الرجاء</div>
+              <div className="text-sm text-gray-600">خبير فني معتمد في مجال الشاشات والستلايت</div>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <button className="bg-gray-100 hover:bg-gray-200 p-3 rounded-full transition-colors">
+              <Share2 size={20} className="text-gray-600" />
+            </button>
+            <button className="bg-gray-100 hover:bg-gray-200 p-3 rounded-full transition-colors">
+              <Bookmark size={20} className="text-gray-600" />
+            </button>
+          </div>
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="flex flex-wrap gap-4 pt-6">
+          <Link href="/contact" className="flex-1 min-w-[200px]">
+            <button className="w-full px-6 py-4 rounded-xl text-white text-lg font-bold shadow transition bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transform hover:-translate-y-1">
+              شاهد خدمات موقعنا
+            </button>
+          </Link>
+          <Link href="/blog" className="flex-1 min-w-[200px]">
+            <button className="w-full px-6 py-4 rounded-xl text-white text-lg font-bold shadow transition bg-gradient-to-r from-secondary to-primary hover:from-secondary/90 hover:to-primary/90 transform hover:-translate-y-1">
+              شاهد التدوينات الأخرى
+            </button>
+          </Link>
+          <Link href="/" className="flex-1 min-w-[200px]">
+            <button className="w-full px-6 py-4 rounded-xl text-white text-lg font-bold shadow transition bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transform hover:-translate-y-1">
+              العودة للصفحة الرئيسية
+            </button>
+          </Link>
+        </div>
+      </footer>
+
+      {/* Contact Section */}
+      <section className="mt-16 bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-3xl p-8 shadow-sm">
+        <h2 className="text-3xl font-extrabold text-primary text-center mb-6">فنيونا جاهزون لخدمتك</h2>
+        <p className="text-center text-gray-700 text-lg mb-8">
+          إليك قائمة بأرقام التواصل المباشر مع الفنيين المختصين حسب مجالات الخدمة. يمكنك الاتصال أو المراسلة عبر واتساب.
+        </p>
+        <ContactCard contacts={CONTACTS} />
+      </section>
+    </article>
   );
 }
