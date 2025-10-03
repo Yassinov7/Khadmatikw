@@ -41,7 +41,7 @@ export function Navbar() {
             className="rounded-lg border border-primary shadow"
             priority
           />
-          <span className="text-2xl font-extrabold text-primary tracking-wide hidden sm:inline-block" style={{ letterSpacing: "1px" }}>
+          <span className="text-2xl font-extrabold text-primary tracking-wide " style={{ letterSpacing: "1px" }}>
             ستلايت<span className="text-secondary"> الرجاء </span>
           </span>
         </Link>
