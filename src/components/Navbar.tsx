@@ -41,7 +41,8 @@ export function Navbar() {
             className="rounded-lg border border-primary shadow"
             priority
           />
-          <span className="text-2xl font-extrabold text-primary tracking-wide " style={{ letterSpacing: "1px" }}>
+          {/* Text logo hidden on mobile when search is open */}
+          <span className={`text-2xl font-extrabold text-primary tracking-wide ${searchOpen ? 'md:inline hidden' : ''}`} style={{ letterSpacing: "1px" }}>
             ستلايت<span className="text-secondary"> الرجاء </span>
           </span>
         </Link>
@@ -202,6 +203,7 @@ export function Navbar() {
               aria-label="إغلاق القائمة"
             >
               <X size={32} className="text-primary" />
+              <span className="self-start mb-4 p-1">ستلايت الرجاء</span>
             </button>
 
             <Link
