@@ -2,6 +2,7 @@
 import { useEffect, useState, ChangeEvent } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useRouter, useParams } from 'next/navigation';
+import Image from 'next/image';
 import { useAdminAuth } from '../../../AdminAuthContext';
 import type { Category } from '@/types';
 
@@ -146,16 +147,20 @@ export default function EditServicePage() {
         <div>
           <label className="block mb-2 font-bold">صورة الغلاف</label>
           {oldImageUrl && !imagePreview && (
-            <img
+            <Image
               src={oldImageUrl}
               alt="الصورة الحالية"
+              width={400}
+              height={176}
               className="mb-2 rounded-xl max-h-44 object-contain border"
             />
           )}
           {imagePreview && (
-            <img
+            <Image
               src={imagePreview}
               alt="معاينة جديدة"
+              width={400}
+              height={176}
               className="mb-2 rounded-xl max-h-44 object-contain border"
             />
           )}

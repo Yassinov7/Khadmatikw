@@ -1,20 +1,12 @@
 "use client"
 import { useEffect, useState } from "react";
-import { MapPin, CodeXmlIcon, ArrowUp, Home, Layers, PhoneCall, Blinds, Satellite, Camera, DiscAlbumIcon, Tag, FileQuestion, ShieldQuestion, Mail, Clock, Instagram, Facebook, Twitter, MessageCircle } from "lucide-react";
+import { MapPin, CodeXmlIcon, ArrowUp, Home, Layers, PhoneCall, Blinds, Satellite, Camera, DiscAlbumIcon, Tag, FileQuestion, ShieldQuestion, Mail, Clock, Instagram, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 export function Footer() {
   const pathname = usePathname();
-
-  // Hide footer in admin area (except login page)
-  const isAdminArea = pathname.startsWith("/admin") && pathname !== "/admin/login";
-
-  if (isAdminArea) {
-    return null; // Don't render footer in admin area
-  }
-
   const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
@@ -24,6 +16,13 @@ export function Footer() {
   }, []);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Hide footer in admin area (except login page)
+  const isAdminArea = pathname.startsWith("/admin") && pathname !== "/admin/login";
+
+  if (isAdminArea) {
+    return null; // Don't render footer in admin area
+  }
 
   // Main navigation links
   const mainLinks = [

@@ -6,7 +6,27 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { searchSite } from "@/lib/api";
 import { slugify } from "@/utils/slugify";
-import type { Blog, Product, Offer } from "@/types";
+
+// Define types for search results from the API
+type Product = {
+    id: number;
+    name: string;
+    description: string;
+    image_url: string;
+};
+
+type Offer = {
+    id: number;
+    title: string;
+    description: string;
+    image_url: string;
+};
+
+type BlogPost = {
+    id: number;
+    title: string;
+    content: string;
+};
 
 type SearchResult = {
     type: "blog" | "product" | "offer";
@@ -60,7 +80,7 @@ export function SearchComponent() {
 
             // Priority order: products first, then offers, then blog posts
             const searchResults: SearchResult[] = [
-                ...products.map((product: any) => ({
+                ...products.map((product: Product) => ({
                     type: "product" as const,
                     id: product.id,
                     title: product.name,
@@ -68,7 +88,7 @@ export function SearchComponent() {
                     imageUrl: product.image_url,
                     url: `/products/${slugify(product.name)}-${product.id}`
                 })),
-                ...offers.map((offer: any) => ({
+                ...offers.map((offer: Offer) => ({
                     type: "offer" as const,
                     id: offer.id,
                     title: offer.title,
@@ -76,11 +96,11 @@ export function SearchComponent() {
                     imageUrl: offer.image_url,
                     url: `/offers/${slugify(offer.title)}-${offer.id}`
                 })),
-                ...blogPosts.map((post: any) => ({
+                ...blogPosts.map((post: BlogPost) => ({
                     type: "blog" as const,
                     id: post.id,
                     title: post.title,
-                    description: post.content?.substring(0, 100) + "...",
+                    description: post.content?.substring(0, 100) + "&#8230;",
                     url: `/blog/${slugify(post.title)}-${post.id}`
                 }))
             ];
@@ -211,7 +231,7 @@ export function SearchComponent() {
                         </div>
                     ) : query.length >= 2 ? (
                         <div className="py-4 px-4 text-center text-gray-500">
-                            لم يتم العثور على نتائج لـ "{query}"
+                            لم يتم العثور على نتائج لـ &quot;{query}&quot;
                         </div>
                     ) : null}
                 </div>

@@ -1,8 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
-// @ts-ignore
 import { useAdminAuth } from "../AdminAuthContext";
 import { useRouter } from "next/navigation";
 import type { Category } from "@/types";
@@ -46,7 +45,6 @@ function ConfirmModal({ open, onClose, onConfirm, category }: ConfirmModalProps)
 
 // --- صفحة إدارة التصنيفات ---
 export default function AdminCategoriesPage() {
-  // @ts-ignore
   const { user, loading } = useAdminAuth();
   const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
@@ -60,23 +58,12 @@ export default function AdminCategoriesPage() {
 
   // حماية الصفحة
   useEffect(() => {
-    // @ts-ignore
     if (!loading && !user) {
       router.replace("/admin/login");
     }
   }, [user, loading, router]);
 
   // جلب التصنيفات
-  useEffect(() => {
-    // @ts-ignore
-    if (user) fetchCategories();
-    // eslint-disable-next-line
-  }, [user]);
-
-  useEffect(() => {
-    applyFilters();
-  }, [categories, searchTerm]);
-
   async function fetchCategories() {
     setFetching(true);
     const { data, error } = await supabase.from("categories").select("*").order("id");
@@ -87,7 +74,11 @@ export default function AdminCategoriesPage() {
     setFetching(false);
   }
 
-  function applyFilters() {
+  useEffect(() => {
+    if (user) fetchCategories();
+  }, [user]);
+
+  const applyFilters = useCallback(() => {
     let result = [...categories];
 
     // Apply search filter
@@ -100,7 +91,11 @@ export default function AdminCategoriesPage() {
     }
 
     setFilteredCategories(result);
-  }
+  }, [categories, searchTerm]);
+
+  useEffect(() => {
+    applyFilters();
+  }, [applyFilters]);
 
   function clearFilters() {
     setSearchTerm('');
@@ -125,7 +120,6 @@ export default function AdminCategoriesPage() {
   }
 
   if (loading) return <div className="text-center mt-20">جار التحقق...</div>;
-  // @ts-ignore
   if (!user) return null;
 
   const hasActiveFilters = searchTerm !== '';

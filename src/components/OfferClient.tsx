@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { OfferCard } from "./OfferCard";
 import type { Offer } from "@/types";
 import { slugify } from "@/utils/slugify";
@@ -9,17 +8,11 @@ type Props = {
 };
 
 export function OfferClient({ offers }: Props) {
-    const [selectedOfferId, setSelectedOfferId] = useState<number | undefined>(undefined);
-
     // Add slug to each offer for proper linking
     const offersWithSlug = offers.map(offer => ({
         ...offer,
         slug: `${slugify(offer.title)}-${offer.id}`
     }));
-
-    const filteredOffers = selectedOfferId
-        ? offersWithSlug.filter((o) => o.id === selectedOfferId)
-        : offersWithSlug;
 
     return (
         <section className="flex flex-col gap-8 pb-16">
@@ -36,7 +29,7 @@ export function OfferClient({ offers }: Props) {
                 <div className="text-center py-20 bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-lg">
                     <div className="text-gray-500 text-xl mb-4">لا توجد عروض خاصة حالياً</div>
                     <button
-                        onClick={() => setSelectedOfferId(undefined)}
+                        onClick={() => window.location.reload()}
                         className="text-primary font-bold hover:underline text-lg"
                     >
                         تحديث الصفحة

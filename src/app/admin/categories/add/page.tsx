@@ -2,11 +2,9 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-// @ts-ignore
 import { useAdminAuth } from "../../AdminAuthContext";
 
 export default function AddCategoryPage() {
-  // @ts-ignore
   const { user, loading } = useAdminAuth();
   const router = useRouter();
   const [name, setName] = useState("");
@@ -31,7 +29,6 @@ export default function AddCategoryPage() {
   }
 
   if (loading) return <div className="text-center mt-20">جار التحقق...</div>;
-  // @ts-ignore
   if (!user) return null;
 
   return (

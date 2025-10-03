@@ -1,7 +1,6 @@
 "use client";
 import BlogCard from "./BlogCard";
 import type { Blog } from "@/types";
-import { useState } from "react";
 import Link from "next/link";
 import { BookOpen, TrendingUp, Lightbulb, Users } from "lucide-react";
 

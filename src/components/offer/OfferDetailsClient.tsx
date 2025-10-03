@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Phone, MessageCircle, Calendar, Tag, ArrowLeft, CheckCircle, Star, Clock, Shield } from "lucide-react";
+import { Phone, MessageCircle, Tag, ArrowLeft, CheckCircle, Star, Clock, Shield } from "lucide-react";
 import type { Offer } from "@/types";
 import Link from "next/link";
 import { OfferCard } from "@/components/OfferCard";

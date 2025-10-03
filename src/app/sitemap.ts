@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { supabase } from '@/lib/supabase';
 import { slugify } from '@/utils/slugify';
-import { getAllCategories } from '@/lib/api';
 
 export const revalidate = 3600;
 
@@ -23,9 +22,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/faq', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/who-is-alrajaa', priority: 0.7, changeFrequency: 'monthly' as const }
   ];
-
-  // Categories
-  const categories = await getAllCategories();
 
   // المنتجات
   const { data: products } = await supabase

@@ -1,10 +1,9 @@
 "use client";
-// @ts-ignore
 import { useAdminAuth } from "../AdminAuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { BarChart, Package, Tag, FileText, Users, Calendar, TrendingUp, Plus, Eye } from "lucide-react";
+import { Package, Tag, FileText, Calendar, TrendingUp, Plus, Eye } from "lucide-react";
 import Link from "next/link";
 import { formatDateTime } from "@/utils/formatDate";
 
@@ -23,7 +22,6 @@ type RecentItem = {
 };
 
 export default function AdminDashboardPage() {
-  // @ts-ignore
   const { user, loading } = useAdminAuth();
   const router = useRouter();
   const [stats, setStats] = useState<Stats>({ products: 0, categories: 0, offers: 0, blogPosts: 0 });
@@ -32,14 +30,12 @@ export default function AdminDashboardPage() {
   const [loadingRecent, setLoadingRecent] = useState(true);
 
   useEffect(() => {
-    // @ts-ignore
     if (!loading && !user) {
       router.replace("/admin/login");
     }
   }, [user, loading, router]);
 
   useEffect(() => {
-    // @ts-ignore
     if (user) {
       fetchStats();
       fetchRecentItems();
@@ -102,7 +98,6 @@ export default function AdminDashboardPage() {
   }
 
   if (loading) return <div className="flex justify-center items-center h-screen">جار التحقق...</div>;
-  // @ts-ignore
   if (!user) return null;
 
   const statCards = [

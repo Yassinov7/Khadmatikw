@@ -1,6 +1,5 @@
 import { supabase } from "./supabase";
 import type { Product, Offer } from "@/types";
-import { slugify } from "@/utils/slugify";
 
 export async function getAllProductIds(): Promise<Pick<Product, "id" | "name">[]> {
   const { data, error } = await supabase

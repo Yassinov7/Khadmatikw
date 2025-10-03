@@ -1,10 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-// @ts-ignore
 import { useAdminAuth } from '../AdminAuthContext';
 import type { Product } from '@/types';
 import { Search, Filter, X } from 'lucide-react';
@@ -19,6 +18,12 @@ type ConfirmModalProps = {
 type Category = {
   id: number;
   name: string;
+};
+
+type ProductWithCategory = Product & {
+  category?: {
+    name: string;
+  };
 };
 
 function ConfirmModal({ open, onClose, onConfirm, product }: ConfirmModalProps) {
@@ -46,7 +51,6 @@ function ConfirmModal({ open, onClose, onConfirm, product }: ConfirmModalProps) 
 }
 
 export default function AdminProductsPage() {
-  // @ts-ignore
   const { user, loading } = useAdminAuth();
   const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
@@ -63,57 +67,17 @@ export default function AdminProductsPage() {
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
-    // @ts-ignore
     if (!loading && !user) router.replace('/admin/login');
   }, [user, loading, router]);
 
   useEffect(() => {
-    // @ts-ignore
     if (user) {
       fetchProducts();
       fetchCategories();
     }
   }, [user]);
 
-  useEffect(() => {
-    applyFilters();
-  }, [products, searchTerm, selectedCategory]);
-
-  async function fetchProducts() {
-    setFetching(true);
-    const { data, error } = await supabase
-      .from('products')
-      .select('*, category:categories(name)')
-      .order('id', { ascending: false });
-
-    if (error) {
-      setError('خطأ أثناء جلب الخدمات');
-      setFetching(false);
-      return;
-    }
-
-    setProducts(data as Product[]);
-    const catMap: Record<number, string> = {};
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (data as any[]).forEach((prod) => {
-      if (prod.category_id && prod.category?.name) catMap[prod.category_id] = prod.category.name;
-    });
-    setCategoriesMap(catMap);
-    setFetching(false);
-  }
-
-  async function fetchCategories() {
-    const { data, error } = await supabase
-      .from('categories')
-      .select('id, name')
-      .order('name', { ascending: true });
-
-    if (!error && data) {
-      setCategories(data as Category[]);
-    }
-  }
-
-  function applyFilters() {
+  const applyFilters = useCallback(() => {
     let result = [...products];
 
     // Apply search filter
@@ -131,11 +95,43 @@ export default function AdminProductsPage() {
     }
 
     setFilteredProducts(result);
+  }, [products, searchTerm, selectedCategory]);
+
+  useEffect(() => {
+    applyFilters();
+  }, [applyFilters]);
+
+  async function fetchProducts() {
+    setFetching(true);
+    const { data, error } = await supabase
+      .from('products')
+      .select('*, category:categories(name)')
+      .order('id', { ascending: false });
+
+    if (error) {
+      setError('خطأ أثناء جلب الخدمات');
+      setFetching(false);
+      return;
+    }
+
+    setProducts(data as Product[]);
+    const catMap: Record<number, string> = {};
+    (data as ProductWithCategory[]).forEach((prod) => {
+      if (prod.category_id && prod.category?.name) catMap[prod.category_id] = prod.category.name;
+    });
+    setCategoriesMap(catMap);
+    setFetching(false);
   }
 
-  function clearFilters() {
-    setSearchTerm('');
-    setSelectedCategory('');
+  async function fetchCategories() {
+    const { data, error } = await supabase
+      .from('categories')
+      .select('id, name')
+      .order('name', { ascending: true });
+
+    if (!error && data) {
+      setCategories(data as Category[]);
+    }
   }
 
   function openDeleteModal(product: Product) {
@@ -144,6 +140,11 @@ export default function AdminProductsPage() {
 
   function closeDeleteModal() {
     setDeleteModal({ open: false });
+  }
+
+  function clearFilters() {
+    setSearchTerm('');
+    setSelectedCategory('');
   }
 
   async function handleDelete(id: number) {
@@ -164,7 +165,6 @@ export default function AdminProductsPage() {
   }
 
   if (loading) return <div className="text-center mt-20">جار التحقق...</div>;
-  // @ts-ignore
   if (!user) return null;
 
   const hasActiveFilters = searchTerm !== '' || selectedCategory !== '';

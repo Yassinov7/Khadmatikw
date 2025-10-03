@@ -1,5 +1,4 @@
 // src/app/offers/page.tsx
-import { supabase } from "@/lib/supabase";
 import { OfferClient } from "@/components/OfferClient";
 import { Metadata } from "next";
 import Link from "next/link";

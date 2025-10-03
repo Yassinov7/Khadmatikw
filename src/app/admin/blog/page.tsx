@@ -1,10 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-// @ts-ignore
 import { useAdminAuth } from "../AdminAuthContext";
 import { Search, Filter, X, Calendar } from 'lucide-react';
 import { formatDateTime } from "@/utils/formatDate";
@@ -41,7 +40,6 @@ function ConfirmModal({ open, onClose, onConfirm, post }: {
 }
 
 export default function AdminBlogPage() {
-  // @ts-ignore
   const { user, loading } = useAdminAuth();
   const router = useRouter();
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -55,18 +53,12 @@ export default function AdminBlogPage() {
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
-    // @ts-ignore
     if (!loading && !user) router.replace("/admin/login");
   }, [user, loading, router]);
 
   useEffect(() => {
-    // @ts-ignore
     if (user) fetchPosts();
   }, [user]);
-
-  useEffect(() => {
-    applyFilters();
-  }, [posts, searchTerm]);
 
   async function fetchPosts() {
     setFetching(true);
@@ -80,7 +72,7 @@ export default function AdminBlogPage() {
     setFetching(false);
   }
 
-  function applyFilters() {
+  const applyFilters = useCallback(() => {
     let result = [...posts];
 
     // Apply search filter
@@ -93,7 +85,11 @@ export default function AdminBlogPage() {
     }
 
     setFilteredPosts(result);
-  }
+  }, [posts, searchTerm]);
+
+  useEffect(() => {
+    applyFilters();
+  }, [applyFilters]);
 
   function clearFilters() {
     setSearchTerm('');
@@ -133,7 +129,6 @@ export default function AdminBlogPage() {
   }
 
   if (loading) return <div className="text-center mt-20">جار التحقق...</div>;
-  // @ts-ignore
   if (!user) return null;
 
   const hasActiveFilters = searchTerm !== '';

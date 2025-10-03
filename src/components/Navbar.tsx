@@ -8,6 +8,9 @@ import { SearchComponent } from "./SearchComponent";
 
 export function Navbar() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   // Hide navbar in admin area (except login page)
   const isAdminArea = pathname.startsWith("/admin") && pathname !== "/admin/login";
@@ -15,10 +18,6 @@ export function Navbar() {
   if (isAdminArea) {
     return null; // Don't render navbar in admin area
   }
-
-  const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
 
   // Services dropdown links
   const serviceLinks = [

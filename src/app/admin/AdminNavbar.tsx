@@ -15,13 +15,12 @@ const links = [
 
 export default function AdminNavbar() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
   // Hide admin navbar on login page
   if (pathname === "/admin/login") {
     return null;
   }
-
-  const [open, setOpen] = useState(false);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();

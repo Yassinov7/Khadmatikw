@@ -1,16 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
-// @ts-ignore
 import { useAdminAuth } from "../../AdminAuthContext";
 import AdminBlogEditor from "@/components/AdminBlogEditor";
 import { Save, X } from 'lucide-react';
-import { slugify } from "@/utils/slugify";
 
 
 export default function AddBlogPostPage() {
-  // @ts-ignore
   const { user, loading } = useAdminAuth();
   const router = useRouter();
 
@@ -23,7 +21,6 @@ export default function AddBlogPostPage() {
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    // @ts-ignore
     if (!loading && !user) router.replace("/admin/login");
   }, [user, loading, router]);
 
@@ -72,7 +69,6 @@ export default function AddBlogPostPage() {
     setUploading(false);
   };
 
-  // @ts-ignore
   if (!user) return null;
 
   return (
@@ -130,9 +126,11 @@ export default function AddBlogPostPage() {
               />
               {coverPreview && (
                 <div className="mt-2">
-                  <img
+                  <Image
                     src={coverPreview}
                     alt="معاينة الغلاف"
+                    width={400}
+                    height={160}
                     className="w-full max-h-40 object-contain rounded border"
                   />
                 </div>

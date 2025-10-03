@@ -7,9 +7,79 @@ import Link from "next/link";
 import { Search, FileText, Package, Tag, X } from "lucide-react";
 import { slugify } from "@/utils/slugify";
 
+// Define types for Supabase responses
+type ProductResult = {
+    id: number;
+    name: string;
+    description: string;
+    image_url: string;
+    category_id: number;
+    categories: {
+        name: string;
+    }[];
+};
+
+type OfferResult = {
+    id: number;
+    title: string;
+    description: string;
+    image_url: string;
+    product: {
+        name: string;
+        image_url: string;
+        category_id: number;
+        category: {
+            name: string;
+        }[];
+    }[];
+    contact_info: {
+        phone?: string;
+        whatsapp?: string;
+    } | null;
+};
+
+type BlogResult = {
+    id: number;
+    title: string;
+    content: string;
+    created_at: string;
+};
+
+// Define types for our search results
+type SearchResult = {
+    id: number;
+    type: "product" | "offer" | "blog";
+    slug: string;
+    // Product fields
+    name?: string;
+    description?: string;
+    image_url?: string;
+    category_id?: number;
+    categories?: {
+        name: string;
+    }[];
+    // Offer fields
+    title?: string;
+    product?: {
+        name: string;
+        image_url: string;
+        category_id: number;
+        category: {
+            name: string;
+        }[];
+    }[];
+    contact_info?: {
+        phone?: string;
+        whatsapp?: string;
+    } | null;
+    // Blog fields
+    content?: string;
+    created_at?: string;
+};
+
 export default function SearchPage() {
     const [query, setQuery] = useState("");
-    const [results, setResults] = useState<any[]>([]);
+    const [results, setResults] = useState<SearchResult[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -47,20 +117,20 @@ export default function SearchPage() {
             }
 
             // Process results with proper slugs
-            const searchResults = [
-                ...(products || []).map((item: any) => ({
+            const searchResults: SearchResult[] = [
+                ...(products || []).map((item: ProductResult) => ({
                     ...item,
-                    type: "product",
+                    type: "product" as const,
                     slug: `${slugify(item.name)}-${item.id}`,
                 })),
-                ...(offers || []).map((item: any) => ({
+                ...(offers || []).map((item: OfferResult) => ({
                     ...item,
-                    type: "offer",
+                    type: "offer" as const,
                     slug: `${slugify(item.title)}-${item.id}`,
                 })),
-                ...(blogPosts || []).map((item: any) => ({
+                ...(blogPosts || []).map((item: BlogResult) => ({
                     ...item,
-                    type: "blog",
+                    type: "blog" as const,
                     slug: `${slugify(item.title)}-${item.id}`,
                 })),
             ];
@@ -99,6 +169,39 @@ export default function SearchPage() {
             case "offer": return "bg-red-100 text-red-800";
             default: return "bg-gray-100 text-gray-800";
         }
+    };
+
+    // Get title/name based on result type
+    const getResultTitle = (result: SearchResult) => {
+        if (result.type === "blog" || result.type === "offer") {
+            return result.title;
+        }
+        if (result.type === "product") {
+            return result.name;
+        }
+        return "";
+    };
+
+    // Get description/content based on result type
+    const getResultDescription = (result: SearchResult) => {
+        if (result.type === "product" || result.type === "offer") {
+            return result.description;
+        }
+        if (result.type === "blog") {
+            return result.content?.substring(0, 150) + "&#8230;";
+        }
+        return "";
+    };
+
+    // Get category name for product results
+    const getProductCategoryName = (result: SearchResult) => {
+        if (result.type === "product" && result.categories && result.categories.length > 0) {
+            return result.categories[0].name;
+        }
+        if (result.type === "offer" && result.product && result.product.length > 0 && result.product[0].category && result.product[0].category.length > 0) {
+            return result.product[0].category[0].name;
+        }
+        return null;
     };
 
     return (
@@ -184,23 +287,17 @@ export default function SearchPage() {
                                                 className="block"
                                             >
                                                 <h3 className="text-lg font-bold text-gray-900 hover:text-primary transition mb-2 line-clamp-2">
-                                                    {result.title || result.name}
+                                                    {getResultTitle(result)}
                                                 </h3>
                                             </Link>
 
                                             <p className="text-gray-600 text-sm line-clamp-2 mb-3">
-                                                {result.description || result.content?.substring(0, 150) + "..."}
+                                                {getResultDescription(result)}
                                             </p>
 
-                                            {result.type === "product" && result.category?.name && (
+                                            {getProductCategoryName(result) && (
                                                 <div className="text-xs text-gray-500">
-                                                    تصنيف: {result.category.name}
-                                                </div>
-                                            )}
-
-                                            {result.type === "offer" && result.product?.name && (
-                                                <div className="text-xs text-gray-500">
-                                                    متوفر لـ: {result.product.name}
+                                                    تصنيف: {getProductCategoryName(result)}
                                                 </div>
                                             )}
                                         </div>
@@ -219,7 +316,7 @@ export default function SearchPage() {
                     </div>
                     <h3 className="text-xl font-bold text-gray-700 mb-2">لا توجد نتائج</h3>
                     <p className="text-gray-500">
-                        لم نجد أي نتائج لـ "{query}". حاول استخدام كلمات مفتاحية مختلفة.
+                        لم نجد أي نتائج لـ &quot;{query}&quot;. حاول استخدام كلمات مفتاحية مختلفة.
                     </p>
                 </div>
             )}

@@ -2,7 +2,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, Volume2, HeadphonesIcon } from "lucide-react";
+import { Phone, MessageCircle, CheckCircle, Star, Shield, Volume2, HeadphonesIcon } from "lucide-react";
 
 // جميع المدن الكويتية
 const kuwaitCities = [

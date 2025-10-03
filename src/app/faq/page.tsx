@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ChevronDown, Phone, MessageCircle, Wrench, Satellite, Camera, Tv } from "lucide-react";
+import { Phone, Wrench, Satellite, Camera, Tv } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "الأسئلة الشائعة | ستلايت الرجاء | 50266068",

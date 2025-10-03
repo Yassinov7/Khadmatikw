@@ -1,16 +1,14 @@
 // src/app/admin/offers/page.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import type { Offer } from "@/types";
 import Link from "next/link";
-import Image from "next/image";
-// @ts-ignore
 import { useAdminAuth } from "../AdminAuthContext";
 import { Search, Filter, X } from 'lucide-react';
-import { slugify } from "@/utils/slugify";
 
 export default function AdminOffersPage() {
     const [offers, setOffers] = useState<Offer[]>([]);
@@ -18,7 +16,6 @@ export default function AdminOffersPage() {
     const [products, setProducts] = useState<{ id: number, name: string }[]>([]);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
-    // @ts-ignore
     const { user, loading: authLoading } = useAdminAuth();
 
     // Filter states
@@ -28,23 +25,10 @@ export default function AdminOffersPage() {
 
     // Redirect if not authenticated
     useEffect(() => {
-        // @ts-ignore
         if (!authLoading && !user) {
             router.push("/admin/login");
         }
     }, [user, authLoading, router]);
-
-    useEffect(() => {
-        // @ts-ignore
-        if (user) {
-            fetchOffers();
-            fetchProducts();
-        }
-    }, [user]);
-
-    useEffect(() => {
-        applyFilters();
-    }, [offers, searchTerm, selectedProduct]);
 
     async function fetchOffers() {
         try {
@@ -77,7 +61,14 @@ export default function AdminOffersPage() {
         }
     }
 
-    function applyFilters() {
+    useEffect(() => {
+        if (user) {
+            fetchOffers();
+            fetchProducts();
+        }
+    }, [user]);
+
+    const applyFilters = useCallback(() => {
         let result = [...offers];
 
         // Apply search filter
@@ -97,7 +88,11 @@ export default function AdminOffersPage() {
         }
 
         setFilteredOffers(result);
-    }
+    }, [offers, searchTerm, selectedProduct]);
+
+    useEffect(() => {
+        applyFilters();
+    }, [applyFilters]);
 
     function clearFilters() {
         setSearchTerm('');
@@ -164,7 +159,6 @@ export default function AdminOffersPage() {
         );
     }
 
-    // @ts-ignore
     if (!user) {
         return null; // Will redirect
     }
@@ -270,10 +264,11 @@ export default function AdminOffersPage() {
                         <div key={offer.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col h-full">
                             {/* صورة العرض */}
                             <div className="relative h-48">
-                                <img
+                                <Image
                                     src={offer.image_url?.trim() || '/default-offer.png'}
                                     alt={offer.title}
-                                    className="object-cover w-full h-full"
+                                    fill
+                                    className="object-cover"
                                 />
                             </div>
 

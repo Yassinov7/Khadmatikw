@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import { useAdminAuth } from "../../../AdminAuthContext";
 import AdminBlogEditor from "@/components/AdminBlogEditor";
@@ -165,9 +166,9 @@ export default function EditBlogPostPage() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
               />
               {preview ? (
-                <img src={preview} alt="معاينة" className="mt-2 w-full max-h-40 object-contain rounded border" />
+                <Image src={preview} alt="معاينة" width={400} height={160} className="mt-2 w-full max-h-40 object-contain rounded border" />
               ) : coverUrl ? (
-                <img src={coverUrl} alt="صورة الغلاف" className="mt-2 w-full max-h-40 object-contain rounded border" />
+                <Image src={coverUrl} alt="صورة الغلاف" width={400} height={160} className="mt-2 w-full max-h-40 object-contain rounded border" />
               ) : null}
             </div>
           </div>

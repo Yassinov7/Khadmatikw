@@ -3,9 +3,9 @@
 
 import { useState, useEffect, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import type { Product } from "@/types";
-// @ts-ignore
 import { useAdminAuth } from "@/app/admin/AdminAuthContext";
 import { Save, X, Plus, Trash2 } from 'lucide-react';
 
@@ -13,12 +13,10 @@ export default function AddOfferPage() {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
-    // @ts-ignore
     const { user, loading: authLoading } = useAdminAuth();
 
     // Redirect if not authenticated
     useEffect(() => {
-        // @ts-ignore
         if (!authLoading && !user) {
             router.push("/admin/login");
         }
@@ -40,7 +38,6 @@ export default function AddOfferPage() {
     const [submitting, setSubmitting] = useState(false);
 
     useEffect(() => {
-        // @ts-ignore
         if (user) {
             fetchProducts();
         }
@@ -167,7 +164,7 @@ export default function AddOfferPage() {
             };
 
             // Insert offer
-            const { data, error } = await supabase.from("offers").insert({
+            const { error } = await supabase.from("offers").insert({
                 title,
                 description,
                 benefits: benefitsArray,
@@ -201,7 +198,6 @@ export default function AddOfferPage() {
         );
     }
 
-    // @ts-ignore
     if (!user) {
         return null; // Will redirect
     }
@@ -383,9 +379,11 @@ export default function AddOfferPage() {
                         </label>
                         {imagePreview && (
                             <div className="mb-2">
-                                <img
+                                <Image
                                     src={imagePreview}
                                     alt="معاينة الصورة"
+                                    width={400}
+                                    height={160}
                                     className="rounded-lg max-h-40 object-contain border"
                                 />
                             </div>

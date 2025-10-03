@@ -2,12 +2,11 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
-// @ts-ignore
+import Image from 'next/image';
 import { useAdminAuth } from '../../AdminAuthContext';
 import type { Category } from '@/types';
 
 export default function AddServicePage() {
-  // @ts-ignore
   const { user, loading } = useAdminAuth();
   const router = useRouter();
 
@@ -96,7 +95,6 @@ export default function AddServicePage() {
   }
 
   if (loading) return <div className="text-center mt-20">جار التحقق...</div>;
-  // @ts-ignore
   if (!user) return null;
 
   return (
@@ -142,9 +140,11 @@ export default function AddServicePage() {
           />
           {imagePreview && (
             <div className="mt-2">
-              <img
+              <Image
                 src={imagePreview}
                 alt="معاينة الصورة"
+                width={400}
+                height={176}
                 className="rounded-xl max-h-44 object-contain border"
               />
             </div>

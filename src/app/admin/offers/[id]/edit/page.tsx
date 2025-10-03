@@ -1,11 +1,11 @@
 // src/app/admin/offers/[id]/edit/page.tsx
 "use client";
 
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
-import type { Product, Offer } from "@/types";
-// @ts-ignore
+import type { Product } from "@/types";
 import { useAdminAuth } from "@/app/admin/AdminAuthContext";
 import { Save, X, Plus, Trash2 } from 'lucide-react';
 
@@ -13,7 +13,6 @@ export default function EditOfferPage({ params }: { params: Promise<{ id: string
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
-    // @ts-ignore
     const { user, loading: authLoading } = useAdminAuth();
 
     // Form state
@@ -35,19 +34,10 @@ export default function EditOfferPage({ params }: { params: Promise<{ id: string
 
     // Redirect if not authenticated
     useEffect(() => {
-        // @ts-ignore
         if (!authLoading && !user) {
             router.push("/admin/login");
         }
     }, [user, authLoading, router]);
-
-    useEffect(() => {
-        // @ts-ignore
-        if (user) {
-            fetchProducts();
-            fetchOffer();
-        }
-    }, [user]);
 
     async function fetchProducts() {
         try {
@@ -63,7 +53,7 @@ export default function EditOfferPage({ params }: { params: Promise<{ id: string
         }
     }
 
-    async function fetchOffer() {
+    const fetchOffer = useCallback(async () => {
         try {
             const offerId = (await params).id;
             const { data, error } = await supabase
@@ -103,7 +93,14 @@ export default function EditOfferPage({ params }: { params: Promise<{ id: string
         } finally {
             setLoading(false);
         }
-    }
+    }, [params]);
+
+    useEffect(() => {
+        if (user) {
+            fetchProducts();
+            fetchOffer();
+        }
+    }, [user, fetchOffer]);
 
     // Handle image file selection
     function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
@@ -270,7 +267,6 @@ export default function EditOfferPage({ params }: { params: Promise<{ id: string
         );
     }
 
-    // @ts-ignore
     if (!user) {
         return null; // Will redirect
     }
@@ -469,9 +465,11 @@ export default function EditOfferPage({ params }: { params: Promise<{ id: string
                         </label>
                         {(oldImageUrl || imagePreview) && (
                             <div className="mb-2">
-                                <img
+                                <Image
                                     src={imagePreview || oldImageUrl || ""}
                                     alt="صورة العرض"
+                                    width={400}
+                                    height={160}
                                     className="rounded-lg max-h-40 object-contain border"
                                 />
                                 {imagePreview && (
