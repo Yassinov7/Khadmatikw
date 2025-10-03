@@ -160,7 +160,7 @@ export function Navbar() {
         <div className="flex items-center gap-3 md:hidden">
           {/* Mobile Search */}
           {searchOpen ? (
-            <div className="flex items-center absolute left-16 right-16 md:relative md:left-auto md:right-auto">
+            <div className="flex items-center absolute right-16 md:relative md:left-auto md:right-auto">
               <SearchComponent />
               <button
                 onClick={() => setSearchOpen(false)}
