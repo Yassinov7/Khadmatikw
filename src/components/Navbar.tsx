@@ -197,14 +197,18 @@ export function Navbar() {
       {open && !searchOpen && (
         <div className="fixed inset-0 z-[99] bg-black/40 flex justify-end md:hidden transition">
           <div className="w-64 bg-background h-full shadow-lg flex flex-col p-6 gap-3 animate-in fade-in slide-in-from-right">
-            <button
-              className="self-end mb-4 p-1"
-              onClick={() => setOpen(false)}
-              aria-label="إغلاق القائمة"
-            >
-              <X size={32} className="text-primary" />
-              <span className="self-start mb-4 p-1">ستلايت الرجاء</span>
-            </button>
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-xl font-bold text-primary">
+                ستلايت<span className="text-secondary"> الرجاء </span>
+              </span>
+              <button
+                className="p-1"
+                onClick={() => setOpen(false)}
+                aria-label="إغلاق القائمة"
+              >
+                <X size={32} className="text-primary" />
+              </button>
+            </div>
 
             <Link
               href="/"
