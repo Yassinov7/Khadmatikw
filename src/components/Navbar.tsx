@@ -48,8 +48,9 @@ export function Navbar() {
     { label: "صيانة ودعم", href: "/additional-services", icon: <MonitorSmartphone size={16} className="text-secondary" /> },
   ];
 
-  const [devServicesOpen, setDevServicesOpen] = useState(false);
   const [webDevOpen, setWebDevOpen] = useState(false);
+  
+  // Initialize any required states here
 
   return (
     <nav className="w-full bg-background shadow-sm sticky top-0 z-50 border-b border-gray-100" role="navigation" aria-label="Main navigation">
