@@ -22,6 +22,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [webDevOpen, setWebDevOpen] = useState(false);
 
   // Hide navbar in admin area (except login page)
   const isAdminArea = pathname.startsWith("/admin") && pathname !== "/admin/login";
@@ -47,10 +48,7 @@ export function Navbar() {
     { label: "حلول برمجية", href: "/software-solutions", icon: <MonitorSmartphone size={16} className="text-secondary" /> },
     { label: "صيانة ودعم", href: "/additional-services", icon: <MonitorSmartphone size={16} className="text-secondary" /> },
   ];
-
-  const [webDevOpen, setWebDevOpen] = useState(false);
   
-  // Initialize any required states here
 
   return (
     <nav className="w-full bg-background shadow-sm sticky top-0 z-50 border-b border-gray-100" role="navigation" aria-label="Main navigation">
