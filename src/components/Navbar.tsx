@@ -2,24 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-<<<<<<< HEAD
-import { Menu, X, Home, Layers, PhoneCall, Blinds, Satellite, Camera, DiscAlbumIcon, MonitorSmartphone  } from "lucide-react";
-
-const links = [
-  { label: "الرئيسية", href: "/", icon: <Home size={20} className="md:mr-2 text-secondary" /> },
-  { label: "الخدمات", href: "/products", icon: <Layers size={20} className="md:mr-2 text-secondary" /> },
-  { label: "الستلايت", href: "/satellite-service", icon: <Satellite size={20} className="md:mr-2 text-secondary" /> },
-  { label: "كـامـيـرات", href: "/camera-service", icon: <Camera size={20} className="md:mr-2 text-secondary" /> },
-  { label: "انتركم", href: "/intercom-service", icon: <DiscAlbumIcon size={20} className="md:mr-2 text-secondary" /> },
-  { label: "تطوير مواقع", href: "/web-development-service", icon: <MonitorSmartphone size={20} className="md:mr-2 text-secondary" /> },
-  { label: "المدونة", href: "/blog", icon: <Blinds size={20} className="md:mr-2 text-secondary" /> },
-  { label: "تواصل معنا", href: "/contact", icon: <PhoneCall size={20} className="md:mr-2 text-secondary" /> },
-];
-=======
 import { Menu, X, Home, Layers, PhoneCall, Blinds, Satellite, Camera, DiscAlbumIcon, Tag, ChevronDown, Search, FileQuestion, ShieldQuestion } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { SearchComponent } from "./SearchComponent";
->>>>>>> 9a95839786175d1bf76d19ba2570519cb790452e
 
 export function Navbar() {
   const pathname = usePathname();
