@@ -6,16 +6,16 @@ import { MonitorSmartphone , Menu, X, Home, Layers, PhoneCall, Blinds, Satellite
 import { usePathname } from "next/navigation";
 import { SearchComponent } from "./SearchComponent";
 
-const links = [
-  { label: "الرئيسية", href: "/", icon: <Home size={20} className="md:mr-2 text-secondary" /> },
-  { label: "الخدمات", href: "/products", icon: <Layers size={20} className="md:mr-2 text-secondary" /> },
-  { label: "الستلايت", href: "/satellite-service", icon: <Satellite size={20} className="md:mr-2 text-secondary" /> },
-  { label: "كـامـيـرات", href: "/camera-service", icon: <Camera size={20} className="md:mr-2 text-secondary" /> },
-  { label: "انتركم", href: "/intercom-service", icon: <DiscAlbumIcon size={20} className="md:mr-2 text-secondary" /> },
-  { label: "تطوير مواقع", href: "/web-development-service", icon: <MonitorSmartphone size={20} className="md:mr-2 text-secondary" /> },
-  { label: "المدونة", href: "/blog", icon: <Blinds size={20} className="md:mr-2 text-secondary" /> },
-  { label: "تواصل معنا", href: "/contact", icon: <PhoneCall size={20} className="md:mr-2 text-secondary" /> },
-];
+// const links = [
+//   { label: "الرئيسية", href: "/", icon: <Home size={20} className="md:mr-2 text-secondary" /> },
+//   { label: "الخدمات", href: "/products", icon: <Layers size={20} className="md:mr-2 text-secondary" /> },
+//   { label: "الستلايت", href: "/satellite-service", icon: <Satellite size={20} className="md:mr-2 text-secondary" /> },
+//   { label: "كـامـيـرات", href: "/camera-service", icon: <Camera size={20} className="md:mr-2 text-secondary" /> },
+//   { label: "انتركم", href: "/intercom-service", icon: <DiscAlbumIcon size={20} className="md:mr-2 text-secondary" /> },
+//   { label: "تطوير مواقع", href: "/web-development-service", icon: <MonitorSmartphone size={20} className="md:mr-2 text-secondary" /> },
+//   { label: "المدونة", href: "/blog", icon: <Blinds size={20} className="md:mr-2 text-secondary" /> },
+//   { label: "تواصل معنا", href: "/contact", icon: <PhoneCall size={20} className="md:mr-2 text-secondary" /> },
+// ];
 
 export function Navbar() {
   const pathname = usePathname();
@@ -38,6 +38,18 @@ export function Navbar() {
     { label: "من نحن؟", href: "/who-is-alrajaa", icon: <ShieldQuestion size={16} className="text-secondary" /> },
     { label: "اسئلة شائعة", href: "/faq", icon: <FileQuestion size={16} className="text-secondary" /> },
   ];
+  
+
+  // Web development services dropdown links
+  const webDevLinks = [
+    { label: "تصميم واجهات", href: "/web-design", icon: <MonitorSmartphone size={16} className="text-secondary" /> },
+    { label: "تطبيقات ويب", href: "/web-applications", icon: <MonitorSmartphone size={16} className="text-secondary" /> },
+    { label: "حلول برمجية", href: "/software-solutions", icon: <MonitorSmartphone size={16} className="text-secondary" /> },
+    { label: "صيانة ودعم", href: "/additional-services", icon: <MonitorSmartphone size={16} className="text-secondary" /> },
+  ];
+
+  const [devServicesOpen, setDevServicesOpen] = useState(false);
+  const [webDevOpen, setWebDevOpen] = useState(false);
 
   return (
     <nav className="w-full bg-background shadow-sm sticky top-0 z-50 border-b border-gray-100" role="navigation" aria-label="Main navigation">
@@ -105,6 +117,36 @@ export function Navbar() {
                   <Layers size={20} className="md:mr-2 text-secondary" />
                   <span>الخدمات</span>
                 </Link>
+              </li>
+              <li className="relative">
+                <button
+                  onClick={() => setWebDevOpen(!webDevOpen)}
+                  className="flex items-center gap-1 px-4 py-2 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
+                  aria-haspopup="true"
+                  aria-expanded={webDevOpen}
+                >
+                  <span>تطوير ويب</span>
+                  <ChevronDown size={16} className={`transition-transform ${webDevOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Web Development Services dropdown */}
+                {webDevOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 z-50">
+                    <div className="py-2">
+                      {webDevLinks.map((service) => (
+                        <Link
+                          key={service.href}
+                          href={service.href}
+                          className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                          onClick={() => setWebDevOpen(false)}
+                        >
+                          {service.icon}
+                          <span>{service.label}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </li>
               <li>
                 <Link
@@ -237,6 +279,32 @@ export function Navbar() {
               <Layers size={20} className="md:mr-2 text-secondary" />
               <span>الخدمات</span>
             </Link>
+            <button
+              onClick={() => setWebDevOpen(!webDevOpen)}
+              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"
+            >
+              <span>تطوير ويب</span>
+              <ChevronDown size={20} className={`transition-transform ${webDevOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {webDevOpen && (
+              <div className="mt-2 mr-4 space-y-2">
+                {webDevLinks.map((service) => (
+                  <Link
+                    key={service.href}
+                    href={service.href}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition"
+                    onClick={() => {
+                      setOpen(false);
+                      setWebDevOpen(false);
+                    }}
+                  >
+                    {service.icon}
+                    <span>{service.label}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
             <Link
               href="/offers"
               className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"

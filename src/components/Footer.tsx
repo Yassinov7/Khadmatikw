@@ -42,6 +42,14 @@ export function Footer() {
     { label: "اسئلة شائعة", href: "/faq", icon: <FileQuestion size={16} /> },
   ];
 
+  // Development service links
+  const devServiceLinks = [
+    { label: "تصميم واجهات", href: "/web-design", icon: <CodeXmlIcon size={16} /> },
+    { label: "تطبيقات ويب", href: "/web-applications", icon: <CodeXmlIcon size={16} /> },
+    { label: "حلول برمجية", href: "/software-solutions", icon: <CodeXmlIcon size={16} /> },
+    { label: "صيانة ودعم", href: "/additional-services", icon: <CodeXmlIcon size={16} /> },
+  ];
+
   // Contact information
   const contactInfo = [
     { icon: <PhoneCall size={16} />, text: "96550266068" },
@@ -72,23 +80,23 @@ export function Footer() {
                 alt="شعار ستلايت الرجاء"
                 width={60}
                 height={60}
-                className="rounded-xl shadow-md"
+                className="rounded-xl shadow-lg"
               />
               <div>
                 <h3 className="text-xl font-bold text-primary">ستلايت الرجاء</h3>
                 <p className="text-xs text-gray-500">خدمات فنية متميزة</p>
               </div>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 mb-6 leading-relaxed">
               نقدم أفضل الخدمات الفنية في مجال الستلايت، الكاميرات، وانتركوم في الكويت.
             </p>
 
             {/* Contact Info */}
-            <div className="space-y-2 mb-4">
+            <div className="space-y-3 mb-6">
               {contactInfo.map((item, index) => (
-                <div key={index} className="flex items-center gap-2 text-sm">
-                  <span className="text-primary">{item.icon}</span>
-                  <span>{item.text}</span>
+                <div key={index} className="flex items-center gap-3 text-sm">
+                  <span className="text-primary bg-primary/10 p-2 rounded-lg">{item.icon}</span>
+                  <span className="text-gray-700">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -99,7 +107,7 @@ export function Footer() {
                 <Link
                   key={index}
                   href={social.href}
-                  className="bg-white p-2 rounded-full shadow border border-gray-200 text-primary hover:bg-primary hover:text-white transition-colors"
+                  className="bg-white p-3 rounded-xl shadow-md border border-gray-200 text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1"
                   aria-label={social.label}
                 >
                   {social.icon}
@@ -110,16 +118,19 @@ export function Footer() {
 
           {/* Main Navigation */}
           <div className="lg:col-span-1">
-            <h3 className="text-lg font-bold text-primary mb-4">روابط رئيسية</h3>
-            <ul className="space-y-2">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <Home size={20} className="text-secondary" />
+              روابط رئيسية
+            </h3>
+            <ul className="space-y-3">
               {mainLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="flex items-center gap-2 hover:text-secondary transition-colors py-1"
+                    className="flex items-center gap-3 hover:text-secondary transition-colors py-2 group"
                   >
-                    {link.icon}
-                    <span>{link.label}</span>
+                    <span className="text-primary group-hover:text-secondary transition-colors">{link.icon}</span>
+                    <span className="group-hover:text-secondary transition-colors">{link.label}</span>
                   </Link>
                 </li>
               ))}
@@ -128,16 +139,40 @@ export function Footer() {
 
           {/* Services */}
           <div className="lg:col-span-1">
-            <h3 className="text-lg font-bold text-primary mb-4">خدماتنا</h3>
-            <ul className="space-y-2">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <Layers size={20} className="text-secondary" />
+              خدماتنا
+            </h3>
+            <ul className="space-y-3">
               {serviceLinks.map((service) => (
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="flex items-center gap-2 hover:text-secondary transition-colors py-1"
+                    className="flex items-center gap-3 hover:text-secondary transition-colors py-2 group"
                   >
-                    {service.icon}
-                    <span>{service.label}</span>
+                    <span className="text-primary group-hover:text-secondary transition-colors">{service.icon}</span>
+                    <span className="group-hover:text-secondary transition-colors">{service.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Development Services */}
+          <div className="lg:col-span-1">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <CodeXmlIcon size={20} className="text-secondary" />
+              تطوير ويب
+            </h3>
+            <ul className="space-y-3">
+              {devServiceLinks.map((service) => (
+                <li key={service.href}>
+                  <Link
+                    href={service.href}
+                    className="flex items-center gap-3 hover:text-secondary transition-colors py-2 group"
+                  >
+                    <span className="text-primary group-hover:text-secondary transition-colors">{service.icon}</span>
+                    <span className="group-hover:text-secondary transition-colors">{service.label}</span>
                   </Link>
                 </li>
               ))}
@@ -163,34 +198,34 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-gray-300">
+        <div className="pt-8 border-t border-gray-200">
           {/* Rights and Credits */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="text-center md:text-start text-sm text-gray-600">
-              <div>
+              <div className="font-medium">
                 جميع الحقوق محفوظة &copy; {new Date().getFullYear()}{" "}
                 <span className="text-primary font-bold">ستلايت الرجاء</span>
               </div>
-              <div className="mt-1 text-xs text-gray-500">
+              <div className="mt-2 text-xs text-gray-500 flex flex-wrap justify-center md:justify-start gap-2">
                 تم التطوير بكل حب بواسطة{" "}
                 <a
                   href="https://www.instagram.com/mhmmdyassine"
                   target="_blank"
                   rel="noopener"
-                  className="text-secondary hover:underline decoration-dotted font-bold relative group"
+                  className="text-secondary hover:underline decoration-dotted font-bold relative group inline-flex items-center gap-1"
                 >
                   م. محمد
-                  <span className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 text-[10px] bg-black text-white px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition">
+                  <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[10px] bg-black text-white px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition whitespace-nowrap z-10">
                     تابعني على إنستغرام
                   </span>
+                  <CodeXmlIcon size={12} className="inline text-secondary" />
                 </a>
-                <CodeXmlIcon size={14} className="inline text-secondary ml-1" />
               </div>
             </div>
 
             {/* Legal Notice */}
-            <div className="text-center text-xs text-gray-500 max-w-md">
-              هذا الموقع مخصص لعرض خدمات فنية فقط. جميع المعلومات والوسائط المقدمة تخضع للحقوق القانونية لصاحب الموقع، وأي استخدام غير مصرح به يعرض صاحبه للمساءلة.
+            <div className="text-center text-xs text-gray-500 max-w-md bg-gray-100 rounded-lg py-2 px-3">
+              هذا الموقع مخصص لعرض خدمات فنية فقط. جميع الحقوق محفوظة © {new Date().getFullYear()}.
             </div>
           </div>
         </div>

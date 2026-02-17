@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
+import { RamadanOfferMarquee } from "@/components/RamadanOfferMarquee";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://satellitealrajaa.com/"),
@@ -40,11 +41,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased bg-background min-h-screen flex flex-col"
         style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
+        <RamadanOfferMarquee />
         <Navbar />
-        <main className="flex-1 container mx-auto px-4 pt-8">
+        <main className="flex-1 container mx-auto px-4 pt-8" style={{ paddingTop: '10rem' }}>
           {children}
+          <FloatingContact />
         </main>
-        <FloatingContact />
         <Footer />
       </body>
     </html>
