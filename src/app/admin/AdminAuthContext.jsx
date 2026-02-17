@@ -19,7 +19,14 @@ export function AdminAuthProvider({ children }) {
             setLoading(false);
         });
 
-        return () => listener?.unsubscribe();
+        // Properly handle cleanup based on Supabase version
+        return () => {
+            if (listener && typeof listener.unsubscribe === 'function') {
+                listener.unsubscribe();
+            } else if (listener && typeof listener === 'function') {
+                listener();
+            }
+        };
     }, []);
 
     return (
@@ -32,3 +39,5 @@ export function AdminAuthProvider({ children }) {
 export function useAdminAuth() {
     return useContext(AdminAuthContext);
 }
+
+export default AdminAuthContext;

@@ -2,6 +2,7 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { useAdminAuth } from '../../AdminAuthContext';
 import type { Category } from '@/types';
 
@@ -97,85 +98,124 @@ export default function AddServicePage() {
   if (!user) return null;
 
   return (
-    <section className="max-w-lg mx-auto py-10">
-      <h2 className="text-xl font-bold text-primary mb-6 text-center">إضافة خدمة جديدة</h2>
+    <section className="p-4">
+      <h1 className="text-2xl font-bold text-primary mb-6 text-center">إضافة خدمة جديدة</h1>
       <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow p-6 flex flex-col gap-4">
-        <input
-          className="border rounded p-2"
-          type="text"
-          placeholder="اسم الخدمة *"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <textarea
-          className="border rounded p-2 resize-y min-h-[48px]"
-          placeholder="وصف مختصر"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
         <div>
-          <label className="block mb-2 font-bold">صورة الغلاف</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            اسم الخدمة *
+          </label>
+          <input
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+            type="text"
+            placeholder="اسم الخدمة"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            وصف الخدمة
+          </label>
+          <textarea
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+            placeholder="وصف مختصر"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={3}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            صورة الغلاف
+          </label>
           <input
             type="file"
             accept="image/*"
-            className="border rounded p-2 w-full"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
             onChange={handleImageChange}
           />
           {imagePreview && (
-            <img
-              src={imagePreview}
-              alt="معاينة الصورة"
-              className="mt-2 rounded-xl max-h-44 object-contain border"
-            />
+            <div className="mt-2">
+              <Image
+                src={imagePreview}
+                alt="معاينة الصورة"
+                width={400}
+                height={176}
+                className="rounded-xl max-h-44 object-contain border"
+              />
+            </div>
           )}
         </div>
-        <select
-          className="border rounded p-2"
-          value={categoryId}
-          onChange={(e) => setCategoryId(Number(e.target.value))}
-          required
-        >
-          <option value="">اختر التصنيف *</option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.name}
-            </option>
-          ))}
-        </select>
-        <div className="flex flex-col sm:flex-row gap-2">
-          <input
-            className="border rounded p-2 w-full"
-            type="text"
-            placeholder="هاتف للتواصل (اختياري)"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-          <input
-            className="border rounded p-2 w-full"
-            type="text"
-            placeholder="رقم واتساب (اختياري)"
-            value={whatsapp}
-            onChange={(e) => setWhatsapp(e.target.value)}
-          />
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            التصنيف *
+          </label>
+          <select
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+            value={categoryId}
+            onChange={(e) => setCategoryId(Number(e.target.value))}
+            required
+          >
+            <option value="">اختر التصنيف</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              هاتف للتواصل
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+              type="text"
+              placeholder="رقم الهاتف"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              رقم واتساب
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+              type="text"
+              placeholder="رقم واتساب"
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value)}
+            />
+          </div>
+        </div>
+
         {uploading && <div className="text-blue-600 text-sm text-center">...جار رفع الصورة</div>}
         {error && <div className="text-red-500 text-sm text-center">{error}</div>}
         {success && <div className="text-green-600 text-sm text-center">{success}</div>}
-        <div className="flex gap-2 justify-end">
+
+        <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4">
           <button
             type="button"
             onClick={() => router.push('/admin/products')}
-            className="bg-gray-200 text-gray-700 px-4 py-1 rounded-lg"
+            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
           >
             إلغاء
           </button>
           <button
             type="submit"
-            className="bg-primary text-white px-4 py-1 rounded-lg font-bold"
+            className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
             disabled={uploading}
           >
-            إضافة
+            إضافة الخدمة
           </button>
         </div>
       </form>

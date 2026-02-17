@@ -1,6 +1,6 @@
 {
   "name": "satellite-alrajaa",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -21,6 +21,7 @@
     "@tiptap/react": "^2.14.0",
     "@tiptap/starter-kit": "^2.14.0",
     "dompurify": "^3.2.6",
+    "dotenv": "^17.2.3",
     "lucide-react": "^0.513.0",
     "next": "15.3.3",
     "react": "^19.0.0",

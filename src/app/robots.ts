@@ -10,5 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: 'https://satellitealrajaa.com/sitemap.xml',
+    host: 'https://satellitealrajaa.com'
   };
 }
