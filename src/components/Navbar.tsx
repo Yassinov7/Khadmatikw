@@ -2,20 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { MonitorSmartphone , Menu, X, Home, Layers, PhoneCall, Blinds, Satellite, Camera, DiscAlbumIcon, Tag, ChevronDown, Search, FileQuestion, ShieldQuestion } from "lucide-react";
+import { MonitorSmartphone , Menu, X, Home, Layers, PhoneCall, Blinds, Satellite, Camera, DiscAlbumIcon, Tag, ChevronDown, Search, FileQuestion, ShieldQuestion, Code, PlusSquare } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { SearchComponent } from "./SearchComponent";
-
-// const links = [
-//   { label: "الرئيسية", href: "/", icon: <Home size={20} className="md:mr-2 text-secondary" /> },
-//   { label: "الخدمات", href: "/products", icon: <Layers size={20} className="md:mr-2 text-secondary" /> },
-//   { label: "الستلايت", href: "/satellite-service", icon: <Satellite size={20} className="md:mr-2 text-secondary" /> },
-//   { label: "كـامـيـرات", href: "/camera-service", icon: <Camera size={20} className="md:mr-2 text-secondary" /> },
-//   { label: "انتركم", href: "/intercom-service", icon: <DiscAlbumIcon size={20} className="md:mr-2 text-secondary" /> },
-//   { label: "تطوير مواقع", href: "/web-development-service", icon: <MonitorSmartphone size={20} className="md:mr-2 text-secondary" /> },
-//   { label: "المدونة", href: "/blog", icon: <Blinds size={20} className="md:mr-2 text-secondary" /> },
-//   { label: "تواصل معنا", href: "/contact", icon: <PhoneCall size={20} className="md:mr-2 text-secondary" /> },
-// ];
 
 export function Navbar() {
   const pathname = usePathname();
@@ -117,6 +106,16 @@ export function Navbar() {
                   <span>الخدمات</span>
                 </Link>
               </li>
+              
+              <li>
+                <Link
+                  href="/offers"
+                  className="flex items-center gap-1 px-4 py-2 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
+                >
+                  <Tag size={20} className="md:mr-2 text-secondary" />
+                  <span>العروض</span>
+                </Link>
+              </li>
               <li className="relative">
                 <button
                   onClick={() => setWebDevOpen(!webDevOpen)}
@@ -124,13 +123,14 @@ export function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={webDevOpen}
                 >
-                  <span>تطوير ويب</span>
+                  <Code size={20} className="md:mr-2 text-secondary" />
+                  <span>خدمات برمجية</span>
                   <ChevronDown size={16} className={`transition-transform ${webDevOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* Web Development Services dropdown */}
                 {webDevOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 z-50">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 z-[150]">
                     <div className="py-2">
                       {webDevLinks.map((service) => (
                         <Link
@@ -147,15 +147,6 @@ export function Navbar() {
                   </div>
                 )}
               </li>
-              <li>
-                <Link
-                  href="/offers"
-                  className="flex items-center gap-1 px-4 py-2 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
-                >
-                  <Tag size={20} className="md:mr-2 text-secondary" />
-                  <span>العروض</span>
-                </Link>
-              </li>
               <li className="relative">
                 <button
                   onClick={() => setServicesOpen(!servicesOpen)}
@@ -163,13 +154,14 @@ export function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={servicesOpen}
                 >
-                  <span>خدمات أخرى</span>
+                  <PlusSquare size={20} className="md:mr-2 text-secondary" />
+                  <span>المزيد</span>
                   <ChevronDown size={16} className={`transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* Services dropdown */}
                 {servicesOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 z-50">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 z-[150]">
                     <div className="py-2">
                       {serviceLinks.map((service) => (
                         <Link
@@ -278,11 +270,21 @@ export function Navbar() {
               <Layers size={20} className="md:mr-2 text-secondary" />
               <span>الخدمات</span>
             </Link>
+            
+            <Link
+              href="/offers"
+              className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"
+              onClick={() => setOpen(false)}
+            >
+              <Tag size={20} className="md:mr-2 text-secondary" />
+              <span>العروض</span>
+            </Link>
             <button
               onClick={() => setWebDevOpen(!webDevOpen)}
               className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"
-            >
-              <span>تطوير ويب</span>
+            >                  
+              <Code size={20} className="md:mr-2 text-secondary" />
+              <span>خدمات برمجية</span>
               <ChevronDown size={20} className={`transition-transform ${webDevOpen ? 'rotate-180' : ''}`} />
             </button>
 
@@ -304,18 +306,11 @@ export function Navbar() {
                 ))}
               </div>
             )}
-            <Link
-              href="/offers"
-              className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"
-              onClick={() => setOpen(false)}
-            >
-              <Tag size={20} className="md:mr-2 text-secondary" />
-              <span>العروض</span>
-            </Link>
             <button
               onClick={() => setServicesOpen(!servicesOpen)}
               className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"
             >
+              <PlusSquare size={20} className="md:mr-2 text-secondary" />
               <span>خدمات أخرى</span>
               <ChevronDown size={20} className={`transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
             </button>

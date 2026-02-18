@@ -6,7 +6,10 @@ import { Phone, MessageCircle } from "lucide-react";
 // جميع مدن الكويت
 const kuwaitCities = [
   "مدينة الكويت", "حولى", "الفروانية", "الجهراء", "الأحمدي", "مبارك الكبير", "الفنطاس", "السالمية",
-  "الشفافيه", "الرقعي", "الفيحاء", "خيطان", "العبدلي", "مشرف", "الصباحية", "الجليب", "الظهر", "العزيزية"
+  "الشفافيه", "الرقعي", "الفيحاء", "خيطان", "العبدلي", "مشرف", "الصباحية", "الجليب", "الظهر", "العزيزية",
+  // Expanding beyond Kuwait
+  "الرياض", "الدمام", "جدة", "دبي", "أبوظبي", "الشارقة", "القاهرة", "الإسكندرية", "بغداد", "عمان",
+  "المنامة", "الكويت", "طرابلس", "تونس", "الجزائر", "الرباط", "نواكشوط", "بيروت", "عمان الأردن"
 ];
 
 // الخدمات والكلمات المفتاحية
@@ -15,26 +18,30 @@ const servicesKeywords = [
   "تطوير حلول برمجية",
   "حلول برمجية متكاملة",
   "برمجة تطبيقات مخصصة",
-  "حلول برمجية للشركات"
+  "حلول برمجية للشركات",
+  "برامج سطح المكتب",
+  "تطبيقات الأعمال",
+  "نظام إدارة الأعمال",
+  "أتمتة الأعمال"
 ].join(", ");
 
 // Metadata
 export const metadata: Metadata = {
-  title: "الحلول البرمجية في الكويت – حلول مخصصة تلبي احتياجات عملك",
+  title: "الحلول البرمجية – حلول مخصصة تلبي احتياجات عملك",
   description:
-    "نقدم حلولاً برمجية مخصصة تناسب احتياجات عملك وتساعد في تحسين العمليات. حلول متكاملة تلبي احتياجات عملك.",
+    "نقدم حلولاً برمجية مخصصة تناسب احتياجات عملك وتساعد في تحسين العمليات. تشمل تطوير برامج سطح المكتب وأنظمة إدارة الأعمال.",
   keywords: `${servicesKeywords}, ${kuwaitCities.join(", ")}`,
   openGraph: {
-    title: "الحلول البرمجية في الكويت – حلول مخصصة تلبي احتياجات عملك",
+    title: "الحلول البرمجية – حلول مخصصة تلبي احتياجات عملك",
     description:
-      "نقدم حلولاً برمجية مخصصة تناسب احتياجات عملك وتساعد في تحسين العمليات. حلول متكاملة تلبي احتياجات عملك.",
+      "نقدم حلولاً برمجية مخصصة تناسب احتياجات عملك وتساعد في تحسين العمليات. تشمل تطوير برامج سطح المكتب وأنظمة إدارة الأعمال.",
     url: "https://satellitealrajaa.com/software-solutions",
     images: ["/sattech/works/work3.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "الحلول البرمجية في الكويت",
+    title: "الحلول البرمجية",
     description:
       "نقدم حلولاً برمجية مخصصة تناسب احتياجات عملك وتساعد في تحسين العمليات.",
   },
@@ -71,23 +78,23 @@ export default function SoftwareSolutionsPage() {
       <section className="relative bg-gradient-to-br from-purple-600 via-pink-700 to-red-800 text-white min-h-[60vh] flex flex-col justify-center items-center text-center p-6">
         <div className="relative z-10 max-w-4xl">
           <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
-            <span className="text-sm font-semibold">الرقم 1 في الكويت</span>
+            <span className="text-sm font-semibold">الرقم 1 في المنطقة</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
             الحلول البرمجية
           </h1>
           <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
-            نقدم حلولاً برمجية مخصصة تناسب احتياجات عملك وتساعد في تحسين العمليات
+            نقدم حلولاً برمجية مخصصة تناسب احتياجات عملك وتساعد في تحسين العمليات. نشمل تطوير برامج سطح المكتب وأنظمة إدارة الأعمال
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:96550266068"
+              href="tel:963998246359"
               className="bg-white text-primary font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
             >
               <Phone size={20} /> اتصال مباشر
             </a>
             <a
-              href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن خدمات الحلول البرمجية."
+              href="https://wa.me/963998246359?text=مرحبًا، أود الاستفسار عن خدمات الحلول البرمجية."
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:from-green-600 hover:to-teal-700 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
@@ -111,7 +118,7 @@ export default function SoftwareSolutionsPage() {
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">مميزات حلولنا</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">نقدم حلولاً متكاملة تلبي احتياجات عملك وتحسن العمليات</p>
+          <p className="text-gray-600 max-w-2xl mx-auto">نقدم حلولاً متكاملة تلبي احتياجات عملك وتحسن العمليات. نشمل تطوير برامج سطح المكتب وأنظمة إدارة الأعمال</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {solutionFeatures.map((feature, i) => (
@@ -138,7 +145,7 @@ export default function SoftwareSolutionsPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">أمثلة على الحلول</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">نعرض هنا بعض من أبرز أمثلة الحلول البرمجية التي نقدمها</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">نعرض هنا بعض من أبرز أمثلة الحلول البرمجية التي نقدمها، بما في ذلك برامج سطح المكتب وأنظمة إدارة الأعمال</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {solutionWorks.map((img, i) => (
@@ -163,6 +170,48 @@ export default function SoftwareSolutionsPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Technologies Used */}
+      <section className="py-20 px-6 bg-gradient-to-br from-purple-50 to-pink-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">التقنيات المستخدمة</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              نستخدم أحدث التقنيات لتطوير الحلول البرمجية المخصصة، بما في ذلك برامج سطح المكتب وأنظمة إدارة الأعمال
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center">
+                <Image src="/sattech/csharp.png" alt="C#" width={60} height={60} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">C# & .NET</h3>
+              <p className="text-gray-600">تطوير برامج سطح المكتب القوية</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                <Image src="/sattech/java.png" alt="Java" width={60} height={60} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Java</h3>
+              <p className="text-gray-600">حلول برمجية متعددة المنصات</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-100 flex items-center justify-center">
+                <Image src="/sattech/python.png" alt="Python" width={60} height={60} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Python</h3>
+              <p className="text-gray-600">تحليل البيانات وأتمتة العمليات</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-100 flex items-center justify-center">
+                <Image src="/sattech/database.png" alt="Database" width={60} height={60} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">SQL Server & Oracle</h3>
+              <p className="text-gray-600">قواعد بيانات قوية للتطبيقات المؤسسية</p>
+            </div>
           </div>
         </div>
       </section>
@@ -196,7 +245,7 @@ export default function SoftwareSolutionsPage() {
                 <Image src="/sattech/trusted.png" alt="ثقة" width={60} height={60} />
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">احترافية وثقة</h3>
-              <p className="text-gray-600">فريق عمل محترف مع سنوات من الخبرة في المجال</p>
+              <p className="text-gray-600">فريق عمل محترف مع سنوات من الخبرة في تطوير الحلول البرمجية المخصصة</p>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-100 flex items-center justify-center">
@@ -213,16 +262,16 @@ export default function SoftwareSolutionsPage() {
       <section className="py-20 px-6 bg-gradient-to-r from-indigo-900 via-primary to-blue-800 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">هل ترغب في حلول برمجية مخصصة؟</h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">اتصل بنا الآن للحصول على استشارة مجانية وتقدير تكلفة المشروع</p>
+          <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">نطور حلولاً برمجية مخصصة، برامج سطح المكتب، وأنظمة إدارة الأعمال. احصل على استشارة مجانية وتسعير مخصص لمشروعك</p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
             <a
-              href="tel:96550266068"
+              href="tel:963998246359"
               className="flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-xl font-bold shadow-xl hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 text-lg"
             >
               <Phone size={24} /> اتصال مباشر
             </a>
             <a
-              href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن خدمات الحلول البرمجية."
+              href="https://wa.me/963998246359?text=مرحبًا، أود الاستفسار عن خدمات الحلول البرمجية."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-bold shadow-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:-translate-y-1 text-lg"

@@ -24,7 +24,7 @@ export function RamadanOfferMarquee() {
   }
 
   return (
-    <div className="fixed top-[6rem] left-0 right-0 z-[10] bg-gradient-to-r from-orange-500 via-red-600 to-orange-500 text-white shadow-lg">
+    <div className="fixed top-[5.5rem] left-0 right-0 z-[50] bg-gradient-to-r from-orange-500 via-red-600 to-orange-500 text-white shadow-lg">
       <div className="relative overflow-hidden py-3">
         <div className="animate-marquee whitespace-nowrap flex items-center">
           <span className="mx-4 text-lg font-bold">عروضنا المميزة</span>
@@ -50,12 +50,12 @@ export function RamadanOfferMarquee() {
       
       <style jsx global>{`
         @keyframes marquee {
-          0% { transform: translateX(-100%); }
+          0% { transform: translateX(-10%); }
           100% { transform: translateX(100%); }
         }
         
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 40s linear infinite;
           display: inline-block;
           min-width: 200%;
         }

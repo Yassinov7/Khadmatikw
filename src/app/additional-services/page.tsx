@@ -6,7 +6,10 @@ import { Phone, MessageCircle } from "lucide-react";
 // جميع مدن الكويت
 const kuwaitCities = [
   "مدينة الكويت", "حولى", "الفروانية", "الجهراء", "الأحمدي", "مبارك الكبير", "الفنطاس", "السالمية",
-  "الشفافيه", "الرقعي", "الفيحاء", "خيطان", "العبدلي", "مشرف", "الصباحية", "الجليب", "الظهر", "العزيزية"
+  "الشفافيه", "الرقعي", "الفيحاء", "خيطان", "العبدلي", "مشرف", "الصباحية", "الجليب", "الظهر", "العزيزية",
+  // Expanding beyond Kuwait
+  "الرياض", "الدمام", "جدة", "دبي", "أبوظبي", "الشارقة", "القاهرة", "الإسكندرية", "بغداد", "عمان",
+  "المنامة", "الكويت", "طرابلس", "تونس", "الجزائر", "الرباط", "نواكشوط", "بيروت", "عمان الأردن"
 ];
 
 // الخدمات والكلمات المفتاحية
@@ -15,26 +18,30 @@ const servicesKeywords = [
   "صيانة أنظمة",
   "تحديثات دورية",
   "استشارات تقنية",
-  "صيانة ودعم مستمر"
+  "صيانة ودعم مستمر",
+  "أتمتة أعمال",
+  "إدارة أنظمة",
+  "تحديثات أمنية",
+  "تحسين أداء الأنظمة"
 ].join(", ");
 
 // Metadata
 export const metadata: Metadata = {
-  title: "خدمات إضافية في الكويت – دعم وصيانة مستمرة لأنظمتك",
+  title: "خدمات إضافية – دعم وصيانة مستمرة لأنظمتك",
   description:
-    "نقدم خدمات دعم وصيانة مستمرة لضمان استمرارية عمل أنظمتك بكفاءة. دعم فني متكامل وتحديثات دورية.",
+    "نقدم خدمات دعم وصيانة مستمرة لضمان استمرارية عمل أنظمتك بكفاءة. نشمل أتمتة الأعمال وإدارة الأنظمة وتحديثات الأمان.",
   keywords: `${servicesKeywords}, ${kuwaitCities.join(", ")}`,
   openGraph: {
-    title: "خدمات إضافية في الكويت – دعم وصيانة مستمرة لأنظمتك",
+    title: "خدمات إضافية – دعم وصيانة مستمرة لأنظمتك",
     description:
-      "نقدم خدمات دعم وصيانة مستمرة لضمان استمرارية عمل أنظمتك بكفاءة. دعم فني متكامل وتحديثات دورية.",
+      "نقدم خدمات دعم وصيانة مستمرة لضمان استمرارية عمل أنظمتك بكفاءة. نشمل أتمتة الأعمال وإدارة الأنظمة وتحديثات الأمان.",
     url: "https://satellitealrajaa.com/additional-services",
     images: ["/sattech/works/work4.png"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "خدمات إضافية في الكويت",
+    title: "خدمات إضافية",
     description:
       "نقدم خدمات دعم وصيانة مستمرة لضمان استمرارية عمل أنظمتك بكفاءة.",
   },
@@ -71,23 +78,23 @@ export default function AdditionalServicesPage() {
       <section className="relative bg-gradient-to-br from-yellow-600 via-orange-700 to-red-800 text-white min-h-[60vh] flex flex-col justify-center items-center text-center p-6">
         <div className="relative z-10 max-w-4xl">
           <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
-            <span className="text-sm font-semibold">الرقم 1 في الكويت</span>
+            <span className="text-sm font-semibold">الرقم 1 في المنطقة</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
             خدمات إضافية
           </h1>
           <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
-            نقدم خدمات دعم وصيانة مستمرة لضمان استمرارية عمل أنظمتك بكفاءة
+            نقدم خدمات دعم وصيانة مستمرة لضمان استمرارية عمل أنظمتك بكفاءة. نشمل أتمتة الأعمال وإدارة الأنظمة وتحديثات الأمان
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:96550266068"
+              href="tel:963998246359"
               className="bg-white text-primary font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
             >
               <Phone size={20} /> اتصال مباشر
             </a>
             <a
-              href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن خدمات الدعم والصيانة."
+              href="https://wa.me/963998246359?text=مرحبًا، أود الاستفسار عن خدمات الدعم والصيانة."
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:from-green-600 hover:to-teal-700 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
@@ -111,7 +118,7 @@ export default function AdditionalServicesPage() {
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">خدماتنا الإضافية</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">نقدم خدمات دعم وصيانة متكاملة لضمان استمرارية عمل أنظمتك</p>
+          <p className="text-gray-600 max-w-2xl mx-auto">نقدم خدمات دعم وصيانة متكاملة لضمان استمرارية عمل أنظمتك. نشمل أتمتة الأعمال وإدارة الأنظمة وتحديثات الأمان</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {additionalServices.map((service, i) => (
@@ -138,7 +145,7 @@ export default function AdditionalServicesPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">أمثلة على الخدمات</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">نعرض هنا بعض من أبرز أمثلة الخدمات الإضافية التي نقدمها</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">نعرض هنا بعض من أبرز أمثلة الخدمات الإضافية التي نقدمها، بما في ذلك أتمتة الأعمال وإدارة الأنظمة وتحديثات الأمان</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {serviceWorks.map((img, i) => (
@@ -196,7 +203,7 @@ export default function AdditionalServicesPage() {
                 <Image src="/sattech/trusted.png" alt="ثقة" width={60} height={60} />
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">احترافية وثقة</h3>
-              <p className="text-gray-600">فريق عمل محترف مع سنوات من الخبرة في المجال</p>
+              <p className="text-gray-600">فريق عمل محترف مع سنوات من الخبرة في مجال الدعم والصيانة</p>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-100 flex items-center justify-center">
@@ -213,16 +220,16 @@ export default function AdditionalServicesPage() {
       <section className="py-20 px-6 bg-gradient-to-r from-indigo-900 via-primary to-blue-800 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">هل ترغب في خدمات دعم وصيانة؟</h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">اتصل بنا الآن للحصول على استشارة مجانية وتقدير تكلفة المشروع</p>
+          <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">نقدم خدمات دعم وصيانة مستمرة، أتمتة الأعمال، وإدارة الأنظمة. احصل على استشارة مجانية وتسعير مخصص لمشروعك</p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
             <a
-              href="tel:96550266068"
+              href="tel:963998246359"
               className="flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-xl font-bold shadow-xl hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 text-lg"
             >
               <Phone size={24} /> اتصال مباشر
             </a>
             <a
-              href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن خدمات الدعم والصيانة."
+              href="https://wa.me/963998246359?text=مرحبًا، أود الاستفسار عن خدمات الدعم والصيانة."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-bold shadow-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:-translate-y-1 text-lg"

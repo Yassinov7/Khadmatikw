@@ -6,7 +6,10 @@ import { Phone, MessageCircle } from "lucide-react";
 // جميع مدن الكويت
 const kuwaitCities = [
   "مدينة الكويت", "حولى", "الفروانية", "الجهراء", "الأحمدي", "مبارك الكبير", "الفنطاس", "السالمية",
-  "الشفافيه", "الرقعي", "الفيحاء", "خيطان", "العبدلي", "مشرف", "الصباحية", "الجليب", "الظهر", "العزيزية"
+  "الشفافيه", "الرقعي", "الفيحاء", "خيطان", "العبدلي", "مشرف", "الصباحية", "الجليب", "الظهر", "العزيزية",
+  // Expanding beyond Kuwait
+  "الرياض", "الدمام", "جدة", "دبي", "أبوظبي", "الشارقة", "القاهرة", "الإسكندرية", "بغداد", "عمان",
+  "المنامة", "الكويت", "طرابلس", "تونس", "الجزائر", "الرباط", "نواكشوط", "بيروت", "عمان الأردن"
 ];
 
 // الخدمات والكلمات المفتاحية
@@ -15,26 +18,30 @@ const servicesKeywords = [
   "تصميم مواقع الكترونية",
   "تصميم مواقع استعراضية",
   "تصميم واجهات المستخدم",
-  "تصميم مواقع ريسبونسيف"
+  "تصميم مواقع ريسبونسيف",
+  "مواقع ويب ثابتة",
+  "مواقع تعريفية",
+  "مواقع لعرض الأعمال",
+  "مواقع لعرض الخدمات"
 ].join(", ");
 
 // Metadata
 export const metadata: Metadata = {
-  title: "تصميم المواقع الاستعراضية في الكويت – تصميمات احترافية وجذابة",
+  title: "تصميم المواقع الاستعراضية – تصميمات احترافية وجذابة",
   description:
-    "نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك وتحقيق أهدافك التسويقية. تصميمات متجاوبة تلبي احتياجات عملك.",
+    "نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك وتحقيق أهدافك التسويقية. نشمل تصميم المواقع الثابتة لعرض الأعمال والخدمات.",
   keywords: `${servicesKeywords}, ${kuwaitCities.join(", ")}`,
   openGraph: {
-    title: "تصميم المواقع الاستعراضية في الكويت – تصميمات احترافية وجذابة",
+    title: "تصميم المواقع الاستعراضية – تصميمات احترافية وجذابة",
     description:
-      "نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك وتحقيق أهدافك التسويقية. تصميمات متجاوبة تلبي احتياجات عملك.",
+      "نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك وتحقيق أهدافك التسويقية. نشمل تصميم المواقع الثابتة لعرض الأعمال والخدمات.",
     url: "https://satellitealrajaa.com/web-design",
     images: ["/sattech/works/work1.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "تصميم المواقع الاستعراضية في الكويت",
+    title: "تصميم المواقع الاستعراضية",
     description:
       "نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك وتحقيق أهدافك التسويقية.",
   },
@@ -71,13 +78,13 @@ export default function WebDesignPage() {
       <section className="relative bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 text-white min-h-[60vh] flex flex-col justify-center items-center text-center p-6">
         <div className="relative z-10 max-w-4xl">
           <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
-            <span className="text-sm font-semibold">الرقم 1 في الكويت</span>
+            <span className="text-sm font-semibold">الرقم 1 في المنطقة</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
             تصميم المواقع الاستعراضية
           </h1>
           <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
-            نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك وتحقيق أهدافك التسويقية
+            نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك وتحقيق أهدافك التسويقية. نشمل تصميم المواقع الثابتة لعرض الأعمال والخدمات
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -111,7 +118,7 @@ export default function WebDesignPage() {
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">مميزات تصميماتنا</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">نقدم تصميمات مبتكرة تلبي احتياجات عملك وتحقق أهدافك التسويقية</p>
+          <p className="text-gray-600 max-w-2xl mx-auto">نقدم تصميمات مبتكرة تلبي احتياجات عملك وتحقق أهدافك التسويقية. نشمل تصميم المواقع الثابتة لعرض الأعمال والخدمات</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {designFeatures.map((feature, i) => (
@@ -138,7 +145,7 @@ export default function WebDesignPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">أمثلة على التصميمات</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">نعرض هنا بعض من أبرز أمثلة التصميمات التي نقدمها</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">نعرض هنا بعض من أبرز أمثلة التصميمات التي نقدمها، بما في ذلك المواقع الثابتة لعرض الأعمال والخدمات</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {designWorks.map((img, i) => (
@@ -213,7 +220,7 @@ export default function WebDesignPage() {
       <section className="py-20 px-6 bg-gradient-to-r from-indigo-900 via-primary to-blue-800 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">هل ترغب في تصميم موقع احترافي؟</h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">اتصل بنا الآن للحصول على استشارة مجانية وتقدير تكلفة المشروع</p>
+          <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">نقوم بتصميم مواقع جذابة تفاعلية لعرض أعمالك وخدماتك. احصل على استشارة مجانية وتسعير مخصص لمشروعك</p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
             <a
               href="tel:963998246359"
