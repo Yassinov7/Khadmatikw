@@ -1,7 +1,7 @@
 // app/additional-services/page.tsx
 import { Metadata } from "next";
 import Image from "next/image";
-import { Mail, Instagram, Link as LinkIcon, Phone, MessageCircle, Star, Wrench, Headphones, Shield, Clock, Users, Award, Zap, Settings } from "lucide-react";
+import { Mail, Instagram, Link as LinkIcon, Star, Wrench, Headphones, Shield, Clock, Users, Settings } from "lucide-react";
 
 // جميع مدن الكويت
 const kuwaitCities = [
@@ -315,7 +315,7 @@ export default function AdditionalServicesPage() {
                     <Star key={idx} size={20} fill="currentColor" />
                   ))}
                 </div>
-                <p className="text-lg mb-6 italic">"{testimonial.text}"</p>
+                <p className="text-lg mb-6 italic">{testimonial.text}</p>
                 <div>
                   <div className="font-bold text-lg">{testimonial.name}</div>
                   <div className="text-gray-300">{testimonial.company}</div>

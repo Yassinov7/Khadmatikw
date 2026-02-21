@@ -1,7 +1,7 @@
 // app/software-solutions/page.tsx
 import { Metadata } from "next";
 import Image from "next/image";
-import { Mail, Instagram, Link as LinkIcon, MessageCircle, Star, Code, Monitor, Wrench, Cpu, Database, Settings, Users, Award, Clock, Zap, Shield } from "lucide-react";
+import { Mail, Instagram, Link as LinkIcon, Star, Code, Monitor, Wrench, Cpu, Database, Users, Clock, Zap, Shield } from "lucide-react";
 
 // جميع مدن الكويت
 const kuwaitCities = [
@@ -314,7 +314,7 @@ export default function SoftwareSolutionsPage() {
                     <Star key={idx} size={20} fill="currentColor" />
                   ))}
                 </div>
-                <p className="text-lg mb-6 italic">"{testimonial.text}"</p>
+                <p className="text-lg mb-6 italic">{testimonial.text}</p>
                 <div>
                   <div className="font-bold text-lg">{testimonial.name}</div>
                   <div className="text-gray-300">{testimonial.company}</div>
