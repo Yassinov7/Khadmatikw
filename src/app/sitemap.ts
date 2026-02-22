@@ -25,7 +25,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/camera-service', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/intercom-service', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/faq', priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: '/who-is-alrajaa', priority: 0.7, changeFrequency: 'monthly' as const }
+    { path: '/who-is-alrajaa', priority: 0.7, changeFrequency: 'monthly' as const },
+    // IPTV subscriptions
+    { path: '/iptv/berlin', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/iptv/spider', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/iptv/genie', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/iptv/flash-4k', priority: 0.8, changeFrequency: 'weekly' as const },
+    // Football & leagues
+    { path: '/football/world-cup', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/champions-league', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/afc-champions-league', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/premier-league', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/la-liga', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/serie-a', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/bundesliga', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/kuwait-league', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/saudi-league', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/uae-league', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/qatar-league', priority: 0.8, changeFrequency: 'weekly' as const },
   ];
 
   // المنتجات

@@ -24,25 +24,34 @@ export function RamadanOfferMarquee() {
   }
 
   return (
-    <div className="fixed top-[5.5rem] left-0 right-0 z-[50] bg-gradient-to-r from-orange-500 via-red-600 to-orange-500 text-white shadow-lg">
-      <div className="relative overflow-hidden py-3">
+    <div className="fixed top-[4.5rem] left-0 right-0 z-[90] bg-gradient-to-r from-orange-500 via-red-600 to-orange-500 text-white shadow-lg">
+      <div className="relative overflow-hidden py-2.5">
         <div className="animate-marquee whitespace-nowrap flex items-center">
-          <span className="mx-4 text-lg font-bold">عروضنا المميزة</span>
-          <span className="mx-4 text-lg font-bold">عروض مميزة في شهر رمضان المبارك</span>
-          <span className="mx-4 text-lg font-bold">خصم 30% على جميع الخدمات</span>
+          <span className="mx-4 text-base font-bold">عروضنا المميزة</span>
+          <span className="mx-4 text-base font-bold">عروض رمضان المبارك</span>
+          <span className="mx-4 text-base font-bold">خصم 30% على جميع الخدمات</span>
+          <a href="/iptv/world-cup" className="mx-4 bg-white text-red-600 px-4 py-1 rounded-full font-bold text-sm hover:bg-gray-100 transition-all duration-300">
+            عروض كأس العالم
+          </a>
           <a href="tel:96550266068" className="mx-4 bg-white text-red-600 px-4 py-1 rounded-full font-bold text-sm hover:bg-gray-100 transition-all duration-300">
             اتصال مباشر
           </a>
           <a href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن عروض رمضان." className="mx-4 bg-white text-green-600 px-4 py-1 rounded-full font-bold text-sm hover:bg-gray-100 transition-all duration-300">
             واتساب
           </a>
-          <span className="mx-4 text-lg font-bold">|</span>
-          <span className="mx-4 text-lg font-bold">عروض مميزة في شهر رمضان المبارك</span>
-          <span className="mx-4 text-lg font-bold">خصم 30% على جميع الخدمات</span>
+          <span className="mx-4 text-base font-bold">|</span>
+          <span className="mx-4 text-base font-bold">عروض كأس العالم IPTV</span>
+          <span className="mx-4 text-base font-bold">مشاهدة كأس العالم بجودة HD</span>
+          <a href="/iptv/world-cup" className="mx-4 bg-white text-red-600 px-4 py-1 rounded-full font-bold text-sm hover:bg-gray-100 transition-all duration-300">
+            اشتراك كأس العالم
+          </a>
+          <span className="mx-4 text-base font-bold">|</span>
+          <span className="mx-4 text-base font-bold">عروض رمضان المبارك</span>
+          <span className="mx-4 text-base font-bold">خصم 30% على جميع الخدمات</span>
           <a href="tel:96550266068" className="mx-4 bg-white text-red-600 px-4 py-1 rounded-full font-bold text-sm hover:bg-gray-100 transition-all duration-300">
             اتصال مباشر
           </a>
-          <a href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن عروض رمضان." className="mx-4 bg-white text-green-600 px-4 py-1 rounded-full font-bold text-sm hover:bg-gray-100 transition-all duration-300">
+          <a href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن عروض رمضان وكأس العالم." className="mx-4 bg-white text-green-600 px-4 py-1 rounded-full font-bold text-sm hover:bg-gray-100 transition-all duration-300">
             واتساب
           </a>
         </div>

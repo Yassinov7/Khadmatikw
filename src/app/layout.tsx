@@ -39,11 +39,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/icon-192x192.png" sizes="192x192" />
         <link rel="apple-touch-icon" href="/icon-512x512.png" sizes="512x512" />
       </head>
-      <body className="antialiased bg-background min-h-screen flex flex-col"
+      <body className="antialiased bg-background min-h-screen flex flex-col overflow-x-hidden"
         style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
-        <RamadanOfferMarquee />
         <Navbar />
-        <main className="flex-1 container mx-auto px-4 pt-8" style={{ paddingTop: '10rem' }}>
+        <RamadanOfferMarquee />
+        <main className="flex-1 container mx-auto px-4 pt-8 overflow-visible" style={{ paddingTop: '10rem' }}>
           {children}
           <FloatingContact />
         </main>

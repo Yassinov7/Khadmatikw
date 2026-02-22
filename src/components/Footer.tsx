@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import { MapPin, CodeXmlIcon, ArrowUp, Home, Layers, PhoneCall, Blinds, Satellite, Camera, DiscAlbumIcon, Tag, FileQuestion, ShieldQuestion, Mail, Clock, Instagram, MessageCircle } from "lucide-react";
+import { MapPin, CodeXmlIcon, ArrowUp, Home, Layers, PhoneCall, Blinds, Satellite, Camera, DiscAlbumIcon, Tag, FileQuestion, ShieldQuestion, Mail, Clock, Instagram, MessageCircle, Tv, Trophy, Activity } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -50,6 +50,29 @@ export function Footer() {
     { label: "صيانة ودعم", href: "/additional-services", icon: <CodeXmlIcon size={16} /> },
   ];
 
+  // IPTV subscriptions links
+  const iptvLinks = [
+    { label: "اشتراك برلين", href: "/iptv/berlin", icon: <Tv size={16} /> },
+    { label: "اشتراك سبايدر", href: "/iptv/spider", icon: <Tv size={16} /> },
+    { label: "رسيفر الجني", href: "/iptv/genie", icon: <Tv size={16} /> },
+    { label: "فلاش 4K", href: "/iptv/flash-4k", icon: <Tv size={16} /> },
+  ];
+
+  // Football & leagues links
+  const footballLinks = [
+    { label: "كأس العالم", href: "/football/world-cup", icon: <Trophy size={16} /> },
+    { label: "دوري أبطال أوروبا", href: "/football/champions-league", icon: <Activity size={16} /> },
+    { label: "أبطال آسيا", href: "/football/afc-champions-league", icon: <Activity size={16} /> },
+    { label: "الدوري الإنجليزي", href: "/football/premier-league", icon: <Activity size={16} /> },
+    { label: "الدوري الإسباني", href: "/football/la-liga", icon: <Activity size={16} /> },
+    { label: "الدوري الإيطالي", href: "/football/serie-a", icon: <Activity size={16} /> },
+    { label: "الدوري الألماني", href: "/football/bundesliga", icon: <Activity size={16} /> },
+    { label: "الدوري الكويتي", href: "/football/kuwait-league", icon: <Activity size={16} /> },
+    { label: "الدوري السعودي", href: "/football/saudi-league", icon: <Activity size={16} /> },
+    { label: "الدوري الإماراتي", href: "/football/uae-league", icon: <Activity size={16} /> },
+    { label: "الدوري القطري", href: "/football/qatar-league", icon: <Activity size={16} /> },
+  ];
+
   // Contact information
   const contactInfo = [
     { icon: <PhoneCall size={16} />, text: "96550266068" },
@@ -71,7 +94,7 @@ export function Footer() {
       aria-label="Footer"
     >
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-7 gap-6 mb-12">
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
@@ -179,19 +202,64 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* IPTV Subscriptions */}
           <div className="lg:col-span-1">
-            <h3 className="text-lg font-bold text-primary mb-4">تواصل معنا</h3>
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <Tv size={20} className="text-secondary" />
+              اشتراكات IPTV
+            </h3>
+            <ul className="space-y-3">
+              {iptvLinks.map((service) => (
+                <li key={service.href}>
+                  <Link
+                    href={service.href}
+                    className="flex items-center gap-3 hover:text-secondary transition-colors py-2 group"
+                  >
+                    <span className="text-primary group-hover:text-secondary transition-colors">{service.icon}</span>
+                    <span className="group-hover:text-secondary transition-colors">{service.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Football & Leagues */}
+          <div className="lg:col-span-1">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <Trophy size={20} className="text-secondary" />
+              كرة القدم والدوريات
+            </h3>
+            <ul className="space-y-2 max-h-64 overflow-y-auto pr-2">
+              {footballLinks.map((league) => (
+                <li key={league.href}>
+                  <Link
+                    href={league.href}
+                    className="flex items-center gap-2 hover:text-secondary transition-colors py-1.5 group text-sm"
+                  >
+                    <span className="text-primary group-hover:text-secondary transition-colors flex-shrink-0">{league.icon}</span>
+                    <span className="group-hover:text-secondary transition-colors">{league.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Section */}
+          <div className="lg:col-span-1">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <PhoneCall size={20} className="text-secondary" />
+              تواصل معنا
+            </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/contact"
-                  className="inline-block bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg transition-colors"
+                  className="inline-block bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium"
                 >
                   صفحة التواصل
                 </Link>
               </li>
-              <li className="text-gray-600">
+              <li className="text-gray-600 text-sm leading-relaxed">
                 للحصول على استشارة فورية أو لحجز موعد، اتصل بنا مباشرة
               </li>
             </ul>
