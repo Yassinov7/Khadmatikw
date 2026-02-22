@@ -1,7 +1,7 @@
 // app/football/world-cup/page.tsx
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Trophy, Globe, Tv, Zap, Award, PlayCircle } from "lucide-react";
+import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Trophy, Globe, Tv, Award, PlayCircle } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
 import { Metadata } from "next";
 

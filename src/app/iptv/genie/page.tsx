@@ -1,7 +1,6 @@
 // app/iptv/genie/page.tsx
-import Link from "next/link";
 import Image from "next/image";
-import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Tv, Radio, Globe, Zap, Award, Cpu } from "lucide-react";
+import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Tv, Radio, Zap, Award, Cpu } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
 import { Metadata } from "next";
 

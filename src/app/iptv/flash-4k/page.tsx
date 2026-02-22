@@ -1,7 +1,6 @@
 // app/iptv/flash-4k/page.tsx
-import Link from "next/link";
 import Image from "next/image";
-import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Tv, Radio, Globe, Zap, Award, Cpu, Sparkles } from "lucide-react";
+import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Tv, Radio, Award, Cpu, Sparkles } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
 import { Metadata } from "next";
 
