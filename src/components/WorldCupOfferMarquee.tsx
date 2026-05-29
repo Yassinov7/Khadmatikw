@@ -59,7 +59,7 @@ export function WorldCupOfferMarquee() {
 
   return (
     <div
-      className="relative w-full z-[1] bg-gradient-to-r from-emerald-700 via-green-600 to-emerald-700 text-white border-b border-yellow-400/30"
+      className="relative w-full bg-gradient-to-r from-emerald-700 via-green-600 to-emerald-700 text-white border-b border-yellow-400/30"
       aria-label="عروض كأس العالم"
     >
       <div className="overflow-hidden py-2 sm:py-2.5">

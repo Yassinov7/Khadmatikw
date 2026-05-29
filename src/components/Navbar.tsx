@@ -36,6 +36,22 @@ export function Navbar() {
   const [webDevOpen, setWebDevOpen] = useState(false);
   const [iptvOpen, setIptvOpen] = useState(false);
   const [footballOpen, setFootballOpen] = useState(false);
+
+  const closeAllDropdowns = () => {
+    setIptvOpen(false);
+    setFootballOpen(false);
+    setWebDevOpen(false);
+    setServicesOpen(false);
+  };
+
+  const closeDrawer = () => {
+    setOpen(false);
+    closeAllDropdowns();
+  };
+
+  const closeDrawerDeferred = () => {
+    window.setTimeout(closeDrawer, 0);
+  };
   
   // Refs for dropdown containers
   const iptvRef = useRef<HTMLLIElement>(null);
@@ -139,13 +155,14 @@ export function Navbar() {
   const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(href));
 
   return (
-    <nav
-      className={`w-full border-b transition-all ${
-        scrolled ? "bg-white/95 backdrop-blur shadow-sm border-gray-200" : "bg-background/95 border-gray-100"
-      }`}
-      role="navigation"
-      aria-label="Main navigation"
-    >
+    <>
+      <nav
+        className={`w-full border-b transition-all z-20 ${
+          scrolled ? "bg-white/95 backdrop-blur shadow-sm border-gray-200" : "bg-background/95 border-gray-100"
+        }`}
+        role="navigation"
+        aria-label="Main navigation"
+      >
       <div className="container mx-auto flex items-center justify-between py-2.5 px-4 max-w-full">
         {/* الشعار */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0" aria-label="الانتقال للرئيسية">
@@ -412,7 +429,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile Controls */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center  gap-2 md:hidden">
           {/* Mobile Search */}
           {searchOpen ? (
             <div className="flex items-center absolute right-16 md:relative md:left-auto md:right-auto">
@@ -438,7 +455,7 @@ export function Navbar() {
           {/* Mobile Menu Button (hidden when search is open) */}
           {!searchOpen && (
             <button
-              className="p-2 rounded-lg hover:bg-gray-100"
+              className="p-2 rounded-lg z-[9999] hover:bg-gray-100"
               onClick={() => setOpen(true)}
               aria-label="افتح القائمة"
             >
@@ -447,24 +464,25 @@ export function Navbar() {
           )}
         </div>
       </div>
+      </nav>
 
       {/* Mobile drawer */}
       {open && !searchOpen && (
         <>
-          <div className="drawer-backdrop z-[110]" onClick={() => setOpen(false)} aria-hidden="true" />
+          <div className="drawer-backdrop z-[10000]" onClick={() => setOpen(false)} aria-hidden="true" />
           <aside
-            className="drawer-panel z-[111]"
+            className="drawer-panel z-[10001]"
             role="dialog"
             aria-modal="true"
             aria-label="قائمة التنقل"
           >
-            <div className="flex items-center justify-between p-4 border-b border-gray-100 shrink-0">
-              <span className="text-lg font-bold text-primary">
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b border-gray-100 shrink-0 gap-2">
+              <span className="text-base sm:text-lg font-bold text-primary truncate">
                 ستلايت<span className="text-secondary"> الرجاء</span>
               </span>
               <button
                 type="button"
-                className="p-2 rounded-lg hover:bg-gray-100 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-1.5 sm:p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 min-h-[44px] min-w-[44px] flex items-center justify-center flex-shrink-0 transition-colors"
                 onClick={() => setOpen(false)}
                 aria-label="إغلاق القائمة"
               >
@@ -472,69 +490,72 @@ export function Navbar() {
               </button>
             </div>
 
-            <nav className="flex-1 overflow-y-auto p-4 flex flex-col gap-1">
+            <nav className="flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-4 flex flex-col gap-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
 
             <Link
               href="/"
-              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 min-h-[44px] ${
                 isActive("/") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
               }`}
-              onClick={() => { setOpen(false); }}
+              onClick={closeDrawerDeferred}
             >
-              <Home size={20} className="md:mr-2 text-secondary" />
+              <Home size={20} className="text-secondary flex-shrink-0" />
               <span>الرئيسية</span>
             </Link>
             <Link
               href="/products"
-              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 min-h-[44px] ${
                 isActive("/products") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
               }`}
-              onClick={() => { setOpen(false); }}
+              onClick={closeDrawerDeferred}
             >
-              <Layers size={20} className="md:mr-2 text-secondary" />
+              <Layers size={20} className="text-secondary flex-shrink-0" />
               <span>الخدمات</span>
             </Link>
             
             <Link
               href="/offers"
-              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 min-h-[44px] ${
                 isActive("/offers") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
               }`}
-              onClick={() => { setOpen(false); }}
+              onClick={closeDrawerDeferred}
             >
-              <Tag size={20} className="md:mr-2 text-secondary" />
+              <Tag size={20} className="text-secondary flex-shrink-0" />
               <span>العروض</span>
             </Link>
             <Link
               href="/football/world-cup"
-              className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-white bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 transition [touch-action:manipulation] border border-yellow-400/40"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold text-white bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 transition [touch-action:manipulation] border border-yellow-400/40 active:from-emerald-700 min-h-[44px]"
               onClick={() => { setOpen(false); }}
             >
-              <Trophy size={20} className="md:mr-2 text-yellow-300" />
+              <Trophy size={20} className="text-yellow-300 flex-shrink-0" />
               <span>عروض كأس العالم IPTV</span>
             </Link>
 
             {/* Football leagues (mobile) */}
             <button
-              onClick={() => setFootballOpen(!footballOpen)}
-              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                setFootballOpen(!footballOpen);
+                setIptvOpen(false);
+                setWebDevOpen(false);
+                setServicesOpen(false);
+              }}
+              className="flex items-center justify-between w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition min-h-[44px] gap-2"
             >
-              <Trophy size={20} className="md:mr-2 text-secondary" />
+              <Trophy size={20} className="text-secondary flex-shrink-0" />
               <span>كرة القدم</span>
-              <ChevronDown size={20} className={`transition-transform ${footballOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown size={20} className={`transition-transform flex-shrink-0 ${footballOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {footballOpen && (
-              <div className="mt-2 mr-4 space-y-2">
+              <div className="mt-2 space-y-2 ml-2 sm:ml-4 border-r-2 border-primary/20 pr-2">
                 {footballLinks.map((league) => (
                   <Link
                     key={league.href}
                     href={league.href}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition min-h-[44px] [touch-action:manipulation] active:bg-primary/20"
-                    onClick={() => {
-                      setOpen(false);
-                      setFootballOpen(false);
-                    }}
+                    className="flex items-center gap-2 px-3 py-2.5 text-xs sm:text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition min-h-[40px] sm:min-h-[44px] [touch-action:manipulation] active:bg-primary/20"
+                    onClick={closeDrawerDeferred}
                   >
                     {league.icon}
                     <span>{league.label}</span>
@@ -543,25 +564,28 @@ export function Navbar() {
               </div>
             )}
             <button
-              onClick={() => setIptvOpen(!iptvOpen)}
-              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIptvOpen(!iptvOpen);
+                setFootballOpen(false);
+                setWebDevOpen(false);
+                setServicesOpen(false);
+              }}
+              className="flex items-center justify-between w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition min-h-[44px] gap-2"
             >
-              <Tv size={20} className="md:mr-2 text-secondary" />
+              <Tv size={20} className="text-secondary flex-shrink-0" />
               <span>اشتراكات IPTV</span>
-              <ChevronDown size={20} className={`transition-transform ${iptvOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown size={20} className={`transition-transform flex-shrink-0 ${iptvOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {iptvOpen && (
-              <div className="mt-2 mr-4 space-y-2">
+              <div className="mt-2 space-y-2 ml-2 sm:ml-4 border-r-2 border-primary/20 pr-2">
                 {iptvLinks.map((service) => (
                   <Link
                     key={service.href}
                     href={service.href}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition min-h-[44px] [touch-action:manipulation] active:bg-primary/20"
-                    onClick={() => {
-                      setOpen(false);
-                      setIptvOpen(false);
-                    }}
+                    className="flex items-center gap-2 px-3 py-2.5 text-xs sm:text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition min-h-[40px] sm:min-h-[44px] [touch-action:manipulation] active:bg-primary/20"
+                    onClick={closeDrawerDeferred}
                   >
                     {service.icon}
                     <span>{service.label}</span>
@@ -570,25 +594,28 @@ export function Navbar() {
               </div>
             )}
             <button
-              onClick={() => setWebDevOpen(!webDevOpen)}
-              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                setWebDevOpen(!webDevOpen);
+                setFootballOpen(false);
+                setIptvOpen(false);
+                setServicesOpen(false);
+              }}
+              className="flex items-center justify-between w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition min-h-[44px] gap-2"
             >                  
-              <Code size={20} className="md:mr-2 text-secondary" />
+              <Code size={20} className="text-secondary flex-shrink-0" />
               <span>خدمات برمجية</span>
-              <ChevronDown size={20} className={`transition-transform ${webDevOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown size={20} className={`transition-transform flex-shrink-0 ${webDevOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {webDevOpen && (
-              <div className="mt-2 mr-4 space-y-2">
+              <div className="mt-2 space-y-2 ml-2 sm:ml-4 border-r-2 border-primary/20 pr-2">
                 {webDevLinks.map((service) => (
                   <Link
                     key={service.href}
                     href={service.href}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition min-h-[44px] [touch-action:manipulation] active:bg-primary/20"
-                    onClick={() => {
-                      setOpen(false);
-                      setWebDevOpen(false);
-                    }}
+                    className="flex items-center gap-2 px-3 py-2.5 text-xs sm:text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition min-h-[40px] sm:min-h-[44px] [touch-action:manipulation] active:bg-primary/20"
+                    onClick={closeDrawerDeferred}
                   >
                     {service.icon}
                     <span>{service.label}</span>
@@ -597,25 +624,28 @@ export function Navbar() {
               </div>
             )}
             <button
-              onClick={() => setServicesOpen(!servicesOpen)}
-              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                setServicesOpen(!servicesOpen);
+                setFootballOpen(false);
+                setIptvOpen(false);
+                setWebDevOpen(false);
+              }}
+              className="flex items-center justify-between w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition min-h-[44px] gap-2"
             >
-              <PlusSquare size={20} className="md:mr-2 text-secondary" />
+              <PlusSquare size={20} className="text-secondary flex-shrink-0" />
               <span>خدمات أخرى</span>
-              <ChevronDown size={20} className={`transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown size={20} className={`transition-transform flex-shrink-0 ${servicesOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {servicesOpen && (
-              <div className="mt-2 mr-4 space-y-2">
+              <div className="mt-2 space-y-2 ml-2 sm:ml-4 border-r-2 border-primary/20 pr-2">
                 {serviceLinks.map((service) => (
                   <Link
                     key={service.href}
                     href={service.href}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition min-h-[44px] [touch-action:manipulation] active:bg-primary/20"
-                    onClick={() => {
-                      setOpen(false);
-                      setServicesOpen(false);
-                    }}
+                    className="flex items-center gap-2 px-3 py-2.5 text-xs sm:text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition min-h-[40px] sm:min-h-[44px] [touch-action:manipulation] active:bg-primary/20"
+                    onClick={closeDrawerDeferred}
                   >
                     {service.icon}
                     <span>{service.label}</span>
@@ -625,49 +655,49 @@ export function Navbar() {
             )}
             <Link
               href="/blog"
-              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 min-h-[44px] ${
                 isActive("/blog") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
               }`}
-              onClick={() => setOpen(false)}
+              onClick={closeDrawerDeferred}
             >
-              <Blinds size={20} className="md:mr-2 text-secondary" />
+              <Blinds size={20} className="text-secondary flex-shrink-0" />
               <span>المدونة</span>
             </Link>
             <Link
               href="/contact"
-              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 min-h-[44px] ${
                 isActive("/contact") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
               }`}
-              onClick={() => setOpen(false)}
+              onClick={closeDrawerDeferred}
             >
-              <PhoneCall size={20} className="md:mr-2 text-secondary" />
+              <PhoneCall size={20} className="text-secondary flex-shrink-0" />
               <span>تواصل معنا</span>
             </Link>
             </nav>
 
-            <div className="shrink-0 p-4 border-t border-gray-100 grid grid-cols-2 gap-2 safe-bottom bg-gray-50/80">
+            <div className="shrink-0 p-3 sm:p-4 border-t border-gray-100 grid grid-cols-2 gap-2 sm:gap-3 safe-bottom bg-gray-50/80">
               <Link
                 href="tel:96550266068"
-                className="flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-white font-bold text-sm min-h-[48px]"
-                onClick={() => setOpen(false)}
+                className="flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-primary text-white font-bold text-xs sm:text-sm min-h-[44px] transition-colors active:bg-primary/90 hover:bg-primary/95"
+                onClick={closeDrawerDeferred}
               >
                 <PhoneCall size={18} />
-                اتصال
+                <span className="hidden xs:inline">اتصال</span>
               </Link>
               <Link
                 href="https://wa.me/96550266068"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-3 rounded-xl bg-green-600 text-white font-bold text-sm min-h-[48px]"
-                onClick={() => setOpen(false)}
+                className="flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-green-600 text-white font-bold text-xs sm:text-sm min-h-[44px] transition-colors active:bg-green-700 hover:bg-green-700"
+                onClick={closeDrawerDeferred}
               >
                 <MessageCircle size={18} />
-                واتساب
+                <span className="hidden xs:inline">واتساب</span>
               </Link>
             </div>
           </aside>
         </>
       )}
-    </nav>
+    </>
   );
 }
