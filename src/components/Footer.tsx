@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import {
   MapPin,
-  CodeXmlIcon,
   ArrowUp,
   Home,
   Layers,
