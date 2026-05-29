@@ -4,22 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import {
-  Menu,
-  X,
   Home,
   Layers,
   PhoneCall,
   Blinds,
   Tag,
   ChevronDown,
-  Search,
   Code,
   PlusSquare,
   Tv,
   Trophy,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { SearchComponent } from "./SearchComponent";
 
 type DropdownType = "football" | "iptv" | "webDev" | "services";
 
@@ -110,31 +106,26 @@ export function Navbar() {
   const pathname = usePathname();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+
   const [scrolled, setScrolled] = useState(false);
 
   const [activeDropdown, setActiveDropdown] =
     useState<DropdownType | null>(null);
 
-  const [expandedMobile, setExpandedMobile] = useState<
-    Record<DropdownType, boolean>
-  >({
-    football: false,
-    iptv: false,
-    webDev: false,
-    services: false,
-  });
-
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 12);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 12);
+    };
 
     window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -150,7 +141,9 @@ export function Navbar() {
       window.addEventListener("keydown", onKeyDown);
     }
 
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [drawerOpen]);
 
   useEffect(() => {
@@ -165,31 +158,25 @@ export function Navbar() {
 
     document.addEventListener("mousedown", handleClickOutside);
 
-    return () =>
+    return () => {
       document.removeEventListener(
         "mousedown",
         handleClickOutside
       );
+    };
   }, []);
 
-  const isActive = (href: string) =>
-    pathname === href ||
-    (href !== "/" && pathname.startsWith(href));
-
-  const closeDrawerDeferred = () =>
-    window.setTimeout(() => setDrawerOpen(false), 0);
+  const isActive = (href: string) => {
+    return (
+      pathname === href ||
+      (href !== "/" && pathname.startsWith(href))
+    );
+  };
 
   const toggleDropdown = (key: DropdownType) => {
     setActiveDropdown((current) =>
       current === key ? null : key
     );
-  };
-
-  const toggleMobileSection = (key: DropdownType) => {
-    setExpandedMobile((current) => ({
-      ...current,
-      [key]: !current[key],
-    }));
   };
 
   const isAdminArea =
@@ -253,6 +240,7 @@ export function Navbar() {
                     size={16}
                     className="text-secondary"
                   />
+
                   <span>{link.label}</span>
                 </Link>
               ))}
@@ -292,6 +280,29 @@ export function Navbar() {
                 </button>
               ))}
             </nav>
+
+            {activeDropdown && (
+              <div className="absolute left-0 top-full right-0 z-50 mt-3 px-4">
+                <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 shadow-2xl">
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {CATEGORY_MENU.find(
+                      (menu) => menu.id === activeDropdown
+                    )?.items.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="rounded-2xl px-3 py-3 text-sm text-slate-700 transition hover:bg-slate-50 hover:text-primary"
+                        onClick={() =>
+                          setActiveDropdown(null)
+                        }
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </header>
