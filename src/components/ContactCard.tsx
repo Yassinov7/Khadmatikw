@@ -22,25 +22,30 @@ export function ContactCard({ contacts }: Props) {
       {contacts.map((person, index) => (
         <div
           key={index}
-          className="card-modern rounded-[2rem] p-6 flex flex-col items-center text-center gap-4 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+          className="card-modern rounded-[2rem] p-6 flex flex-col items-center text-center gap-5 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
         >
-          <div className="grid place-items-center rounded-full bg-gradient-to-br from-primary/15 to-secondary/15 p-4 text-primary shadow-sm">
-            {person.icon}
+          <div className="grid place-items-center rounded-[2.5rem] bg-gradient-to-br from-primary/15 to-secondary/15 p-5 text-primary shadow-md">
+            <div className="grid place-items-center rounded-[2rem] bg-white p-4 shadow-sm">
+              {person.icon}
+            </div>
           </div>
-          <div className="text-xl font-bold text-gray-800">{person.name}</div>
-          <div className="text-sm text-secondary font-semibold">{person.role}</div>
+
+          <div className="space-y-1">
+            <div className="text-xl font-bold text-slate-900">{person.name}</div>
+            <div className="text-sm font-semibold text-primary">{person.role}</div>
+          </div>
 
           {person.location && (
-            <div className="flex items-center gap-1 text-gray-600 text-sm">
+            <div className="flex items-center gap-2 text-slate-500 text-sm">
               <MapPin size={14} />
               <span>{person.location}</span>
             </div>
           )}
 
-          <div className="flex flex-col gap-3 w-full mt-2">
+          <div className="flex flex-col gap-3 w-full mt-4">
             <a
               href={`tel:${person.phone}`}
-              className="flex items-center justify-center gap-2 px-4 py-3 bg-primary hover:bg-primary/90 text-white rounded-xl text-sm font-bold shadow transition-all"
+              className="flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
             >
               <Phone size={16} /> اتصال مباشر
             </a>
@@ -48,14 +53,14 @@ export function ContactCard({ contacts }: Props) {
               href={`https://wa.me/${person.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-xl text-sm font-bold shadow transition-all"
+              className="flex items-center justify-center gap-2 rounded-full bg-green-500 px-4 py-3 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
             >
               <MessageCircle size={16} /> واتساب
             </a>
             {person.email && (
               <a
                 href={`mailto:${person.email}`}
-                className="flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-bold transition-all"
+                className="flex items-center justify-center gap-2 rounded-full bg-slate-100 px-4 py-3 text-sm font-bold text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-200"
               >
                 <Mail size={16} /> البريد الإلكتروني
               </a>

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, MessageCircle, Wrench } from "lucide-react";
+import { Phone, MessageCircle, Wrench, ChevronRight } from "lucide-react";
 import type { Product } from "@/types";
 import { slugify } from "@/utils/slugify";
 
@@ -16,55 +16,57 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <article className="card-modern rounded-[2rem] group overflow-hidden">
-      <div className="relative w-full h-56 bg-gradient-to-br from-primary/10 to-secondary/10 overflow-hidden transition-transform duration-500 group-hover:-translate-y-1">
-        <Link
-          href={`/products/${slugify(product.name)}-${product.id}`}
-          className="block w-full h-full"
-        >
-          <div className="relative w-full h-full flex items-center justify-center p-4">
-            {product.image_url ? (
-              <Image
-                src={product.image_url}
-                alt={`صورة الخدمة: ${product.name} - ستلايت الرجاء`}
-                fill
-                sizes="(max-width: 768px) 100vw, 300px"
-                className="object-contain transition-transform duration-500 group-hover:scale-105"
-              />
-            ) : (
-              <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 flex items-center justify-center">
-                <Wrench className="text-gray-400" size={32} />
-              </div>
-            )}
-          </div>
-        </Link>
-      </div>
+      <Link
+        href={`/products/${slugify(product.name)}-${product.id}`}
+        className="block relative h-60 bg-slate-100 overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 via-transparent to-transparent pointer-events-none" />
+        <div className="relative w-full h-full flex items-center justify-center p-4">
+          {product.image_url ? (
+            <Image
+              src={product.image_url}
+              alt={`صورة الخدمة: ${product.name} - ستلايت الرجاء`}
+              fill
+              sizes="(max-width: 768px) 100vw, 300px"
+              className="object-contain transition-transform duration-700 group-hover:scale-105"
+            />
+          ) : (
+            <div className="bg-slate-200 border-2 border-dashed rounded-3xl w-20 h-20 flex items-center justify-center">
+              <Wrench className="text-slate-400" size={32} />
+            </div>
+          )}
+        </div>
+      </Link>
 
-      <div className="flex flex-col flex-1 p-5 gap-3">
-        {product.category?.name && (
-          <span className="text-xs text-primary font-bold tracking-wide uppercase">
-            {product.category.name}
-          </span>
-        )}
+      <div className="p-6 flex flex-col gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          {product.category?.name && (
+            <span className="text-xs uppercase tracking-[0.22em] text-primary/90 bg-primary/10 rounded-full px-3 py-1 font-semibold">
+              {product.category.name}
+            </span>
+          )}
+          <span className="text-xs text-slate-500">خدمة متكاملة</span>
+        </div>
 
         <Link href={`/products/${slugify(product.name)}-${product.id}`}>
-          <h3 className="text-xl font-bold text-primary hover:text-secondary transition-colors line-clamp-2">
+          <h3 className="text-2xl font-extrabold text-slate-900 hover:text-secondary transition-colors line-clamp-2">
             {product.name}
           </h3>
         </Link>
 
         {product.description && (
-          <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+          <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
             {product.description}
           </p>
         )}
 
-        <div className="mt-auto pt-4 flex gap-3 flex-wrap">
+        <div className="mt-auto grid gap-3 sm:grid-cols-2">
           {whatsappLink && (
             <a
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-full text-white bg-green-600 hover:bg-green-700 text-sm font-bold transition shadow-md"
+              className="flex items-center justify-center gap-2 rounded-full bg-green-600 px-4 py-3 text-sm font-bold text-white transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-lg"
               aria-label={`تواصل عبر واتساب بخصوص: ${product.name}`}
             >
               <MessageCircle size={16} /> واتساب
@@ -73,7 +75,7 @@ export function ProductCard({ product }: { product: Product }) {
           {phoneLink && (
             <a
               href={phoneLink}
-              className="flex items-center gap-2 px-4 py-2 rounded-full text-white bg-primary hover:bg-primary/90 text-sm font-bold transition shadow-md"
+              className="flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-bold text-white transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-lg"
               aria-label={`اتصال بخصوص الخدمة: ${product.name}`}
             >
               <Phone size={16} /> اتصال
@@ -83,12 +85,10 @@ export function ProductCard({ product }: { product: Product }) {
 
         <Link
           href={`/products/${slugify(product.name)}-${product.id}`}
-          className="mt-2 text-primary text-sm font-bold hover:text-secondary transition-colors flex items-center justify-end"
+          className="mt-2 inline-flex items-center justify-end gap-1 text-primary text-sm font-semibold hover:text-secondary transition-colors"
         >
           تفاصيل الخدمة
-          <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <ChevronRight size={18} />
         </Link>
       </div>
     </article>

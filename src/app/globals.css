@@ -23,9 +23,10 @@ body.drawer-open {
 
 /* Shared card surface */
 .card-modern {
-  @apply bg-white border border-slate-200 rounded-[2rem] shadow-lg overflow-hidden flex flex-col h-full;
+  @apply bg-white border border-slate-200/80 rounded-[2rem] shadow-xl overflow-hidden flex flex-col h-full;
   @apply transition-all duration-300 ease-out;
-  @apply hover:shadow-2xl hover:-translate-y-1 hover:border-primary/20;
+  @apply hover:shadow-2xl hover:-translate-y-1 hover:border-slate-300;
+  background-image: radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 24%), radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.08), transparent 22%);
 }
 
 /* Mobile nav drawer */
