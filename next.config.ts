@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
       { source: "/iptv/saudi-league", destination: "/football/saudi-league", permanent: true },
       { source: "/iptv/uae-league", destination: "/football/uae-league", permanent: true },
       { source: "/iptv/qatar-league", destination: "/football/qatar-league", permanent: true },
+      { source: "/iptv/champions-league", destination: "/football/champions-league", permanent: true },
+      { source: "/iptv/afc-champions-league", destination: "/football/afc-champions-league", permanent: true },
     ];
   },
   images: {

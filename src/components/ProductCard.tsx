@@ -14,34 +14,8 @@ export function ProductCard({ product }: { product: Product }) {
     ? `tel:${product.contact_info.phone.replace(/[^0-9+]/g, "")}`
     : null;
 
-  // Structured data for SEO
-  const productStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": product.name,
-    "description": product.description,
-    "category": product.category?.name,
-    "image": product.image_url || "/default-product.png",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "ستلايت الرجاء",
-      "telephone": "+96550266068",
-      "areaServed": "KW"
-    },
-    "serviceType": product.category?.name || "خدمة فنية"
-  };
-
   return (
-    <article
-      className="bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full group"
-      itemScope
-      itemType="https://schema.org/Service"
-    >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productStructuredData) }}
-      />
-
+    <article className="card-modern group">
       <div className="relative w-full h-48 bg-gradient-to-br from-gray-50 to-gray-100">
         <Link
           href={`/products/${slugify(product.name)}-${product.id}`}
@@ -55,7 +29,6 @@ export function ProductCard({ product }: { product: Product }) {
                 fill
                 sizes="(max-width: 768px) 100vw, 300px"
                 className="object-contain transition-transform duration-500 group-hover:scale-105"
-                itemProp="image"
               />
             ) : (
               <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 flex items-center justify-center">
@@ -68,25 +41,19 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="flex flex-col flex-1 p-5 gap-3">
         {product.category?.name && (
-          <span
-            className="text-xs text-primary font-bold tracking-wide uppercase"
-            itemProp="serviceType"
-          >
+          <span className="text-xs text-primary font-bold tracking-wide uppercase">
             {product.category.name}
           </span>
         )}
 
         <Link href={`/products/${slugify(product.name)}-${product.id}`}>
-          <h3
-            className="text-xl font-bold text-primary hover:text-secondary transition-colors line-clamp-2"
-            itemProp="name"
-          >
+          <h3 className="text-xl font-bold text-primary hover:text-secondary transition-colors line-clamp-2">
             {product.name}
           </h3>
         </Link>
 
         {product.description && (
-          <p className="text-gray-600 text-sm leading-relaxed line-clamp-3" itemProp="description">
+          <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
             {product.description}
           </p>
         )}

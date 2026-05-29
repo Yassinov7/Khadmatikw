@@ -1,44 +1,21 @@
-import { Metadata } from "next";
 import Link from "next/link";
 import { Phone, Wrench, Satellite, Camera, Tv } from "lucide-react";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, buildPageMetadata, faqPageJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
     title: "الأسئلة الشائعة | ستلايت الرجاء | 50266068",
-    description: "اكتشف إجابات للأسئلة الشائعة حول خدمات الشاشات والستلايت والكاميرات في الكويت. دليل شامل لجميع استفساراتك.",
+    description:
+        "اكتشف إجابات للأسئلة الشائعة حول خدمات الشاشات والستلايت والكاميرات وعروض كأس العالم IPTV في الكويت.",
+    path: "/faq",
     keywords: [
         "الأسئلة الشائعة",
         "ستلايت الرجاء",
         "فني شاشات الكويت",
-        "فني ستلايت",
-        "كاميرات مراقبة الكويت",
-        "صيانة شاشات",
-        "تركيب ستلايت",
-        "خدمة فورية الكويت",
-        "أسئلة متكررة"
+        "كأس العالم IPTV",
+        "أسئلة IPTV",
     ],
-    openGraph: {
-        title: "الأسئلة الشائعة | ستلايت الرجاء | دليل شامل لجميع استفساراتك",
-        description: "اكتشف إجابات للأسئلة الشائعة حول خدمات الشاشات والستلايت والكاميرات في الكويت. دليل شامل لجميع استفساراتك.",
-        url: "https://satellitealrajaa.com/faq",
-        siteName: "ستلايت الرجاء",
-        locale: "ar_KW",
-        type: "website",
-    },
-    alternates: {
-        canonical: "https://satellitealrajaa.com/faq",
-    },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-        },
-    },
-};
+});
 
 const FAQ_DATA = [
     {
@@ -133,9 +110,20 @@ const FAQ_DATA = [
     }
 ];
 
+const ALL_FAQS = FAQ_DATA.flatMap((category) => category.questions);
+
 export default function FAQPage() {
     return (
         <section className="max-w-6xl mx-auto py-12 px-4">
+            <JsonLd
+                data={[
+                    breadcrumbJsonLd([
+                        { name: "الرئيسية", path: "/" },
+                        { name: "الأسئلة الشائعة", path: "/faq" },
+                    ]),
+                    faqPageJsonLd(ALL_FAQS),
+                ]}
+            />
             {/* Hero Section */}
             <div className="text-center mb-16">
                 <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-6">

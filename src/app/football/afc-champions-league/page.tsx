@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Phone, MessageCircle, Tv, CheckCircle, PlayCircle, Globe, HeadphonesIcon, Zap, Trophy } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
 import { Metadata } from "next";
+import { PageSeoSchemas } from "@/components/PageSeoSchemas";
 
 const kuwaitCities = [
   "مدينة الكويت", "حولى", "الفروانية", "الجهراء", "الأحمدي", "مبارك الكبير",
@@ -78,6 +79,12 @@ export default function AFCChampionsLeaguePage() {
   ];
 
   return (
+    <>
+    <PageSeoSchemas
+      serviceName={"مشاهدة أبطال آسيا IPTV في الكويت – بث مباشر AFC Champions League"}
+      serviceDescription={"احصل على أفضل اشتراك IPTV لمشاهدة أبطال آسيا (AFC Champions League) في الكويت. بث مباشر لجميع مباريات دوري أبطال آسيا الهلال والنصر والعين والعربي بجودة HD و 4K. تواصل معنا الآن."}
+      path={"/football/afc-champions-league"} faqs={faqs}
+    />
     <main className="relative">
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
         <div className="max-w-4xl">
@@ -233,5 +240,6 @@ export default function AFCChampionsLeaguePage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

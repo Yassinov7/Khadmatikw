@@ -1,5 +1,6 @@
-import { Metadata } from "next";
 import { ContactCard } from "@/components/ContactCard";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, buildPageMetadata, contactPageJsonLd } from "@/lib/seo";
 import { Camera, SatelliteDish, Tv2, Wrench, MapPin, Clock, Phone, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
@@ -34,46 +35,26 @@ const CONTACTS = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "تواصل معنا | ستلايت الرجاء | 50266068",
-  description: "اتصل مباشرة بأفراد فريق ستلايت الرجاء في الكويت. فنيون محترفون بخدمتكم عبر الهاتف أو الواتساب. خدمة فورية وموثوقة.",
-  keywords: [
-    "تواصل معنا",
-    "ستلايت الرجاء",
-    "فني شاشات الكويت",
-    "فني ستلايت",
-    "كاميرات مراقبة الكويت",
-    "صيانة شاشات",
-    "تركيب ستلايت",
-    "خدمة فورية الكويت"
-  ],
-  openGraph: {
-    title: "تواصل معنا | ستلايت الرجاء | خدمة فورية وموثوقة",
-    description: "أرقام اتصال وواتساب مباشرة لفريق خدماتي لخدمات الشاشات، الستلايت، والكاميرات في الكويت. خدمة فورية وموثوقة.",
-    url: "https://satellitealrajaa.com/contact",
-    siteName: "ستلايت الرجاء",
-    locale: "ar_KW",
-    type: "website",
-  },
-  alternates: {
-    canonical: "https://satellitealrajaa.com/contact",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-};
+  description:
+    "اتصل مباشرة بفريق ستلايت الرجاء في الكويت. فنيون محترفون عبر الهاتف والواتساب لخدمات الشاشات والستلايت وعروض كأس العالم IPTV.",
+  path: "/contact",
+  keywords: ["تواصل معنا", "ستلايت الرجاء", "50266068", "واتساب ستلايت الرجاء"],
+});
 
 export default function ContactPage() {
   return (
     <section className="max-w-6xl mx-auto py-12 px-4">
+      <JsonLd
+        data={[
+          contactPageJsonLd(),
+          breadcrumbJsonLd([
+            { name: "الرئيسية", path: "/" },
+            { name: "تواصل معنا", path: "/contact" },
+          ]),
+        ]}
+      />
       {/* Hero Section */}
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-6">

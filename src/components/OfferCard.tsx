@@ -31,34 +31,8 @@ export function OfferCard({ offer }: { offer: Offer & { slug?: string } }) {
         });
     };
 
-    // Structured data for SEO
-    const offerStructuredData = {
-        "@context": "https://schema.org",
-        "@type": "Offer",
-        "name": offer.title,
-        "description": offer.description,
-        "image": offer.image_url || "/default-offer.png",
-        "startDate": offer.start_date,
-        "endDate": offer.end_date,
-        "seller": {
-            "@type": "LocalBusiness",
-            "name": "ستلايت الرجاء",
-            "telephone": "+96550266068",
-            "areaServed": "KW"
-        }
-    };
-
     return (
-        <article
-            className="bg-white border border-gray-100 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full group"
-            itemScope
-            itemType="https://schema.org/Offer"
-        >
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(offerStructuredData) }}
-            />
-
+        <article className="card-modern rounded-3xl group">
             {/* Offer Image */}
             <Link
                 href={`/offers/${offerSlug}`}
@@ -74,7 +48,6 @@ export function OfferCard({ offer }: { offer: Offer & { slug?: string } }) {
                         fill
                         sizes="(max-width: 768px) 100vw, 300px"
                         className={`object-contain p-4 transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'} group-hover:scale-105`}
-                        itemProp="image"
                         onLoadingComplete={() => setImageLoaded(true)}
                     />
                 </div>
@@ -93,17 +66,14 @@ export function OfferCard({ offer }: { offer: Offer & { slug?: string } }) {
             <div className="flex flex-col flex-1 p-6 gap-4">
                 {/* Offer Title */}
                 <Link href={`/offers/${offerSlug}`}>
-                    <h3
-                        className="text-xl font-extrabold text-primary hover:underline line-clamp-2 group-hover:text-secondary transition-colors"
-                        itemProp="name"
-                    >
+                    <h3 className="text-xl font-extrabold text-primary hover:underline line-clamp-2 group-hover:text-secondary transition-colors">
                         {offer.title}
                     </h3>
                 </Link>
 
                 {/* Offer Description */}
                 {offer.description && (
-                    <p className="text-sm text-gray-600 leading-relaxed line-clamp-3" itemProp="description">
+                    <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
                         {offer.description}
                     </p>
                 )}

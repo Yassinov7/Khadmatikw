@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { slugify } from "@/utils/slugify";
 import OfferDetailsClient from "@/components/offer/OfferDetailsClient";
 import { supabase } from "@/lib/supabase";
+import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl, buildPageMetadata, offerJsonLd } from "@/lib/seo";
 
 // استخراج id من نهاية السلاج
 function extractId(slugWithId: string): number | null {
@@ -30,55 +32,18 @@ export async function generateMetadata(
     const offer = await getOfferById(id);
     if (!offer) return {};
 
-    const description = offer.description ? `${offer.description.substring(0, 160)}...` : "عرض خاص من ستلايت الرجاء في الكويت.";
-    const canUrl = `https://satellitealrajaa.com/offers/${slugWithId}`;
-    const baseKeywords = [
-        "عرض خاص",
-        "ستلايت الرجاء",
-        "خدمة فنية",
-        "الكويت",
-    ];
+    const description = offer.description
+        ? offer.description.substring(0, 160)
+        : "عرض خاص من ستلايت الرجاء في الكويت.";
+    const ogImage = offer.image_url ? absoluteUrl(offer.image_url) : undefined;
 
-    const titleWords: string[] = offer.title
-        .split(" ")
-        .filter((w: string) => w.length > 2);
-
-    const keywords: string[] = [...new Set([...titleWords, ...baseKeywords])];
-
-    return {
+    return buildPageMetadata({
         title: `${offer.title} | 50266068`,
         description,
-        keywords,
-        openGraph: {
-            title: `${offer.title} | 50266068`,
-            description,
-            images: [offer.image_url || "/default-offer.png"],
-            url: canUrl,
-            siteName: "ستلايت الرجاء",
-            locale: "ar_KW",
-            type: "website",
-        },
-        twitter: {
-            card: "summary_large_image",
-            title: `${offer.title} | 50266068`,
-            description,
-            images: [offer.image_url || "/default-offer.png"],
-        },
-        robots: {
-            index: true,
-            follow: true,
-            googleBot: {
-                index: true,
-                follow: true,
-                "max-video-preview": -1,
-                "max-image-preview": "large",
-                "max-snippet": -1,
-            },
-        },
-        alternates: {
-            canonical: canUrl,
-        },
-    };
+        path: `/offers/${slugWithId}`,
+        keywords: [offer.title, "عرض خاص", "ستلايت الرجاء", "كأس العالم IPTV", "الكويت"],
+        ogImage,
+    });
 }
 
 // صفحة التفاصيل
@@ -113,7 +78,20 @@ export default async function OfferPage(props: { params: Promise<{ slugWithId: s
         relatedOffers = [...relatedOffers, ...(data || [])];
     }
 
+    const offerUrl = absoluteUrl(`/offers/${slugWithId}`);
+    const description = offer.description?.substring(0, 160) ?? "عرض خاص من ستلايت الرجاء في الكويت.";
+
     return (
-        <OfferDetailsClient offer={offer} relatedOffers={relatedOffers} />
+        <>
+            <JsonLd
+                data={offerJsonLd({
+                    name: offer.title,
+                    description,
+                    url: offerUrl,
+                    image: offer.image_url ?? undefined,
+                })}
+            />
+            <OfferDetailsClient offer={offer} relatedOffers={relatedOffers} />
+        </>
     );
 }

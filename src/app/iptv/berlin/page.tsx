@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Tv, Radio, Globe, Zap, Award } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
 import { Metadata } from "next";
+import { PageSeoSchemas } from "@/components/PageSeoSchemas";
 
 // جميع مدن الكويت
 const kuwaitCities = [
@@ -103,6 +104,12 @@ export default function BerlinIPTVPage() {
   ];
 
   return (
+    <>
+    <PageSeoSchemas
+      serviceName={"اشتراك برلين IPTV في الكويت – أفضل اشتراكات IPTV"}
+      serviceDescription={"احصل على أفضل اشتراك برلين IPTV في الكويت. خدمة موثوقة وسريعة مع جودة عالية لجميع القنوات الأوروبية والعالمية. تواصل معنا الآن للحصول على أفضل الأسعار."}
+      path={"/iptv/berlin"} faqs={faqs}
+    />
     <main className="relative">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
@@ -288,5 +295,6 @@ export default function BerlinIPTVPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

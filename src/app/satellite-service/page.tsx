@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon } from "lucide-react";
 import { Metadata } from "next";
+import { PageSeoSchemas } from "@/components/PageSeoSchemas";
 
 // جميع مدن الكويت
 const kuwaitCities = [
@@ -94,6 +95,12 @@ export default function SatelliteServicePage() {
   ];
 
   return (
+    <>
+    <PageSeoSchemas
+      serviceName={"فني ستلايت محترف في الكويت – تركيب وصيانة واشتراكات IPTV"}
+      serviceDescription={"خدمة تركيب وصيانة الستلايت في الكويت، بالإضافة لاشتراكات IPTV واشتراك برلين وسبايدر. تواصل معنا الآن للحصول على أفضل خدمة سريعة وموثوقة في جميع مدن الكويت."}
+      path={"/satellite-service"} faqs={faqs}
+    />
     <main className="relative">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
@@ -291,5 +298,6 @@ export default function SatelliteServicePage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, MessageCircle, CheckCircle, Star, Shield, Eye, HeadphonesIcon } from "lucide-react";
+import { PageSeoSchemas } from "@/components/PageSeoSchemas";
 
 // جميع المدن الكويتية
 const kuwaitCities = [
@@ -96,6 +97,12 @@ export default function CameraServicePage() {
   ];
 
   return (
+    <>
+    <PageSeoSchemas
+      serviceName={"فني كاميرات مراقبة في الكويت – تركيب وصيانة احترافية"}
+      serviceDescription={"خدمة تركيب وصيانة كاميرات المراقبة في الكويت بجودة عالية وخبرة مميزة. نقدم جميع أنواع الكاميرات الداخلية والخارجية مع صيانة وضمان."}
+      path={"/camera-service"} faqs={faqs}
+    />
     <main className="relative">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
@@ -299,5 +306,6 @@ export default function CameraServicePage() {
       </section>
 
     </main>
+    </>
   );
 }

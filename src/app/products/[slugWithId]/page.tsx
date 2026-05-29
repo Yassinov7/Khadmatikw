@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { slugify } from "@/utils/slugify";
 import ProductDetailsClient from "@/components/product/ProductDetailsClient";
 import { supabase } from "@/lib/supabase";
+import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl, buildPageMetadata, productJsonLd } from "@/lib/seo";
 
 // استخراج id من نهاية slug
 function extractId(slugWithId: string): number | null {
@@ -22,50 +24,18 @@ export async function generateMetadata(
   const product = await getProductById(id);
   if (!product) return {};
 
-  const canUrl = `https://satellitealrajaa.com/products/${slugWithId}`;
+  const description = product.description
+    ? product.description.substring(0, 160)
+    : "خدمة فنية مقدمة من ستلايت الرجاء في الكويت.";
+  const ogImage = product.image_url ? absoluteUrl(product.image_url) : undefined;
 
-  return {
+  return buildPageMetadata({
     title: `${product.name} | 50266068`,
-    description: product.description ? `${product.description.substring(0, 160)}...` : "خدمة فنية مقدمة من ستلايت الرجاء في الكويت.",
-    openGraph: {
-      title: `${product.name} | 50266068`,
-      description: product.description ? `${product.description.substring(0, 160)}...` : "خدمة فنية مقدمة من ستلايت الرجاء في الكويت.",
-      images: [product.image_url || "/default-product.png"],
-      url: canUrl,
-      siteName: "ستلايت الرجاء",
-      locale: "ar_KW",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${product.name} | 50266068`,
-      description: product.description ? `${product.description.substring(0, 160)}...` : "خدمة فنية مقدمة من ستلايت الرجاء في الكويت.",
-      images: [product.image_url || "/default-product.png"],
-    },
-    keywords: [
-      product.name,
-      "ستلايت الرجاء",
-      "خدمة فنية",
-      "الكويت",
-      product.category?.name || "خدمة فنية",
-      "صيانة",
-      "تركيب"
-    ],
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-    alternates: {
-      canonical: canUrl,
-    },
-  };
+    description,
+    path: `/products/${slugWithId}`,
+    keywords: [product.name, "ستلايت الرجاء", "الكويت", product.category?.name || "خدمة فنية"],
+    ogImage,
+  });
 }
 
 // توليد الروابط الثابتة
@@ -108,7 +78,21 @@ export default async function ProductPage(props: { params: Promise<{ slugWithId:
     relatedProducts = [...relatedProducts, ...(data || [])];
   }
 
+  const productUrl = absoluteUrl(`/products/${slugWithId}`);
+  const description = product.description?.substring(0, 160) ?? "خدمة فنية من ستلايت الرجاء في الكويت.";
+
   return (
-    <ProductDetailsClient product={product} relatedProducts={relatedProducts} />
+    <>
+      <JsonLd
+        data={productJsonLd({
+          name: product.name,
+          description,
+          url: productUrl,
+          image: product.image_url ?? undefined,
+          category: product.category?.name,
+        })}
+      />
+      <ProductDetailsClient product={product} relatedProducts={relatedProducts} />
+    </>
   );
 }

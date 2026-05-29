@@ -17,6 +17,96 @@ body {
   direction: rtl;
 }
 
+body.drawer-open {
+  overflow: hidden;
+}
+
+/* Shared card surface */
+.card-modern {
+  @apply bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex flex-col h-full;
+  @apply transition-all duration-300 ease-out;
+  @apply hover:shadow-xl hover:-translate-y-1 hover:border-primary/15;
+}
+
+/* Mobile nav drawer */
+.drawer-backdrop {
+  @apply fixed inset-0 z-[98] bg-black/50 backdrop-blur-[2px] md:hidden;
+  animation: fade-in 0.2s ease-out;
+}
+
+.drawer-panel {
+  @apply fixed top-0 right-0 z-[99] h-full w-[min(20rem,92vw)] max-w-full;
+  @apply bg-white shadow-2xl flex flex-col border-l border-gray-100 md:hidden;
+  animation: slide-in-rtl 0.25s ease-out;
+}
+
+@keyframes slide-in-rtl {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 35s linear infinite;
+  display: inline-flex;
+  min-width: 200%;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Nav link pill */
+.nav-pill {
+  @apply flex items-center gap-1.5 px-2.5 py-2 rounded-xl text-sm font-semibold transition-colors min-h-[44px] md:min-h-0;
+}
+
+.nav-pill-active {
+  @apply bg-primary/10 text-primary;
+}
+
+.nav-pill-inactive {
+  @apply text-primary hover:bg-primary/10 hover:text-secondary;
+}
+
+/* Footer accordion (mobile) */
+.footer-accordion summary {
+  @apply cursor-pointer list-none flex items-center justify-between gap-2 font-bold text-primary py-3;
+}
+
+.footer-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-right {
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
 .btn {
   @apply text-sm px-4 py-2 border rounded-lg bg-white hover:bg-gray-100 transition-colors;
 }

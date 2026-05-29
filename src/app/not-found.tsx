@@ -2,11 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { NOINDEX_ROBOTS } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "الصفحة غير موجودة | ستلايت الرجاء ",
-  description: "الرابط الذي تحاول الوصول إليه غير متوفر أو تم حذفه. تصفح خدمات وعروضستلايت الرجاء .",
-  robots: "noindex, follow",
+  title: "الصفحة غير موجودة | ستلايت الرجاء",
+  description:
+    "الرابط الذي تحاول الوصول إليه غير متوفر. تصفح خدمات وعروض كأس العالم IPTV من ستلايت الرجاء.",
+  robots: NOINDEX_ROBOTS,
 };
 
 export default function NotFound() {

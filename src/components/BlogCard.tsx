@@ -28,41 +28,8 @@ export function BlogCard({ post }: { post: Blog & { slug?: string } }) {
   const blogSlug = post.slug || `${slugify(post.title)}-${post.id}`;
   const href = `/blog/${blogSlug}`;
 
-  // Structured data for SEO
-  const blogStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": post.title,
-    "description": extractSummary(post.content, 160),
-    "datePublished": post.created_at,
-    "image": post.cover_url || "/default-blog.png",
-    "author": {
-      "@type": "Organization",
-      "name": "ستلايت الرجاء"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "ستلايت الرجاء",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://satellitealrajaa.com/logo.png"
-      }
-    },
-    "articleSection": "Technical Blog",
-    "articleBody": extractSummary(post.content, 300)
-  };
-
   return (
-    <article
-      className="bg-white rounded-3xl shadow-lg border border-gray-100 flex flex-col h-full transition-all duration-300 hover:shadow-xl overflow-hidden group"
-      itemScope
-      itemType="https://schema.org/Article"
-    >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogStructuredData) }}
-      />
-
+    <article className="card-modern rounded-3xl group">
       {/* Image Section */}
       <Link href={href} className="block">
         <div className="relative aspect-video bg-gradient-to-r from-primary/5 to-secondary/5 overflow-hidden">
@@ -77,7 +44,6 @@ export function BlogCard({ post }: { post: Blog & { slug?: string } }) {
             className={`object-contain p-4 transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'} group-hover:scale-105`}
             priority={false}
             onLoadingComplete={() => setImageLoaded(true)}
-            itemProp="image"
           />
           <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-primary font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-md text-xs">
             <Bookmark size={12} />
@@ -89,18 +55,12 @@ export function BlogCard({ post }: { post: Blog & { slug?: string } }) {
       {/* Content Section */}
       <div className="p-6 flex flex-col flex-1 gap-4">
         <Link href={href}>
-          <h3
-            className="text-xl font-extrabold text-primary hover:text-secondary line-clamp-2 transition-colors"
-            itemProp="headline"
-          >
+          <h3 className="text-xl font-extrabold text-primary hover:text-secondary line-clamp-2 transition-colors">
             {post.title}
           </h3>
         </Link>
 
-        <p
-          className="text-gray-600 leading-relaxed line-clamp-3"
-          itemProp="description"
-        >
+        <p className="text-gray-600 leading-relaxed line-clamp-3">
           {extractSummary(post.content)}
         </p>
 
@@ -109,7 +69,7 @@ export function BlogCard({ post }: { post: Blog & { slug?: string } }) {
           <div className="flex items-center gap-3 text-sm text-gray-500">
             <div className="flex items-center gap-1">
               <CalendarDays size={16} className="text-primary" />
-              <time itemProp="datePublished">{formatDate(post.created_at)}</time>
+              <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -128,7 +88,7 @@ export function BlogCard({ post }: { post: Blog & { slug?: string } }) {
             </div>
           </div>
           <div>
-            <div className="text-sm font-bold text-gray-800" itemProp="author">ستلايت الرجاء</div>
+            <div className="text-sm font-bold text-gray-800">ستلايت الرجاء</div>
             <div className="text-xs text-gray-500">خبير فني</div>
           </div>
         </div>

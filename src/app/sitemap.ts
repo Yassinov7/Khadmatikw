@@ -4,7 +4,9 @@ import { slugify } from '@/utils/slugify';
 
 export const revalidate = 3600;
 
-const BASE_URL = 'https://satellitealrajaa.com';
+import { SITE_URL } from '@/lib/seo';
+
+const BASE_URL = SITE_URL;
 
 const formatDate = (date: string | Date | null) =>
   date ? new Date(date).toISOString() : new Date().toISOString();
@@ -32,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/iptv/genie', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/iptv/flash-4k', priority: 0.8, changeFrequency: 'weekly' as const },
     // Football & leagues
-    { path: '/football/world-cup', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/football/world-cup', priority: 1.0, changeFrequency: 'daily' as const },
     { path: '/football/champions-league', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/football/afc-champions-league', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/football/premier-league', priority: 0.8, changeFrequency: 'weekly' as const },

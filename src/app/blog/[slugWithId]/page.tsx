@@ -6,6 +6,8 @@ import { Camera, SatelliteDish, Tv2, Wrench, Calendar, User, Share2, Clock, Book
 import Image from "next/image";
 import { ContactCard } from "@/components/ContactCard";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl, articleJsonLd, buildPageMetadata } from "@/lib/seo";
 
 export const revalidate = 600;
 
@@ -76,66 +78,18 @@ export async function generateMetadata(
 
   const plainText = post.content.replace(/<[^>]+>/g, " ");
   const description = plainText.slice(0, 160);
-  const canUrl = `https://satellitealrajaa.com/blog/${slugWithId}`;
-  const baseKeywords = [
-    "ستلايت الرجاء",
-    "مدونة فنية",
-    "الشاشات",
-    "الستلايت",
-    "الكاميرات",
-    "نصائح",
-    "تركيب",
-    "صيانة",
-  ];
+  const ogImage = post.cover_url ? absoluteUrl(post.cover_url) : undefined;
 
-  const titleWords: string[] = post.title
-    .split(" ")
-    .filter((w: string) => w.length > 2);
-
-  const contentWords: string[] = plainText
-    .split(" ")
-    .filter((w: string) => w.length > 4)
-    .slice(0, 10);
-
-  const keywords: string[] = [...new Set([...titleWords, ...contentWords, ...baseKeywords])];
-
-  return {
+  return buildPageMetadata({
     title: `${post.title} | مدونة ستلايت الرجاء | 50266068`,
     description,
-    keywords,
-    openGraph: {
-      title: `${post.title} | مدونة ستلايت الرجاء`,
-      description,
-      images: [post.cover_url || "/default-blog.png"],
-      url: canUrl,
-      siteName: "ستلايت الرجاء",
-      locale: "ar_KW",
-      type: "article",
-      publishedTime: post.created_at,
-      modifiedTime: post.created_at,
-      authors: ["ستلايت الرجاء"],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${post.title} | مدونة ستلايت الرجاء`,
-      description,
-      images: [post.cover_url || "/default-blog.png"],
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-    alternates: {
-      canonical: `${canUrl}`,
-    },
-  };
+    path: `/blog/${slugWithId}`,
+    keywords: [post.title, "ستلايت الرجاء", "مدونة فنية", "IPTV الكويت"],
+    ogImage,
+    ogType: "article",
+    publishedTime: post.created_at,
+    modifiedTime: post.created_at,
+  });
 }
 
 // صفحة تفاصيل التدوينة
@@ -147,41 +101,20 @@ export default async function BlogPostPage(props: { params: Promise<{ slugWithId
   const post = await getBlogPostById(id);
   if (!post) notFound();
 
-  // Structured data for SEO
-  const blogStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://satellitealrajaa.com/blog/${slugWithId}`
-    },
-    "headline": post.title,
-    "description": post.content.replace(/<[^>]+>/g, " ").slice(0, 160),
-    "datePublished": post.created_at,
-    "dateModified": post.created_at,
-    "image": post.cover_url || "/default-blog.png",
-    "author": {
-      "@type": "Organization",
-      "name": "ستلايت الرجاء",
-      "url": "https://satellitealrajaa.com"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "ستلايت الرجاء",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://satellitealrajaa.com/logo.png"
-      }
-    },
-    "articleSection": "Technical Blog",
-    "articleBody": post.content.replace(/<[^>]+>/g, " ")
-  };
+  const articleUrl = absoluteUrl(`/blog/${slugWithId}`);
+  const description = post.content.replace(/<[^>]+>/g, " ").slice(0, 160);
 
   return (
     <article className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-6 my-10">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogStructuredData) }}
+      <JsonLd
+        data={articleJsonLd({
+          headline: post.title,
+          description,
+          url: articleUrl,
+          image: post.cover_url ?? undefined,
+          datePublished: post.created_at,
+          dateModified: post.created_at,
+        })}
       />
 
       {/* Breadcrumb */}

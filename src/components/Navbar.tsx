@@ -2,13 +2,35 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { MonitorSmartphone , Menu, X, Home, Layers, PhoneCall, Blinds, Satellite, Camera, DiscAlbumIcon, Tag, ChevronDown, Search, FileQuestion, ShieldQuestion, Code, PlusSquare, Tv, Trophy } from "lucide-react";
+import {
+  MonitorSmartphone,
+  Menu,
+  X,
+  Home,
+  Layers,
+  PhoneCall,
+  MessageCircle,
+  Blinds,
+  Satellite,
+  Camera,
+  DiscAlbumIcon,
+  Tag,
+  ChevronDown,
+  Search,
+  FileQuestion,
+  ShieldQuestion,
+  Code,
+  PlusSquare,
+  Tv,
+  Trophy,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { SearchComponent } from "./SearchComponent";
 
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [webDevOpen, setWebDevOpen] = useState(false);
@@ -43,6 +65,28 @@ export function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!open) {
+      document.body.classList.remove("drawer-open");
+      return;
+    }
+    document.body.classList.add("drawer-open");
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.classList.remove("drawer-open");
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   // Hide navbar in admin area (except login page)
   const isAdminArea = pathname.startsWith("/admin") && pathname !== "/admin/login";
@@ -92,9 +136,17 @@ export function Navbar() {
     { label: "الدوري القطري", href: "/football/qatar-league", icon: <Trophy size={16} className="text-secondary" /> },
   ];
 
+  const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(href));
+
   return (
-    <nav className="w-full bg-background shadow-sm sticky top-0 z-[100] border-b border-gray-100" role="navigation" aria-label="Main navigation">
-      <div className="container mx-auto flex items-center justify-between py-3 px-4 max-w-full">
+    <nav
+      className={`w-full border-b transition-all ${
+        scrolled ? "bg-white/95 backdrop-blur shadow-sm border-gray-200" : "bg-background/95 border-gray-100"
+      }`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div className="container mx-auto flex items-center justify-between py-2.5 px-4 max-w-full">
         {/* الشعار */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0" aria-label="الانتقال للرئيسية">
           <Image
@@ -106,7 +158,7 @@ export function Navbar() {
             priority
           />
           {/* Text logo hidden on mobile when search is open */}
-          <span className={`text-2xl font-extrabold text-primary tracking-wide ${searchOpen ? 'md:inline hidden' : ''}`} style={{ letterSpacing: "1px" }}>
+          <span className={`text-lg sm:text-2xl font-extrabold text-primary tracking-wide ${searchOpen ? "md:inline hidden" : ""}`}>
             ستلايت<span className="text-secondary"> الرجاء </span>
           </span>
         </Link>
@@ -129,7 +181,7 @@ export function Navbar() {
             ) : (
               <button
                 onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-2 w-full px-4 py-2 border border-gray-300 rounded-full text-gray-500 hover:text-gray-700 hover:border-gray-400 transition"
+                className="flex items-center gap-2 w-full px-4 py-2 border border-gray-300 rounded-full text-gray-500 hover:text-gray-700 hover:border-primary/40 transition"
                 aria-label="فتح البحث"
               >
                 <Search size={16} />
@@ -144,7 +196,9 @@ export function Navbar() {
               <li>
                 <Link
                   href="/"
-                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
+                  className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
+                    isActive("/") ? "bg-primary/10 text-primary" : "hover:bg-primary/10 text-primary hover:text-secondary"
+                  }`}
                 >
                   <Home size={16} className="lg:mr-1.5 text-secondary hidden lg:inline" />
                   <span>الرئيسية</span>
@@ -153,7 +207,9 @@ export function Navbar() {
               <li>
                 <Link
                   href="/products"
-                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
+                  className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
+                    isActive("/products") ? "bg-primary/10 text-primary" : "hover:bg-primary/10 text-primary hover:text-secondary"
+                  }`}
                 >
                   <Layers size={16} className="lg:mr-1.5 text-secondary hidden lg:inline" />
                   <span>الخدمات</span>
@@ -163,10 +219,21 @@ export function Navbar() {
               <li>
                 <Link
                   href="/offers"
-                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
+                  className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
+                    isActive("/offers") ? "bg-primary/10 text-primary" : "hover:bg-primary/10 text-primary hover:text-secondary"
+                  }`}
                 >
                   <Tag size={16} className="lg:mr-1.5 text-secondary hidden lg:inline" />
                   <span>العروض</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/football/world-cup"
+                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-green-700 text-white hover:from-emerald-700 hover:to-green-800 transition-colors shadow-sm border border-yellow-400/40"
+                >
+                  <Trophy size={16} className="lg:mr-1.5 text-yellow-300 hidden lg:inline" />
+                  <span className="font-bold">كأس العالم</span>
                 </Link>
               </li>
               <li className="relative" ref={iptvRef}>
@@ -189,7 +256,7 @@ export function Navbar() {
 
                 {/* IPTV subscriptions dropdown */}
                 {iptvOpen && (
-                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-200 z-[9999]">
+                  <div className="absolute right-0 mt-2 w-56 bg-white/95 backdrop-blur rounded-xl shadow-2xl border border-gray-200 z-[9999]">
                     <div className="py-2">
                       {iptvLinks.map((service) => (
                         <Link
@@ -227,7 +294,7 @@ export function Navbar() {
                 </button>
 
                 {footballOpen && (
-                  <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-200 z-[9999] max-h-[70vh] overflow-y-auto">
+                  <div className="absolute right-0 mt-2 w-64 bg-white/95 backdrop-blur rounded-xl shadow-2xl border border-gray-200 z-[9999] max-h-[70vh] overflow-y-auto">
                     <div className="py-2">
                       {footballLinks.map((league) => (
                         <Link
@@ -264,7 +331,7 @@ export function Navbar() {
 
                 {/* Web Development Services dropdown */}
                 {webDevOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-200 z-[9999]">
+                  <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur rounded-xl shadow-2xl border border-gray-200 z-[9999]">
                     <div className="py-2">
                       {webDevLinks.map((service) => (
                         <Link
@@ -301,7 +368,7 @@ export function Navbar() {
 
                 {/* Services dropdown */}
                 {servicesOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-200 z-[9999]">
+                  <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur rounded-xl shadow-2xl border border-gray-200 z-[9999]">
                     <div className="py-2">
                       {serviceLinks.map((service) => (
                         <Link
@@ -321,7 +388,9 @@ export function Navbar() {
               <li>
                 <Link
                   href="/blog"
-                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
+                  className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
+                    isActive("/blog") ? "bg-primary/10 text-primary" : "hover:bg-primary/10 text-primary hover:text-secondary"
+                  }`}
                 >
                   <Blinds size={16} className="lg:mr-1.5 text-secondary hidden lg:inline" />
                   <span>المدونة</span>
@@ -330,7 +399,9 @@ export function Navbar() {
               <li>
                 <Link
                   href="/contact"
-                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:bg-primary/10 transition-colors text-primary hover:text-secondary"
+                  className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
+                    isActive("/contact") ? "bg-primary/10 text-primary" : "hover:bg-primary/10 text-primary hover:text-secondary"
+                  }`}
                 >
                   <PhoneCall size={16} className="lg:mr-1.5 text-secondary hidden lg:inline" />
                   <span>تواصل</span>
@@ -341,7 +412,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile Controls */}
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           {/* Mobile Search */}
           {searchOpen ? (
             <div className="flex items-center absolute right-16 md:relative md:left-auto md:right-auto">
@@ -357,7 +428,7 @@ export function Navbar() {
           ) : (
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2 text-gray-500 hover:text-gray-700"
+              className="p-2 text-gray-500 hover:text-gray-700 rounded-md hover:bg-gray-100"
               aria-label="فتح البحث"
             >
               <Search size={20} />
@@ -367,7 +438,7 @@ export function Navbar() {
           {/* Mobile Menu Button (hidden when search is open) */}
           {!searchOpen && (
             <button
-              className="p-2 rounded hover:bg-gray-100"
+              className="p-2 rounded-lg hover:bg-gray-100"
               onClick={() => setOpen(true)}
               aria-label="افتح القائمة"
             >
@@ -377,30 +448,37 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu - Sidebar from left */}
+      {/* Mobile drawer */}
       {open && !searchOpen && (
-        <div className="fixed inset-0 z-[99] flex justify-start md:hidden transition">
-          {/* Sidebar - first in DOM, slides from left */}
-          <div
-            className="relative z-[100] w-72 min-w-[280px] bg-background h-full shadow-2xl flex flex-col p-6 gap-3 animate-in fade-in slide-in-from-left overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
+        <>
+          <div className="drawer-backdrop z-[110]" onClick={() => setOpen(false)} aria-hidden="true" />
+          <aside
+            className="drawer-panel z-[111]"
+            role="dialog"
+            aria-modal="true"
+            aria-label="قائمة التنقل"
           >
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xl font-bold text-primary">
-                ستلايت<span className="text-secondary"> الرجاء </span>
+            <div className="flex items-center justify-between p-4 border-b border-gray-100 shrink-0">
+              <span className="text-lg font-bold text-primary">
+                ستلايت<span className="text-secondary"> الرجاء</span>
               </span>
               <button
-                className="p-1"
+                type="button"
+                className="p-2 rounded-lg hover:bg-gray-100 min-h-[44px] min-w-[44px] flex items-center justify-center"
                 onClick={() => setOpen(false)}
                 aria-label="إغلاق القائمة"
               >
-                <X size={32} className="text-primary" />
+                <X size={24} className="text-primary" />
               </button>
             </div>
 
+            <nav className="flex-1 overflow-y-auto p-4 flex flex-col gap-1">
+
             <Link
               href="/"
-              className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition [touch-action:manipulation] active:bg-primary/20"
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+                isActive("/") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
+              }`}
               onClick={() => { setOpen(false); }}
             >
               <Home size={20} className="md:mr-2 text-secondary" />
@@ -408,7 +486,9 @@ export function Navbar() {
             </Link>
             <Link
               href="/products"
-              className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition [touch-action:manipulation] active:bg-primary/20"
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+                isActive("/products") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
+              }`}
               onClick={() => { setOpen(false); }}
             >
               <Layers size={20} className="md:mr-2 text-secondary" />
@@ -417,17 +497,27 @@ export function Navbar() {
             
             <Link
               href="/offers"
-              className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition [touch-action:manipulation] active:bg-primary/20"
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+                isActive("/offers") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
+              }`}
               onClick={() => { setOpen(false); }}
             >
               <Tag size={20} className="md:mr-2 text-secondary" />
               <span>العروض</span>
             </Link>
+            <Link
+              href="/football/world-cup"
+              className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-white bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 transition [touch-action:manipulation] border border-yellow-400/40"
+              onClick={() => { setOpen(false); }}
+            >
+              <Trophy size={20} className="md:mr-2 text-yellow-300" />
+              <span>عروض كأس العالم IPTV</span>
+            </Link>
 
             {/* Football leagues (mobile) */}
             <button
               onClick={() => setFootballOpen(!footballOpen)}
-              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"
+              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition"
             >
               <Trophy size={20} className="md:mr-2 text-secondary" />
               <span>كرة القدم</span>
@@ -454,7 +544,7 @@ export function Navbar() {
             )}
             <button
               onClick={() => setIptvOpen(!iptvOpen)}
-              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"
+              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition"
             >
               <Tv size={20} className="md:mr-2 text-secondary" />
               <span>اشتراكات IPTV</span>
@@ -481,7 +571,7 @@ export function Navbar() {
             )}
             <button
               onClick={() => setWebDevOpen(!webDevOpen)}
-              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"
+              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition"
             >                  
               <Code size={20} className="md:mr-2 text-secondary" />
               <span>خدمات برمجية</span>
@@ -508,7 +598,7 @@ export function Navbar() {
             )}
             <button
               onClick={() => setServicesOpen(!servicesOpen)}
-              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition"
+              className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-lg font-bold text-primary bg-primary/5 hover:bg-primary/10 transition"
             >
               <PlusSquare size={20} className="md:mr-2 text-secondary" />
               <span>خدمات أخرى</span>
@@ -535,7 +625,9 @@ export function Navbar() {
             )}
             <Link
               href="/blog"
-              className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition [touch-action:manipulation] active:bg-primary/20"
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+                isActive("/blog") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
+              }`}
               onClick={() => setOpen(false)}
             >
               <Blinds size={20} className="md:mr-2 text-secondary" />
@@ -543,20 +635,38 @@ export function Navbar() {
             </Link>
             <Link
               href="/contact"
-              className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold text-primary hover:bg-primary/10 transition [touch-action:manipulation] active:bg-primary/20"
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-bold transition [touch-action:manipulation] active:bg-primary/20 ${
+                isActive("/contact") ? "bg-primary/10 text-primary" : "text-primary hover:bg-primary/10"
+              }`}
               onClick={() => setOpen(false)}
             >
               <PhoneCall size={20} className="md:mr-2 text-secondary" />
               <span>تواصل معنا</span>
             </Link>
-          </div>
-          {/* Overlay - behind sidebar (z-0), closes on tap when clicking dark area */}
-          <div
-            className="absolute inset-0 bg-black/40 z-0"
-            onClick={() => setOpen(false)}
-            aria-hidden="true"
-          />
-        </div>
+            </nav>
+
+            <div className="shrink-0 p-4 border-t border-gray-100 grid grid-cols-2 gap-2 safe-bottom bg-gray-50/80">
+              <Link
+                href="tel:96550266068"
+                className="flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-white font-bold text-sm min-h-[48px]"
+                onClick={() => setOpen(false)}
+              >
+                <PhoneCall size={18} />
+                اتصال
+              </Link>
+              <Link
+                href="https://wa.me/96550266068"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 rounded-xl bg-green-600 text-white font-bold text-sm min-h-[48px]"
+                onClick={() => setOpen(false)}
+              >
+                <MessageCircle size={18} />
+                واتساب
+              </Link>
+            </div>
+          </aside>
+        </>
       )}
     </nav>
   );

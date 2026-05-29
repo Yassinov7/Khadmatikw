@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Phone, MessageCircle, Tv, CheckCircle, PlayCircle, Globe, HeadphonesIcon, Zap, Trophy } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
 import { Metadata } from "next";
+import { PageSeoSchemas } from "@/components/PageSeoSchemas";
 
 const kuwaitCities = [
   "مدينة الكويت", "حولى", "الفروانية", "الجهراء", "الأحمدي", "مبارك الكبير",
@@ -77,6 +78,12 @@ export default function ChampionsLeaguePage() {
   ];
 
   return (
+    <>
+    <PageSeoSchemas
+      serviceName={"مشاهدة دوري أبطال أوروبا IPTV في الكويت – بث مباشر UEFA Champions League"}
+      serviceDescription={"احصل على أفضل اشتراك IPTV لمشاهدة دوري أبطال أوروبا (UEFA Champions League) في الكويت. بث مباشر لجميع مباريات دوري الأبطال ريال مدريد ومانشستر سيتي وبرشلونة بجودة HD و 4K. تواصل معنا الآن."}
+      path={"/football/champions-league"} faqs={faqs}
+    />
     <main className="relative">
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
         <div className="max-w-4xl">
@@ -232,5 +239,6 @@ export default function ChampionsLeaguePage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

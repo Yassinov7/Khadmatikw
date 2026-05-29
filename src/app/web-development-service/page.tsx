@@ -298,33 +298,39 @@ export default function WebDevelopmentServicePage() {
         </div>
       </section>
 
-      {/* عروض رمضان المميزة */}
-      <section className="py-16 px-6 bg-gradient-to-r from-orange-500 to-red-600 text-white relative overflow-hidden">
+      {/* عروض كأس العالم IPTV */}
+      <section className="py-16 px-6 bg-gradient-to-r from-emerald-700 via-green-600 to-emerald-800 text-white relative overflow-hidden">
         <div className="max-w-6xl mx-auto text-center relative z-10">
-          <div className="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6">
-            <span className="font-bold text-lg">_special offer</span>
+          <div className="inline-block bg-yellow-400/90 text-emerald-900 px-6 py-2 rounded-full mb-6">
+            <span className="font-bold text-lg">عروض كأس العالم 2026</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">عروض مميزة في شهر رمضان المبارك</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">عروض IPTV لمشاهدة كأس العالم في الكويت</h2>
+          <p className="text-lg opacity-95 max-w-2xl mx-auto mb-8">
+            بث مباشر لجميع مباريات كأس العالم بجودة HD و4K — اشتراك برلين، سبايدر، والجني مع تفعيل فوري
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <div className="text-5xl font-bold mb-2">25%</div>
-              <h3 className="text-xl font-bold mb-2">خصم على تصميم المواقع</h3>
-              <p className="opacity-90">احصل على خصم 25% على جميع خدمات تصميم المواقع</p>
+              <div className="text-5xl font-bold mb-2 text-yellow-300">HD</div>
+              <h3 className="text-xl font-bold mb-2">بث مباشر كأس العالم</h3>
+              <p className="opacity-90">جميع مباريات كأس العالم 2026 بدون تقطيع</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <div className="text-5xl font-bold mb-2">50%</div>
-              <h3 className="text-xl font-bold mb-2">خصم على تطوير التطبيقات</h3>
-              <p className="opacity-90">احصل على نصف السعر لتطوير تطبيقات الويب</p>
+              <div className="text-5xl font-bold mb-2 text-yellow-300">4K</div>
+              <h3 className="text-xl font-bold mb-2">جودة فائقة الوضوح</h3>
+              <p className="opacity-90">قنوات عربية وأوروبية لمتابعة البطولة</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <div className="text-5xl font-bold mb-2">+1</div>
-              <h3 className="text-xl font-bold mb-2">هدية مجانية</h3>
-              <p className="opacity-90">احصل على استضافة مجانية لمدة سنة مع كل موقع</p>
+              <div className="text-5xl font-bold mb-2 text-yellow-300">24/7</div>
+              <h3 className="text-xl font-bold mb-2">دعم فني متواصل</h3>
+              <p className="opacity-90">تفعيل فوري ودعم خلال فترة البطولة</p>
             </div>
           </div>
-          <div className="mt-12 inline-block bg-white text-red-600 px-8 py-4 rounded-xl font-bold text-lg shadow-2xl animate-pulse">
-            العرض ساري حتى نهاية رمضان 
-          </div>
+          <a
+            href="/football/world-cup"
+            className="mt-12 inline-block bg-yellow-400 text-emerald-900 px-8 py-4 rounded-xl font-bold text-lg shadow-2xl hover:bg-yellow-300 transition"
+          >
+            اكتشف عروض كأس العالم IPTV
+          </a>
         </div>
       </section>
 

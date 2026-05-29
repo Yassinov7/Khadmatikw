@@ -1,9 +1,43 @@
 import Image from "next/image";
+import { JsonLd } from "@/components/JsonLd";
+import { SITE_NAME, SITE_URL, absoluteUrl, breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
+
+const PAGE_DESCRIPTION =
+    "تعرف على ستلايت الرجاء وخبرتنا في خدمات الستلايت والكاميرات والانتركم وعروض كأس العالم IPTV في الكويت.";
+
+export const metadata = buildPageMetadata({
+    title: "من نحن | ستلايت الرجاء | 50266068",
+    description: PAGE_DESCRIPTION,
+    path: "/who-is-alrajaa",
+    keywords: ["من نحن", "ستلايت الرجاء", "IPTV الكويت", "كأس العالم IPTV"],
+});
+
 export default function WhoIsAlRajaaPage() {
+    const aboutPageLd = {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        name: `من نحن | ${SITE_NAME}`,
+        description: PAGE_DESCRIPTION,
+        url: absoluteUrl("/who-is-alrajaa"),
+        mainEntity: {
+            "@type": "Organization",
+            name: SITE_NAME,
+            url: SITE_URL,
+            logo: absoluteUrl("/logo.png"),
+        },
+    };
+
     return (
         <div className="min-h-screen flex flex-col">
-
-
+            <JsonLd
+                data={[
+                    aboutPageLd,
+                    breadcrumbJsonLd([
+                        { name: "الرئيسية", path: "/" },
+                        { name: "من نحن", path: "/who-is-alrajaa" },
+                    ]),
+                ]}
+            />
             <main className="flex-grow container mx-auto px-4 py-8">
                 <div className="max-w-4xl mx-auto">
                     <h1 className="text-3xl md:text-4xl font-bold text-primary mb-6 text-center">

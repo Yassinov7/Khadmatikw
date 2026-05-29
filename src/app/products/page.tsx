@@ -1,53 +1,29 @@
-// app/products/page.tsx
 import { supabase } from "@/lib/supabase";
 import { ProductsClient } from "@/components/ProductClient";
-import { Metadata } from "next";
 import Link from "next/link";
 import { Tag } from "lucide-react";
+import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl, breadcrumbJsonLd, buildPageMetadata, collectionPageJsonLd } from "@/lib/seo";
+import { slugify } from "@/utils/slugify";
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: "جميع الخدمات | ستلايت الرجاء | 50266068",
-  description: "استعرض خدمات الشاشات، الستلايت والكاميرات في الكويت مع تفاصيل وصور واضحة. خدماتنا مخصصة للصيانة والتركيب فقط.",
+const PAGE_TITLE = "جميع الخدمات | ستلايت الرجاء | 50266068";
+const PAGE_DESCRIPTION =
+  "استعرض خدمات الشاشات والستلايت والكاميرات في الكويت مع تفاصيل وصور واضحة. خدماتنا مخصصة للصيانة والتركيب فقط.";
+
+export const metadata = buildPageMetadata({
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  path: "/products",
   keywords: [
     "خدمات الشاشات الكويت",
     "تركيب ستلايت",
     "كاميرات مراقبة",
-    "خدمات فنية الكويت",
     "ستلايت الرجاء",
-    "صيانة شاشات",
-    "فني كاميرات",
-    "فني ستلايت الكويت"
+    "50266068",
   ],
-  openGraph: {
-    title: "جميع الخدمات | ستلايت الرجاء",
-    description: "كل الخدمات الفنية المتعلقة بالشاشات والستلايت والكاميرات في الكويت. استعرض التفاصيل والصور وتواصل معنا بسهولة.",
-    url: "https://satellitealrajaa.com/products",
-    siteName: "ستلايت الرجاء",
-    locale: "ar_KW",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "خدمات فنية من ستلايت الرجاء",
-    description: "اكتشف أقوى خدمات الصيانة والتركيب للشاشات والستلايت والكاميرات في الكويت.",
-  },
-  alternates: {
-    canonical: "https://satellitealrajaa.com/products",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-};
+});
 
 export default async function ProductsPage() {
   const { data: categories } = await supabase
@@ -60,41 +36,38 @@ export default async function ProductsPage() {
     .select("*, category:categories(name)")
     .order("created_at", { ascending: false });
 
-  // Structured data for SEO
-  const productsPageStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "جميع الخدمات | ستلايت الرجاء",
-    "description": "استعرض خدمات الشاشات، الستلايت والكاميرات في الكويت مع تفاصيل وصور واضحة.",
-    "url": "https://satellitealrajaa.com/products",
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": products?.map((product, index) => ({
-        "@type": "Service",
-        "position": index + 1,
-        "name": product.name,
-        "description": product.description,
-        "url": `https://satellitealrajaa.com/products/${product.name.replace(/\s+/g, "-")}-${product.id}`
-      })) || []
-    }
-  };
+  const listItems =
+    products?.map((product) => ({
+      name: product.name,
+      url: absoluteUrl(`/products/${slugify(product.name)}-${product.id}`),
+    })) ?? [];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productsPageStructuredData) }}
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([
+            { name: "الرئيسية", path: "/" },
+            { name: "جميع الخدمات", path: "/products" },
+          ]),
+          collectionPageJsonLd({
+            name: PAGE_TITLE,
+            description: PAGE_DESCRIPTION,
+            path: "/products",
+            items: listItems,
+          }),
+        ]}
       />
       <div className="flex justify-center my-6">
-        <Link href="/offers" className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition shadow-md">
+        <Link
+          href="/offers"
+          className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition shadow-md"
+        >
           <Tag size={16} />
           <span>عرض العروض الخاصة</span>
         </Link>
       </div>
-      <ProductsClient
-        categories={categories ?? []}
-        products={products ?? []}
-      />
+      <ProductsClient categories={categories ?? []} products={products ?? []} />
     </>
   );
 }

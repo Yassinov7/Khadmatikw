@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Phone, MessageCircle, Tv, Activity, CheckCircle, PlayCircle, Globe, HeadphonesIcon, Zap } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
 import { Metadata } from "next";
+import { PageSeoSchemas } from "@/components/PageSeoSchemas";
 
 const kuwaitCities = [
   "مدينة الكويت", "حولى", "الفروانية", "الجهراء", "الأحمدي", "مبارك الكبير",
@@ -76,6 +77,12 @@ export default function QatarLeaguePage() {
   ];
 
   return (
+    <>
+    <PageSeoSchemas
+      serviceName={"مشاهدة الدوري القطري IPTV في الكويت – بث مباشر دوري نجوم قطر"}
+      serviceDescription={"احصل على أفضل اشتراك IPTV لمشاهدة الدوري القطري (دوري نجوم قطر) في الكويت. بث مباشر لجميع مباريات السد والدحيل والريان بجودة HD و 4K. تواصل معنا الآن."}
+      path={"/football/qatar-league"} faqs={faqs}
+    />
     <main className="relative">
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
         <div className="max-w-4xl">
@@ -230,5 +237,6 @@ export default function QatarLeaguePage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

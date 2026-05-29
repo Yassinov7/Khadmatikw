@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
-import { Monitor, SatelliteDish, Camera, PenTool, Tag, Wrench, Shield, Clock, Headphones, Star, CheckCircle, Award, Users } from "lucide-react";
+import { JsonLd } from "@/components/JsonLd";
+import { DEFAULT_OG_IMAGE, buildPageMetadata, localBusinessJsonLd } from "@/lib/seo";
+import { Monitor, SatelliteDish, Camera, PenTool, Tag, Wrench, Shield, Clock, Headphones, Star, CheckCircle, Award, Users, Trophy, Tv, PlayCircle } from "lucide-react";
 import { ContactCard } from "@/components/ContactCard";
 import { ProductCard } from "@/components/ProductCard";
 import BlogCard from "@/components/BlogCard";
@@ -68,60 +70,26 @@ const CONTACTS = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: "ستلايت الرجاء | أفضل خدمات الشاشات والستلايت والكاميرات في الكويت | 50266068",
-  description: "منصة ستلايت الرجاء توفر جميع خدمات الشاشات، الستلايت، الريسيفر، تركيب وصيانة الكاميرات والأنظمة الذكية في الكويت. تواصل معنا للعروض والخصومات والدعم الفني السريع.",
+export const metadata: Metadata = buildPageMetadata({
+  title: "ستلايت الرجاء | عروض كأس العالم IPTV الكويت | شاشات وستلايت | 50266068",
+  description:
+    "عروض كأس العالم 2026 IPTV في الكويت. بث مباشر لجميع مباريات كأس العالم بجودة HD و4K. خدمات الشاشات والستلايت والكاميرات مع اشتراك برلين وسبايدر.",
+  path: "/",
   keywords: [
+    "عروض كأس العالم IPTV",
+    "مشاهدة كأس العالم الكويت",
+    "كأس العالم 2026 IPTV",
+    "اشتراك IPTV كأس العالم",
+    "بث مباشر كأس العالم",
     "خدمات الشاشات في الكويت",
     "تركيب ستلايت",
     "كاميرات مراقبة الكويت",
     "ستلايت الرجاء",
-    "أسعار الكاميرات",
-    "صيانة ستلايت الكويت",
-    "فني ستلايت",
-    "فني كاميرات مراقبة",
-    "تركيب شاشات الكويت",
-    "IPTV الكويت",
     "برلين IPTV",
-    "سبايدر IPTV"
+    "سبايدر IPTV",
   ],
-  alternates: {
-    canonical: "https://satellitealrajaa.com/",
-  },
-  openGraph: {
-    title: "ستلايت الرجاء | أفضل خدمات الشاشات والستلايت والكاميرات في الكويت",
-    description: "منصة ستلايت الرجاء توفر جميع خدمات الشاشات، الستلايت، الريسيفر، تركيب وصيانة الكاميرات والأنظمة الذكية في الكويت.",
-    url: "https://satellitealrajaa.com/",
-    siteName: "ستلايت الرجاء",
-    locale: "ar_KW",
-    type: "website",
-    images: [
-      {
-        url: "https://satellitealrajaa.com/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "ستلايت الرجاء - خدمات الشاشات والستلايت والكاميرات في الكويت"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "ستلايت الرجاء | خدمات الشاشات والستلايت والكاميرات في الكويت",
-    description: "جميع خدمات الشاشات، الستلايت، الريسيفر، تركيب وصيانة الكاميرات في الكويت.",
-    images: ["https://satellitealrajaa.com/logo.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-};
+  ogImage: DEFAULT_OG_IMAGE,
+});
 
 export default async function HomePage() {
   const { data: products } = await supabase.from("products").select("*").order("id", { ascending: false }).limit(6);
@@ -132,32 +100,9 @@ export default async function HomePage() {
   const safeProducts = products ?? [];
   const safeOffers = offers ?? [];
 
-  // Structured data for SEO
-  const websiteStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "ستلايت الرجاء",
-    "description": "منصة ستلايت الرجاء توفر جميع خدمات الشاشات، الستلايت، الريسيفر، تركيب وصيانة الكاميرات والأنظمة الذكية في الكويت.",
-    "telephone": "+96550266068",
-    "areaServed": "KW",
-    "url": "https://satellitealrajaa.com/",
-    "logo": "https://satellitealrajaa.com/logo.png",
-    "sameAs": [
-      // Add your social media links here if available
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "الكويت",
-      "addressRegion": "حولي"
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 pt-10 font-[Noto Kufi Arabic,sans-serif]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
-      />
+      <JsonLd data={localBusinessJsonLd()} />
 
       {/* Hero Section */}
       <section className="w-full max-w-6xl flex flex-col items-center gap-6 mb-16 text-center">
@@ -191,6 +136,40 @@ export default async function HomePage() {
             جودة عالية، أسعار مناسبة، وخدمة سريعة ومضمونة.
           </p>
         </div>
+
+        {/* عروض كأس العالم — بانر رئيسي */}
+        <section className="w-full max-w-5xl mb-10 rounded-2xl overflow-hidden shadow-2xl border-2 border-yellow-400/50 bg-gradient-to-br from-emerald-700 via-green-600 to-emerald-800 text-white p-8 md:p-10 text-center relative">
+          <div className="flex justify-center mb-4">
+            <Trophy size={56} className="text-yellow-300" aria-hidden />
+          </div>
+          <h2 className="text-2xl md:text-4xl font-extrabold mb-3">
+            عروض كأس العالم 2026 IPTV في الكويت
+          </h2>
+          <p className="text-base md:text-lg opacity-95 mb-6 max-w-2xl mx-auto leading-relaxed">
+            بث مباشر لجميع مباريات كأس العالم بجودة HD و4K. اشتراك برلين، سبايدر، والجني مع تفعيل فوري ودعم فني 24/7 خلال البطولة.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 mb-6 text-sm">
+            <span className="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-full"><PlayCircle size={16} /> بث مباشر</span>
+            <span className="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-full"><Tv size={16} /> HD و 4K</span>
+            <span className="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-full"><Trophy size={16} /> جميع المباريات</span>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/football/world-cup"
+              className="px-8 py-4 rounded-xl bg-yellow-400 text-emerald-900 font-bold text-lg hover:bg-yellow-300 transition shadow-lg"
+            >
+              عروض كأس العالم IPTV
+            </Link>
+            <a
+              href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن عروض كأس العالم IPTV."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 rounded-xl bg-white/20 border border-white/40 font-bold text-lg hover:bg-white/30 transition"
+            >
+              استفسار واتساب
+            </a>
+          </div>
+        </section>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full justify-center">
           <Link href="/products" className="w-full sm:w-auto">
@@ -372,6 +351,7 @@ export default async function HomePage() {
         تصفح صفحات الموقع:
         <Link href="/products" className="text-primary hover:underline font-medium mx-1">الخدمات</Link>|
         <Link href="/offers" className="text-red-500 hover:underline font-medium mx-1">العروض</Link>|
+        <Link href="/football/world-cup" className="text-emerald-700 hover:underline font-bold mx-1">كأس العالم IPTV</Link>|
         <Link href="/blog" className="text-secondary hover:underline font-medium mx-1">المدونة</Link>|
         <Link href="/contact" className="text-primary hover:underline font-medium mx-1">التواصل</Link>|
         <Link href="/satellite-service" className="text-secondary hover:underline font-medium mx-1">فني ستلايت</Link>|

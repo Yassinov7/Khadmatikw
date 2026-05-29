@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Tv, Radio, Award, Cpu, Sparkles } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
 import { Metadata } from "next";
+import { PageSeoSchemas } from "@/components/PageSeoSchemas";
 
 // جميع مدن الكويت
 const kuwaitCities = [
@@ -102,6 +103,12 @@ export default function Flash4KPage() {
   ];
 
   return (
+    <>
+    <PageSeoSchemas
+      serviceName={"فلاش 4K IPTV في الكويت – أفضل رسيفرات 4K"}
+      serviceDescription={"احصل على أفضل فلاش 4K IPTV في الكويت. جهاز موثوق وسريع مع جودة 4K فائقة لجميع القنوات. تواصل معنا الآن للحصول على أفضل الأسعار."}
+      path={"/iptv/flash-4k"} faqs={faqs}
+    />
     <main className="relative">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
@@ -287,5 +294,6 @@ export default function Flash4KPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }
