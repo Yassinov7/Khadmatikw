@@ -59,12 +59,12 @@ export function Footer() {
     { label: "اسئلة شائعة", href: "/faq", icon: FileQuestion },
   ];
 
-  const devServiceLinks = [
-    { label: "تصميم واجهات", href: "/web-design", icon: CodeXmlIcon },
-    { label: "تطبيقات ويب", href: "/web-applications", icon: CodeXmlIcon },
-    { label: "حلول برمجية", href: "/software-solutions", icon: CodeXmlIcon },
-    { label: "صيانة ودعم", href: "/additional-services", icon: CodeXmlIcon },
-  ];
+  // const devServiceLinks = [
+  //   { label: "تصميم واجهات", href: "/web-design", icon: CodeXmlIcon },
+  //   { label: "تطبيقات ويب", href: "/web-applications", icon: CodeXmlIcon },
+  //   { label: "حلول برمجية", href: "/software-solutions", icon: CodeXmlIcon },
+  //   { label: "صيانة ودعم", href: "/additional-services", icon: CodeXmlIcon },
+  // ];
 
   const iptvLinks = [
     { label: "اشتراك برلين", href: "/iptv/berlin", icon: Tv },
