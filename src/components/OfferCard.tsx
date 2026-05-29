@@ -32,11 +32,11 @@ export function OfferCard({ offer }: { offer: Offer & { slug?: string } }) {
     };
 
     return (
-        <article className="card-modern rounded-3xl group">
+        <article className="card-modern rounded-[2rem] group overflow-hidden">
             {/* Offer Image */}
             <Link
                 href={`/offers/${offerSlug}`}
-                className="relative w-full h-48 bg-gray-50 block"
+                className="relative w-full h-48 bg-gradient-to-br from-primary/10 to-secondary/10 block overflow-hidden"
             >
                 {!imageLoaded && (
                     <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-t-3xl"></div>

@@ -15,8 +15,8 @@ export function ProductCard({ product }: { product: Product }) {
     : null;
 
   return (
-    <article className="card-modern group">
-      <div className="relative w-full h-48 bg-gradient-to-br from-gray-50 to-gray-100">
+    <article className="card-modern rounded-[2rem] group overflow-hidden">
+      <div className="relative w-full h-56 bg-gradient-to-br from-primary/10 to-secondary/10 overflow-hidden transition-transform duration-500 group-hover:-translate-y-1">
         <Link
           href={`/products/${slugify(product.name)}-${product.id}`}
           className="block w-full h-full"

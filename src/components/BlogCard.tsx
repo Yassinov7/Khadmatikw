@@ -29,10 +29,10 @@ export function BlogCard({ post }: { post: Blog & { slug?: string } }) {
   const href = `/blog/${blogSlug}`;
 
   return (
-    <article className="card-modern rounded-3xl group">
+    <article className="card-modern rounded-[2rem] group overflow-hidden">
       {/* Image Section */}
       <Link href={href} className="block">
-        <div className="relative aspect-video bg-gradient-to-r from-primary/5 to-secondary/5 overflow-hidden">
+        <div className="relative aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 overflow-hidden transition-transform duration-500 group-hover:scale-[1.01]">
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gray-200 animate-pulse"></div>
           )}

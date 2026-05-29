@@ -22,9 +22,9 @@ export function ContactCard({ contacts }: Props) {
       {contacts.map((person, index) => (
         <div
           key={index}
-          className="bg-white shadow-lg border border-gray-100 rounded-2xl p-6 flex flex-col items-center text-center gap-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+          className="card-modern rounded-[2rem] p-6 flex flex-col items-center text-center gap-4 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
         >
-          <div className="bg-primary/10 p-3 rounded-full">
+          <div className="grid place-items-center rounded-full bg-gradient-to-br from-primary/15 to-secondary/15 p-4 text-primary shadow-sm">
             {person.icon}
           </div>
           <div className="text-xl font-bold text-gray-800">{person.name}</div>
