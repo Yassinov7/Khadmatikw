@@ -315,6 +315,7 @@ export function offerJsonLd(opts: {
   shippingPrice?: number | string;
   shippingDestination?: string;
   hasMerchantReturnPolicy?: boolean;
+  returnPolicyCategory?: string;
   sellerName?: string;
   sellerUrl?: string;
   sellerTelephone?: string;
