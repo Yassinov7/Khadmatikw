@@ -71,9 +71,10 @@ body.drawer-open {
 }
 
 .animate-marquee {
-  animation: marquee-scroll 35s linear infinite;
+  animation: marquee-scroll 28s linear infinite;
   display: inline-flex;
   min-width: 200%;
+  will-change: transform;
 }
 
 .animate-marquee:hover {

@@ -41,7 +41,7 @@ export async function generateMetadata(
         title: `${offer.title} | 50266068`,
         description,
         path: `/offers/${slugWithId}`,
-        keywords: [offer.title, "عرض خاص", "ستلايت الرجاء", "كأس العالم IPTV", "الكويت"],
+        keywords: [offer.title, "عرض خاص", "ستلايت الرجاء", "كأس العالم IPTV", "الكويت", "مكتبة أفلام ومسلسلات", "خدمة ممتازة", "اشتراك تجريبي", "IPTV مجاني", "محتوى ترفيهي"],
         ogImage,
     });
 }
@@ -89,6 +89,8 @@ export default async function OfferPage(props: { params: Promise<{ slugWithId: s
                     description,
                     url: offerUrl,
                     image: offer.image_url ?? undefined,
+                    price: offer.product?.sale_price ?? offer.product?.price,
+                    priceValidUntil: offer.end_date,
                 })}
             />
             <OfferDetailsClient offer={offer} relatedOffers={relatedOffers} />

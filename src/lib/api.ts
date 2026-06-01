@@ -45,7 +45,7 @@ export async function getAllOfferIds(): Promise<Pick<Offer, "id" | "title">[]> {
 export async function getOfferById(id: number): Promise<Offer | null> {
   const { data, error } = await supabase
     .from("offers")
-    .select("*, product:products(name, image_url, category_id, category:categories(name)), contact_info")
+    .select("*, product:products(name, image_url, price, sale_price, category_id, category:categories(name)), contact_info")
     .eq("id", id)
     .single();
 
@@ -60,7 +60,7 @@ export async function getOfferById(id: number): Promise<Offer | null> {
 export async function getAllOffers(): Promise<Offer[]> {
   const { data, error } = await supabase
     .from("offers")
-    .select("*, product:products(name, image_url, category_id, category:categories(name)), contact_info")
+    .select("*, product:products(name, image_url, price, sale_price, category_id, category:categories(name)), contact_info")
     .order("created_at", { ascending: false });
 
   if (error || !data) {
@@ -109,7 +109,7 @@ export async function searchSite(query: string) {
   // Search offers second priority
   const { data: offers, error: offerError } = await supabase
     .from("offers")
-    .select("id, title, description, image_url, product:products(name, image_url, category_id, category:categories(name)), contact_info")
+    .select("id, title, description, image_url, product:products(name, image_url, price, sale_price, category_id, category:categories(name)), contact_info")
     .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
     .order("title");
 

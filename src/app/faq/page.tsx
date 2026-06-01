@@ -6,7 +6,7 @@ import { breadcrumbJsonLd, buildPageMetadata, faqPageJsonLd } from "@/lib/seo";
 export const metadata = buildPageMetadata({
     title: "الأسئلة الشائعة | ستلايت الرجاء | 50266068",
     description:
-        "اكتشف إجابات للأسئلة الشائعة حول خدمات الشاشات والستلايت والكاميرات وعروض كأس العالم IPTV في الكويت.",
+        "دليل شامل للأسئلة الشائعة عن ستلايت الرجاء وخدمات الشاشات والستلايت والكاميرات وعروض IPTV في الكويت. تعرف على الموقع وكيفية طلب الخدمة.",
     path: "/faq",
     keywords: [
         "الأسئلة الشائعة",
@@ -14,10 +14,32 @@ export const metadata = buildPageMetadata({
         "فني شاشات الكويت",
         "كأس العالم IPTV",
         "أسئلة IPTV",
+        "موقع ستلايت الرجاء",
+        "خدمات الستلايت",
+        "faq الكويت",
+        "خدمة فنية الكويت",
     ],
 });
 
 const FAQ_DATA = [
+    {
+        category: "عن الموقع",
+        icon: <Phone className="text-primary" size={24} />,
+        questions: [
+            {
+                question: "ما هو موقع ستلايت الرجاء؟",
+                answer: "ستلايت الرجاء هو الموقع الرسمي لخدمات الشاشات والستلايت والكاميرات وعروض IPTV في الكويت. نقدم خدمة فنية متكاملة مع تفعيل سريع ودعم فني مستمر من فريق محترف."
+            },
+            {
+                question: "ما الذي يميز موقع ستلايت الرجاء عن خدمات أخرى؟",
+                answer: "نتميز بخبرة طويلة، فريق فني محترف، تفعيل سريع، وأسعار واضحة بدون رسوم مخفية. كما نقدم دعمًا فنيًا على مدار الساعة ونعمل في جميع مناطق الكويت."
+            },
+            {
+                question: "هل يمكنني طلب الخدمة عبر الموقع مباشرة؟",
+                answer: "نعم، يمكنك إرسال طلبك عبر نموذج التواصل في الموقع أو الاتصال بنا مباشرة على الرقم 96550266068. نوفر خدمة الحجز السريع وخدمة الطوارئ للعملاء في جميع مناطق الكويت."
+            }
+        ]
+    },
     {
         category: "الخدمات العامة",
         icon: <Wrench className="text-primary" size={24} />,
@@ -129,10 +151,24 @@ export default function FAQPage() {
                 <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-6">
                     الأسئلة الشائعة
                 </h1>
-                <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
+                <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-6 leading-relaxed">
                     دليل شامل لجميع استفساراتك حول خدماتنا الفنية في الكويت
                 </p>
+            <div className="max-w-4xl mx-auto bg-white rounded-3xl p-8 shadow-lg border border-gray-100 mb-16 text-right">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">من نحن في ستلايت الرجاء؟</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                    ستلايت الرجاء هو الموقع الرسمي لخدمات الشاشات والستلايت والكاميرات وعروض IPTV في الكويت. نقدم خدمة فنية متكاملة مع تفعيل سريع ودعم فني مستمر من فريق محترف.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                    نحن نستهدف العملاء الباحثين عن جودة بث عالية، تركيب آمن، وصيانة دقيقة للأجهزة. موقعنا يوفر معلومات واضحة وطرق تواصل سهلة للحصول على خدمة سريعة في جميع مناطق الكويت.
+                </p>
+                <ul className="list-disc list-inside text-gray-700 space-y-2">
+                    <li>خدمة فنية محترفة في تركيب وصيانة الشاشات والستلايت والكاميرات.</li>
+                    <li>عروض IPTV مميزة لبرلين، سبايدر، فلاش 4K، وكأس العالم.</li>
+                    <li>دعم فني سريع ومتابعة مباشرة لكل عميل.</li>
+                </ul>
             </div>
+        </div>
 
             {/* FAQ Categories */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">

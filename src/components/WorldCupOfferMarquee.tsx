@@ -59,9 +59,9 @@ export function WorldCupOfferMarquee() {
   const duplicated = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-emerald-700 via-green-600 to-cyan-500 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-r from-emerald-700 via-green-600 to-cyan-500 text-white z-0">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.25),_transparent_35%)] opacity-40" />
-      <div className="relative mx-auto flex min-h-[68px] items-center overflow-hidden px-4 py-3 sm:px-6">
+      <div className="relative mx-auto flex min-h-[40px] items-center overflow-hidden px-4 py-1 sm:px-6">
         <div className="flex items-center gap-3 rounded-full bg-black/10 px-4 py-2 text-sm backdrop-blur-sm sm:px-6 sm:py-3">
           <span className="font-semibold">أحدث العروض</span>
           <span className="inline-flex h-2 w-2 rounded-full bg-white/80" />
@@ -75,7 +75,7 @@ export function WorldCupOfferMarquee() {
       </div>
 
       <div className="relative overflow-hidden border-t border-white/10">
-        <div className="animate-marquee flex items-center whitespace-nowrap py-3">
+        <div className="animate-marquee flex items-center whitespace-nowrap py-1">
           {duplicated.map((item, index) => (
             <MarqueeItem key={`${item.content}-${index}`} item={item} />
           ))}

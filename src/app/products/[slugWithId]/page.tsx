@@ -90,6 +90,8 @@ export default async function ProductPage(props: { params: Promise<{ slugWithId:
           url: productUrl,
           image: product.image_url ?? undefined,
           category: product.category?.name,
+          price: product.price ?? undefined,
+          salePrice: product.sale_price ?? undefined,
         })}
       />
       <ProductDetailsClient product={product} relatedProducts={relatedProducts} />

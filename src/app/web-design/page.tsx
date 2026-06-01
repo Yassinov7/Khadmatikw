@@ -29,12 +29,12 @@ const servicesKeywords = [
 export const metadata: Metadata = {
   title: "تصميم المواقع الاستعراضية – تصميمات احترافية وجذابة",
   description:
-    "نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك وتحقيق أهدافك التسويقية. نشمل تصميم المواقع الثابتة لعرض الأعمال والخدمات.",
-  keywords: `${servicesKeywords}, ${kuwaitCities.join(", ")}`,
+    "نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك. نصمم مواقع IPTV وقنوات بث ومكتبات أفلام ومسلسلات مع دعم خدمة ممتازة وتجربة عرض مميزة.",
+  keywords: `${servicesKeywords}, مكتبة أفلام ومسلسلات, خدمة ممتازة, IPTV, تجربة مجانية, تصميم مواقع IPTV, ${kuwaitCities.join(", ")}`,
   openGraph: {
     title: "تصميم المواقع الاستعراضية – تصميمات احترافية وجذابة",
     description:
-      "نقوم بتصميم مواقع جذابة تفاعلية تلبي متطلبات عملك وتحقيق أهدافك التسويقية. نشمل تصميم المواقع الثابتة لعرض الأعمال والخدمات.",
+      "نقوم بتصميم مواقع جذابة لتطبيقات IPTV، مكتبات أفلام ومسلسلات، ومواقع عرض المحتوى الترفيهي. تصميم احترافي يدعم تجربة المستخدم وخدمة ممتازة.",
     url: "https://satellitealrajaa.com/web-design",
     images: ["/sattech/works/work1.jpg"],
     type: "website",
@@ -124,7 +124,7 @@ export default function WebDesignPage() {
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
             <a
               href="mailto:02m.yassine@gmail.com"
-              className="bg-white text-primary font-bold px-8 py-4 rounded-xl shadow-xl hover:bg-gray-100 transition-all duration-300 flex items-center justify-center gap-3 text-lg font-medium"
+              className="bg-white text-primary font-bold px-8 py-4 rounded-xl shadow-xl hover:bg-gray-100 transition-all duration-300 flex items-center justify-center gap-3 text-lg"
             >
               <Mail size={24} /> تواصل عبر البريد
             </a>
@@ -132,7 +132,7 @@ export default function WebDesignPage() {
               href="https://instagram.com/mhmmdyassine"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 flex items-center justify-center gap-3 text-lg font-medium"
+              className="bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 flex items-center justify-center gap-3 text-lg"
             >
               <Instagram size={24} /> تواصل عبر إنستغرام
             </a>
@@ -140,7 +140,7 @@ export default function WebDesignPage() {
               href="https://crafted-by-yassine.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-gray-800 bg-gray-200 text-gray-800 font-bold px-8 py-4 rounded-xl shadow-lg hover:bg-gray-800 hover:text-white transition-all duration-300 flex items-center justify-center gap-3 text-lg font-medium"
+              className="border-2 border-gray-800 bg-gray-200 text-gray-800 font-bold px-8 py-4 rounded-xl shadow-lg hover:bg-gray-800 hover:text-white transition-all duration-300 flex items-center justify-center gap-3 text-lg"
             >
               <LinkIcon size={24} /> موقع المبرمج
             </a>
@@ -248,6 +248,31 @@ export default function WebDesignPage() {
         </div>
       </section>
 
+      <section className="py-16 px-4 bg-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">تصميم مواقع IPTV ومحتوى ترفيهي</h2>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
+              نصمم مواقع عرض للأفلام والمسلسلات وقنوات IPTV، مع واجهات جذابة وسريعة تساعد على زيادة التفاعل وتحسين تجربة المشاهدين.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-blue-600 mb-3">مكتبة محتوى واسعة</h3>
+              <p className="text-gray-600">تصميم صفحات عرض للأفلام والمسلسلات ومكتبات الفيديو.</p>
+            </div>
+            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-blue-600 mb-3">تجربة مستخدم ممتازة</h3>
+              <p className="text-gray-600">تصميم واجهات تفاعلية سهلة الاستخدام على جميع الأجهزة.</p>
+            </div>
+            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-blue-600 mb-3">خدمة احترافية</h3>
+              <p className="text-gray-600">خدمة ممتازة ودعم فني مستمر بعد إطلاق الموقع.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-900 via-purple-800 to-indigo-900 text-white">
         <div className="max-w-6xl mx-auto">
@@ -293,7 +318,7 @@ export default function WebDesignPage() {
           <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
             <a
               href="mailto:02m.yassine@gmail.com"
-              className="bg-gradient-to-r from-blue-600 to-purple-700 text-white font-bold px-10 py-5 rounded-2xl shadow-2xl hover:from-blue-700 hover:to-purple-800 transition-all duration-300 flex items-center justify-center gap-3 text-xl font-medium"
+              className="bg-gradient-to-r from-blue-600 to-purple-700 text-white font-bold px-10 py-5 rounded-2xl shadow-2xl hover:from-blue-700 hover:to-purple-800 transition-all duration-300 flex items-center justify-center gap-3 text-xl"
             >
               <Mail size={28} /> تواصل عبر البريد
             </a>
@@ -301,7 +326,7 @@ export default function WebDesignPage() {
               href="https://instagram.com/mhmmdyassine"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-gray-800 text-gray-800 font-bold px-10 py-5 rounded-2xl shadow-lg hover:bg-gray-800 hover:text-white transition-all duration-300 flex items-center justify-center gap-3 text-xl font-medium"
+              className="border-2 border-gray-800 text-gray-800 font-bold px-10 py-5 rounded-2xl shadow-lg hover:bg-gray-800 hover:text-white transition-all duration-300 flex items-center justify-center gap-3 text-xl"
             >
               <Instagram size={28} /> تواصل عبر إنستغرام
             </a>

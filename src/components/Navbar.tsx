@@ -150,20 +150,20 @@ export function Navbar() {
 
   return (
     <>
-      <header className={`w-full z-30 transition duration-300 ${scrolled ? "backdrop-blur bg-white/90 shadow-sm border-b border-slate-200" : "bg-transparent"}`}>
+      <header className={`w-full z-[9999] transition duration-300 ${scrolled ? "backdrop-blur bg-white/90 shadow-sm border-b border-slate-200" : "bg-transparent"}`}>
         <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-4">
           <Link href="/" className="group flex items-center gap-3">
             <div className="relative flex h-12 w-12 items-center justify-center rounded-3xl border border-slate-200 bg-gradient-to-br from-emerald-600 to-cyan-500 text-white shadow-lg shadow-cyan-500/10 transition-transform duration-300 group-hover:-translate-y-0.5">
               <Image src="/logo.png" alt="شعار ستلايت الرجاء" width={38} height={38} className="rounded-2xl" priority />
             </div>
-            <div className="hidden sm:flex flex-col leading-tight">
+            <div className="flex flex-col leading-tight">
               <span className="text-base font-black text-slate-900">ستلايت الرجاء</span>
               <span className="text-xs text-slate-500">خدمات تقنية وفنية متكاملة</span>
             </div>
           </Link>
 
-          <div className="relative hidden lg:flex flex-1 items-center justify-between gap-4">
-            <nav ref={navRef} className="flex items-center gap-2 overflow-x-auto overflow-y-visible pb-1">
+          <div ref={navRef} className="relative hidden lg:flex flex-1 items-center justify-between gap-4">
+            <nav className="flex items-center gap-2 overflow-x-auto overflow-y-visible pb-1">
               {NAV_LINKS.slice(0, 3).map((link) => (
                 <Link
                   key={link.href}
@@ -194,7 +194,7 @@ export function Navbar() {
             </nav>
 
             {activeDropdown && (
-              <div className="absolute left-0 top-full right-0 z-50 mt-3 px-4">
+              <div className="absolute left-0 top-full right-0 z-[99999] mt-3 px-4">
                 <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 shadow-2xl">
                   <div className="grid gap-2 sm:grid-cols-2">
                     {CATEGORY_MENU.find((menu) => menu.id === activeDropdown)?.items.map((item) => (

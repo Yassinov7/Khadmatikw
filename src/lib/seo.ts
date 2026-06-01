@@ -234,8 +234,23 @@ export function productJsonLd(opts: {
   url: string;
   image?: string;
   category?: string;
+  price?: number | string;
+  salePrice?: number | string;
+  priceCurrency?: string;
+  availability?: string;
+  ratingValue?: number;
+  reviewCount?: number;
+  reviews?: Array<{
+    author: string;
+    datePublished: string;
+    reviewBody: string;
+    name: string;
+  }>;
 }) {
-  return {
+  const priceCurrency = opts.priceCurrency ?? "KWD";
+  const hasPrice = typeof opts.price !== "undefined" || typeof opts.salePrice !== "undefined";
+
+  const product: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: opts.name,
@@ -243,14 +258,48 @@ export function productJsonLd(opts: {
     image: opts.image ? absoluteUrl(opts.image) : DEFAULT_OG_IMAGE,
     category: opts.category,
     brand: { "@type": "Brand", name: SITE_NAME },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "KWD",
-      seller: { "@type": "Organization", name: SITE_NAME },
-      url: opts.url,
-    },
   };
+
+  if (hasPrice) {
+    product.offers = {
+      "@type": "Offer",
+      price: String(opts.salePrice ?? opts.price),
+      priceCurrency,
+      availability: opts.availability ?? "https://schema.org/InStock",
+      url: opts.url,
+      seller: { "@type": "Organization", name: SITE_NAME },
+      ...(typeof opts.salePrice !== "undefined"
+        ? {
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              priceCurrency,
+              price: String(opts.salePrice),
+              valueAddedTaxIncluded: false,
+            },
+          }
+        : {}),
+    };
+  }
+
+  if (typeof opts.ratingValue === "number" && typeof opts.reviewCount === "number") {
+    product.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: opts.ratingValue,
+      reviewCount: opts.reviewCount,
+    };
+  }
+
+  if (Array.isArray(opts.reviews) && opts.reviews.length > 0) {
+    product.review = opts.reviews.map((review) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: review.author },
+      datePublished: review.datePublished,
+      reviewBody: review.reviewBody,
+      name: review.name,
+    }));
+  }
+
+  return product;
 }
 
 export function offerJsonLd(opts: {
@@ -258,18 +307,75 @@ export function offerJsonLd(opts: {
   description: string;
   url: string;
   image?: string;
+  price?: number | string;
+  salePrice?: number | string;
+  priceCurrency?: string;
+  priceValidUntil?: string;
+  availability?: string;
+  shippingPrice?: number | string;
+  shippingDestination?: string;
+  hasMerchantReturnPolicy?: boolean;
+  sellerName?: string;
+  sellerUrl?: string;
+  sellerTelephone?: string;
 }) {
-  return {
+  const priceCurrency = opts.priceCurrency ?? "KWD";
+  const offer: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Offer",
     name: opts.name,
     description: opts.description,
     url: opts.url,
     image: opts.image ? absoluteUrl(opts.image) : DEFAULT_OG_IMAGE,
-    offeredBy: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-    availability: "https://schema.org/InStock",
+    offeredBy: {
+      "@type": "Organization",
+      name: opts.sellerName ?? SITE_NAME,
+      url: opts.sellerUrl ?? SITE_URL,
+      ...(opts.sellerTelephone ? { telephone: opts.sellerTelephone } : {}),
+    },
+    availability: opts.availability ?? "https://schema.org/InStock",
     areaServed: { "@type": "Country", name: "Kuwait" },
+    itemCondition: "https://schema.org/NewCondition",
   };
+
+  if (typeof opts.price !== "undefined" || typeof opts.salePrice !== "undefined") {
+    offer.price = String(opts.salePrice ?? opts.price);
+    offer.priceCurrency = priceCurrency;
+  }
+
+  if (typeof opts.salePrice !== "undefined") {
+    offer.priceSpecification = {
+      "@type": "UnitPriceSpecification",
+      priceCurrency,
+      price: String(opts.salePrice),
+      valueAddedTaxIncluded: false,
+    };
+  }
+
+  if (opts.priceValidUntil) {
+    offer.priceValidUntil = opts.priceValidUntil;
+  }
+
+  offer.shippingDetails = {
+    "@type": "OfferShippingDetails",
+    shippingRate: {
+      "@type": "MonetaryAmount",
+      priceCurrency,
+      value: typeof opts.shippingPrice !== "undefined" ? Number(opts.shippingPrice) : 0,
+    },
+    shippingDestination: {
+      "@type": "DefinedRegion",
+      addressCountry: opts.shippingDestination ?? "KW",
+    },
+  };
+
+  offer.hasMerchantReturnPolicy = {
+    "@type": "MerchantReturnPolicy",
+    returnPolicyCategory: opts.returnPolicyCategory ?? "https://schema.org/MerchantReturnFiniteReturnWindow",
+    name: "سياسة إرجاع البائع",
+  };
+
+  return offer;
 }
 
 export function articleJsonLd(opts: {

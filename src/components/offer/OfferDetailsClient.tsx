@@ -28,29 +28,8 @@ export default function OfferDetailsClient({ offer, relatedOffers }: { offer: Of
         });
     };
 
-    // Structured data for SEO
-    const offerStructuredData = {
-        "@context": "https://schema.org",
-        "@type": "Offer",
-        "name": offer.title,
-        "description": offer.description,
-        "image": offer.image_url || "/default-offer.png",
-        "startDate": offer.start_date,
-        "endDate": offer.end_date,
-        "seller": {
-            "@type": "LocalBusiness",
-            "name": "ستلايت الرجاء",
-            "telephone": "+96550266068",
-            "areaServed": "KW"
-        }
-    };
-
     return (
         <main className="max-w-6xl mx-auto px-4 py-8">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(offerStructuredData) }}
-            />
 
             <Link
                 href="/offers"

@@ -1,4 +1,5 @@
 // app/iptv/berlin/page.tsx
+import Link from "next/link";
 import Image from "next/image";
 import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Tv, Radio, Globe, Zap, Award } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
@@ -29,26 +30,39 @@ const servicesKeywords = [
   "IPTV برلين سعر",
   "اشتراك برلين IPTV سعر",
   "برلين IPTV اشتراك شهري",
-  "اشتراك برلين IPTV سنوي"
+  "اشتراك برلين IPTV سنوي",
+  "قنوات أوروبية IPTV",
+  "اشتراك برلين جودة 4K",
+  "عرض IPTV برلين",
+  "اشتراك برلين مباشر"
 ];
 
 export const metadata: Metadata = {
-  title: "اشتراك برلين IPTV في الكويت – أفضل اشتراكات IPTV",
+  title: "اشتراك برلين IPTV في الكويت – أفضل اشتراكات IPTV برلين 4K",
   description:
-    "احصل على أفضل اشتراك برلين IPTV في الكويت. خدمة موثوقة وسريعة مع جودة عالية لجميع القنوات الأوروبية والعالمية. تواصل معنا الآن للحصول على أفضل الأسعار.",
-  keywords: `${servicesKeywords.join(", ")}, ${kuwaitCities.join(", ")}`,
+    "اشتراك برلين IPTV في الكويت مع آلاف القنوات الأوروبية والعالمية وجودة HD و4K. تواصل معنا للحصول على تفعيل فوري ودعم فني مستمر.",
+  keywords: `${servicesKeywords.join(", ")}, ${kuwaitCities.join(", ")}, IPTV الكويت, قنوات برلين, بث مباشر 4K, قنوات أوروبية`,
   openGraph: {
-    title: "اشتراك برلين IPTV في الكويت – أفضل اشتراكات IPTV",
+    title: "اشتراك برلين IPTV في الكويت – أفضل اشتراكات IPTV برلين 4K",
     description:
-      "احصل على أفضل اشتراك برلين IPTV في الكويت. خدمة موثوقة وسريعة مع جودة عالية لجميع القنوات الأوروبية والعالمية.",
+      "اشتراك برلين IPTV في الكويت مع آلاف القنوات الأوروبية والعالمية وجودة HD و4K. تواصل معنا للحصول على تفعيل فوري ودعم فني مستمر.",
     url: "https://satellitealrajaa.com/iptv/berlin",
     type: "website",
+    images: [
+      {
+        url: "https://satellitealrajaa.com/sattech/iptv/berlin-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "اشتراك برلين IPTV في الكويت - قنوات أوروبية HD و4K",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "اشتراك برلين IPTV في الكويت",
     description:
-      "أفضل اشتراك برلين IPTV في الكويت مع جودة عالية وخدمة موثوقة."
+      "أفضل اشتراك برلين IPTV في الكويت مع جودة عالية وخدمة موثوقة.",
+    images: ["https://satellitealrajaa.com/sattech/iptv/berlin-og.jpg"],
   },
   alternates: {
     canonical: "https://satellitealrajaa.com/iptv/berlin",
@@ -103,6 +117,15 @@ export default function BerlinIPTVPage() {
     }
   ];
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://satellitealrajaa.com/" },
+      { "@type": "ListItem", position: 2, name: "اشتراك برلين IPTV", item: "https://satellitealrajaa.com/iptv/berlin" },
+    ],
+  };
+
   return (
     <>
     <PageSeoSchemas
@@ -110,6 +133,7 @@ export default function BerlinIPTVPage() {
       serviceDescription={"احصل على أفضل اشتراك برلين IPTV في الكويت. خدمة موثوقة وسريعة مع جودة عالية لجميع القنوات الأوروبية والعالمية. تواصل معنا الآن للحصول على أفضل الأسعار."}
       path={"/iptv/berlin"} faqs={faqs}
     />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
     <main className="relative">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
@@ -151,6 +175,12 @@ export default function BerlinIPTVPage() {
               نحن في ستلايت الرجاء نقدم أفضل أسعار اشتراك برلين IPTV في الكويت مع ضمان الجودة والاستقرار. اشتراك برلين IPTV متوافق مع جميع الأجهزة الذكية والتلفزيونات الذكية، مما يجعله الخيار الأمثل لعشاق القنوات الأوروبية. فريقنا الفني المحترف جاهز لمساعدتك في اختيار الاشتراك المناسب لك وتفعيله خلال دقائق.
             </p>
             <p className="text-gray-600 text-lg mb-6">
+              يوفر اشتراك برلين IPTV بثاً مستقراً وسريعاً مع خاصية إعادة التشغيل ومشاهدة المحتوى حسب الطلب. يضمن اشتراك برلين IPTV أفضل تجربة مشاهدة عبر التلفزيونات الذكية، أجهزة Android، Apple TV، وأجهزة الكمبيوتر.
+            </p>
+            <p className="text-gray-600 text-lg mb-6">
+              كما نوفر مكتبة ضخمة من الأفلام والمسلسلات العالمية بجودة عالية ضمن باقة اشتراك برلين IPTV. استمتع بمشاهدة أحدث الأفلام والمسلسلات مع خدمة ممتازة وسرعة استجابة فائقة.
+            </p>
+            <p className="text-gray-600 text-lg mb-6">
               اشتراك برلين IPTV يشمل قنوات ألمانية، فرنسية، إيطالية، إسبانية، بريطانية، وأكثر من 5000 قناة أوروبية وعالمية. جميع القنوات متوفرة بجودة HD و 4K مع دعم للبث المباشر والفيديو عند الطلب. اشتراك برلين IPTV مناسب للعائلات الكبيرة حيث يمكن استخدامه على عدة أجهزة في نفس الوقت.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
@@ -184,6 +214,23 @@ export default function BerlinIPTVPage() {
         </div>
       </section>
 
+      <section className="py-16 px-6 max-w-6xl mx-auto bg-white rounded-3xl shadow-xl">
+        <div className="prose prose-lg max-w-none text-gray-700">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">اشتراك برلين IPTV لمشاهدة كأس العالم والأحداث الرياضية</h2>
+          <p>
+            اشتراك برلين IPTV هو الحل الأمثل لمتابعة مباريات كأس العالم والمناسبات الرياضية الكبرى في الكويت عبر القنوات الأوروبية. تمتع ببث عالي الجودة واستقرار قوي مع خدمة دعم فني سريعة.
+          </p>
+          <p>
+            إذا كنت تبحث عن باقة محتوى متنوعة، يمكنك الجمع بين <Link href="/iptv/spider" className="text-primary font-semibold">اشتراك سبايدر IPTV</Link> للقنوات العربية و<Link href="/iptv/flash-4k" className="text-primary font-semibold">فلاش 4K IPTV</Link> للحصول على أفضل جودة عرض. نحن نساعدك على اختيار الباقة المناسبة وتفعيلها بسرعة.
+          </p>
+          <ul className="list-disc list-inside space-y-3 text-gray-600">
+            <li>قنوات أوروبية متعددة لبث المباريات والدوريات.</li>
+            <li>تكامل مع باقات IPTV عربية وسينمائية من نفس المنصة.</li>
+            <li>دعم فني مباشر لضمان التشغيل بدون مشكلات.</li>
+          </ul>
+        </div>
+      </section>
+
       {/* Detailed Content Section */}
       <section className="py-16 px-6 max-w-6xl mx-auto">
         <div className="prose prose-lg max-w-none">
@@ -198,6 +245,30 @@ export default function BerlinIPTVPage() {
             <p>
               اشتراك برلين IPTV يتميز بسهولة الاستخدام والتثبيت. يمكنك استخدام اشتراك برلين IPTV على أي جهاز ذكي أو تلفزيون ذكي. اشتراك برلين IPTV يدعم جميع التطبيقات الشائعة مثل Smart TV، Android TV، Apple TV، و Fire TV. نحن نقدم دعم فني كامل لمساعدتك في إعداد اشتراك برلين IPTV على جهازك.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* محتوى إضافي غني لصقل الرسالة وإبراز المكتبة */}
+      <section className="py-12 px-6 bg-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
+          <div className="prose text-gray-700 text-lg leading-relaxed">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">برلين IPTV — مكتبة ومحتوى يفوق التوقعات</h2>
+            <p>
+              اشتراك برلين لا يقتصر على القنوات المباشرة فقط، بل يشمل مكتبة ضخمة من الأفلام الوثائقية والسينمائية والمسلسلات التي تغطي مختلف الأذواق. تم تحسين قوائم التشغيل لتسهيل الوصول إلى المحتوى الأوروبي الأصلي بجودة تصل إلى 4K، مع تصنيفات ذكية واقتراحات مُحسَّنة حسب ذوق المشاهد. نقدم أيضاً محتوى إضافي مرفق بملفات ترجمات متعددة وخيارات عرض حسب الطلب، مما يجعل اشتراك برلين خياراً مثالياً لمن يريد تجربة تلفزيونية متكاملة.
+            </p>
+            <p>
+              استفد من مميزات الاشتراك مثل إعادة التشغيل، المشاهدة المؤجلة، ودعم عدة أجهزة في نفس الوقت. فريقنا يضمن تحديث القنوات والمكتبات باستمرار ويعالج أية مشكلة تقنية بسرعة، لتبقى تجربة المشاهدة سلسة وممتعة طوال الموسم.
+            </p>
+          </div>
+          <div className="rounded-3xl overflow-hidden shadow-lg bg-emerald-50 p-4">
+            <Image
+              src="/sattech/iptv/library.jpg"
+              alt="مكتبة برلين IPTV - أفلام ومسلسلات" 
+              width={720}
+              height={520}
+              className="w-full h-full object-cover rounded-2xl"
+            />
           </div>
         </div>
       </section>

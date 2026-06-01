@@ -38,6 +38,8 @@ export type Offer = {
     id: number;
     name: string;
     image_url?: string;
+    price?: number;
+    sale_price?: number;
     category_id?: number;
     category?: { name: string };
   };

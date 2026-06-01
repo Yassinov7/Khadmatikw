@@ -1,4 +1,5 @@
 // app/iptv/spider/page.tsx
+import Link from "next/link";
 import Image from "next/image";
 import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Tv, Radio, Globe, Zap, Award } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
@@ -30,26 +31,38 @@ const servicesKeywords = [
   "اشتراك سبايدر IPTV سعر",
   "سبايدر IPTV اشتراك شهري",
   "اشتراك سبايدر IPTV سنوي",
-  "سبايدر IPTV قنوات عربية"
+  "سبايدر قنوات عربية",
+  "سبايدر IPTV beIN",
+  "اشتراك سبايدر مباشر",
+  "سبايدر IPTV 2026"
 ];
 
 export const metadata: Metadata = {
-  title: "اشتراك سبايدر IPTV في الكويت – أفضل اشتراكات IPTV",
+  title: "اشتراك سبايدر IPTV في الكويت – افضل اشتراكات IPTV عربية",
   description:
-    "احصل على أفضل اشتراك سبايدر IPTV في الكويت. خدمة موثوقة وسريعة مع جودة عالية لجميع القنوات العربية والعالمية. تواصل معنا الآن للحصول على أفضل الأسعار.",
-  keywords: `${servicesKeywords.join(", ")}, ${kuwaitCities.join(", ")}`,
+    "احصل على أفضل اشتراك سبايدر IPTV في الكويت مع بث مباشر لمباريات كأس العالم. قنوات عربية وعالمية بجودة HD و4K، خدمة موثوقة ودعم فني مستمر. تواصل الآن للحصول على تفعيل سريع.",
+  keywords: `${servicesKeywords.join(", ")}, ${kuwaitCities.join(", ")}, IPTV عربي, قنوات عربية, اشتراك سبايدر مباشر, beIN سبايدر, بث عربي`,
   openGraph: {
-    title: "اشتراك سبايدر IPTV في الكويت – أفضل اشتراكات IPTV",
+    title: "اشتراك سبايدر IPTV في الكويت – افضل اشتراكات IPTV عربية",
     description:
-      "احصل على أفضل اشتراك سبايدر IPTV في الكويت. خدمة موثوقة وسريعة مع جودة عالية لجميع القنوات العربية والعالمية.",
+      "احصل على أفضل اشتراك سبايدر IPTV في الكويت مع بث مباشر لمباريات كأس العالم. قنوات عربية وعالمية بجودة HD و4K، خدمة موثوقة ودعم فني مستمر. تواصل الآن للحصول على تفعيل سريع.",
     url: "https://satellitealrajaa.com/iptv/spider",
     type: "website",
+    images: [
+      {
+        url: "https://satellitealrajaa.com/sattech/iptv/spider-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "اشتراك سبايدر IPTV في الكويت - قنوات عربية وعالمية بجودة HD و4K",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "اشتراك سبايدر IPTV في الكويت",
     description:
-      "أفضل اشتراك سبايدر IPTV في الكويت مع جودة عالية وخدمة موثوقة."
+      "أفضل اشتراك سبايدر IPTV في الكويت مع جودة عالية وخدمة موثوقة.",
+    images: ["https://satellitealrajaa.com/sattech/iptv/spider-og.jpg"],
   },
   alternates: {
     canonical: "https://satellitealrajaa.com/iptv/spider",
@@ -104,6 +117,15 @@ export default function SpiderIPTVPage() {
     }
   ];
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://satellitealrajaa.com/" },
+      { "@type": "ListItem", position: 2, name: "اشتراك سبايدر IPTV", item: "https://satellitealrajaa.com/iptv/spider" },
+    ],
+  };
+
   return (
     <>
     <PageSeoSchemas
@@ -111,6 +133,7 @@ export default function SpiderIPTVPage() {
       serviceDescription={"احصل على أفضل اشتراك سبايدر IPTV في الكويت. خدمة موثوقة وسريعة مع جودة عالية لجميع القنوات العربية والعالمية. تواصل معنا الآن للحصول على أفضل الأسعار."}
       path={"/iptv/spider"} faqs={faqs}
     />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
     <main className="relative">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
@@ -152,6 +175,12 @@ export default function SpiderIPTVPage() {
               نحن في ستلايت الرجاء نقدم أفضل أسعار اشتراك سبايدر IPTV في الكويت مع ضمان الجودة والاستقرار. اشتراك سبايدر IPTV متوافق مع جميع الأجهزة الذكية والتلفزيونات الذكية، مما يجعله الخيار الأمثل لعشاق القنوات العربية. فريقنا الفني المحترف جاهز لمساعدتك في اختيار الاشتراك المناسب لك وتفعيله خلال دقائق.
             </p>
             <p className="text-gray-600 text-lg mb-6">
+              يوفر اشتراك سبايدر IPTV تدفق قنوات عربية سريعة مع تجربة مشاهدة بدون تقطيع. يدعم اشتراك سبايدر بث مباريات المباريات العربية والقنوات الرياضية والإخبارية والترفيهية عبر الإنترنت في الكويت.
+            </p>
+            <p className="text-gray-600 text-lg mb-6">
+              استمتع أيضاً بمكتبة أفلام ومسلسلات عربية وعالمية ضمن باقة اشتراك سبايدر IPTV. نقدّم خدمة ممتازة وسرعة عالية في البث لتستمتع بالمحتوى الترفيهي بجودة HDTV و4K.
+            </p>
+            <p className="text-gray-600 text-lg mb-6">
               اشتراك سبايدر IPTV يشمل قنوات عربية من جميع الدول العربية، قنوات رياضية عربية وعالمية، قنوات أفلام ومسلسلات، وقنوات أخبار. جميع القنوات متوفرة بجودة HD و 4K مع دعم للبث المباشر والفيديو عند الطلب. اشتراك سبايدر IPTV مناسب للعائلات الكبيرة حيث يمكن استخدامه على عدة أجهزة في نفس الوقت.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
@@ -185,6 +214,25 @@ export default function SpiderIPTVPage() {
         </div>
       </section>
 
+      {/* مشاهدة المباريات والربط الداخلي */}
+      <section className="py-16 px-6 max-w-6xl mx-auto bg-white rounded-3xl shadow-xl">
+        <div className="prose prose-lg max-w-none text-gray-700">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">سبايدر IPTV لمتابعة مباريات كأس العالم 2026</h2>
+          <p>
+            اشتراك سبايدر IPTV يقدم لك أفضل تجربة لمتابعة المباريات العربية والدولية في الكويت. يمكنك مشاهدة مباريات كأس العالم عبر القنوات العربية المباشرة بجودة HD و4K بدون تأخير، مع استقرار جيد وخدمة دعم فني متاحة دائماً.
+          </p>
+          <p>
+            إذا كنت تبحث عن بث مباشر لمباريات كأس العالم، فإن اشتراك سبايدر IPTV هو الخيار الأمثل. لمزيد من الخيارات الأوروبية، تحقق من <Link href="/iptv/berlin" className="text-primary font-semibold">اشتراك برلين IPTV</Link>، وللعروض الخاصة تابع <Link href="/football/world-cup" className="text-primary font-semibold">عروض كأس العالم IPTV</Link> في الكويت.
+          </p>
+          <ul className="list-disc list-inside space-y-3 text-gray-600">
+            <li>بث مباشر لجميع المباريات العربية عبر قنوات IPTV سبايدر.</li>
+            <li>دعم مشاهدة على تلفزيون ذكي، Android TV، Apple TV، و Fire TV.</li>
+            <li>استقرار بث عالي بدون تقطيع خلال أوقات المباريات المهمة.</li>
+            <li>تفعيل فوري وخدمة عملاء سريعة لمتابعة كأس العالم في الكويت.</li>
+          </ul>
+        </div>
+      </section>
+
       {/* Detailed Content Section */}
       <section className="py-16 px-6 max-w-6xl mx-auto">
         <div className="prose prose-lg max-w-none">
@@ -198,6 +246,30 @@ export default function SpiderIPTVPage() {
             </p>
             <p>
               اشتراك سبايدر IPTV يتميز بسهولة الاستخدام والتثبيت. يمكنك استخدام اشتراك سبايدر IPTV على أي جهاز ذكي أو تلفزيون ذكي. اشتراك سبايدر IPTV يدعم جميع التطبيقات الشائعة مثل Smart TV، Android TV، Apple TV، و Fire TV. نحن نقدم دعم فني كامل لمساعدتك في إعداد اشتراك سبايدر IPTV على جهازك.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* محتوى إضافي موسع — سبايدر ومحتوى عربي غني */}
+      <section className="py-12 px-6 bg-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
+          <div className="rounded-3xl overflow-hidden shadow-lg bg-emerald-50 p-4">
+            <Image
+              src="/sattech/iptv/library.jpg"
+              alt="مكتبة سبايدر IPTV - قنوات عربية وأفلام" 
+              width={720}
+              height={520}
+              className="w-full h-full object-cover rounded-2xl"
+            />
+          </div>
+          <div className="prose text-gray-700 text-lg leading-relaxed">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">سبايدر IPTV — قلب المحتوى العربي</h2>
+            <p>
+              اشتراك سبايدر مكرّس لتقديم أفضل القنوات العربية بجودة عالية، مع توليفة واسعة من القنوات الترفيهية، الإخبارية والرياضية. مكتبة سبايدر تضم آلاف الحلقات من المسلسلات العربية والبرامج المحلية التي يصعب إيجادها في مكان واحد، كما نوفر قوائم تشغيل مُنظَّمة حسب النوع والبلد لتسهيل العثور على المحتوى المفضل بسرعة.
+            </p>
+            <p>
+              كما يتضمن الاشتراك ميزات متقدمة مثل استئناف المشاهدة، دعم ترجمات متعددة، وخيار مشاهدة المحتوى بدقة 4K حيثما أمكن. سواء كنت تبحث عن متابعة الدوري المحلي أو مشاهدة أحدث المسلسلات، سبايدر يوفر تجربة مشاهدة غنية وموثوقة مع دعم فني سريع على مدار الساعة.
             </p>
           </div>
         </div>

@@ -30,12 +30,12 @@ const servicesKeywords = [
 export const metadata: Metadata = {
   title: "تطبيقات الويب المتكاملة – تطوير احترافي ووظائف متقدمة",
   description:
-    "نطور تطبيقات ويب متكاملة توفر وظائف متقدمة وتجربة مستخدم ممتازة. تطوير مخصص يلبي احتياجات عملك. نشمل متاجر إلكترونية ولوحات تحكم.",
-  keywords: `${servicesKeywords}, ${kuwaitCities.join(", ")}`,
+    "نطور تطبيقات ويب متكاملة توفر وظائف متقدمة وتجربة مستخدم ممتازة. حلول لمواقع IPTV، مكتبات أفلام ومسلسلات، وأنظمة إدارة المحتوى مع خدمة ممتازة ودعم فني مستمر.",
+  keywords: `${servicesKeywords}, مكتبة أفلام ومسلسلات, خدمة ممتازة, IPTV, تجربة مجانية, مشروع IPTV, ${kuwaitCities.join(", ")}`,
   openGraph: {
     title: "تطبيقات الويب المتكاملة – تطوير احترافي ووظائف متقدمة",
     description:
-      "نطور تطبيقات ويب متكاملة توفر وظائف متقدمة وتجربة مستخدم ممتازة. تطوير مخصص يلبي احتياجات عملك. نشمل متاجر إلكترونية ولوحات تحكم.",
+      "نطور تطبيقات ويب متكاملة توفر وظائف متقدمة وتجربة مستخدم ممتازة. حلول IPTV ومكتبات أفلام ومسلسلات مع خدمة ممتازة وتجربة مشاهدة متقدمة.",
     url: "https://satellitealrajaa.com/web-applications",
     images: ["/sattech/works/work2.jpg"],
     type: "website",
@@ -288,6 +288,31 @@ export default function WebApplicationsPage() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">RESTful APIs</h3>
               <p className="text-gray-600">واجهات برمجة تطبيقات قابلة للتكامل</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-4 bg-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">حلول تطبيقات IPTV ومكتبة محتوى</h2>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
+              نصمم ونطور تطبيقات ويب لمنصات IPTV وتطبيقات مكتبات أفلام ومسلسلات. نوفر تجربة مستخدم ممتازة مع دعم فني سريع وإطلاق حلول قوية تدعم البث المباشر والمحتوى حسب الطلب.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-primary mb-3">مكتبة أفلام ومسلسلات</h3>
+              <p className="text-gray-600">أنظمة إدارة محتوى متقدمة تعرض أفلام ومسلسلات بجودة عالية.</p>
+            </div>
+            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-primary mb-3">قنوات بث مباشر</h3>
+              <p className="text-gray-600">تطبيقات تدعم بث مباريات وكأس العالم والقنوات الرياضية.</p>
+            </div>
+            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-primary mb-3">خدمة ممتازة</h3>
+              <p className="text-gray-600">دعم فني سريع واستشارة مجانية لمشروعك الإعلامي.</p>
             </div>
           </div>
         </div>

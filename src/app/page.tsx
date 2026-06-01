@@ -73,7 +73,7 @@ const CONTACTS = [
 export const metadata: Metadata = buildPageMetadata({
   title: "ستلايت الرجاء | عروض كأس العالم IPTV الكويت | شاشات وستلايت | 50266068",
   description:
-    "عروض كأس العالم 2026 IPTV في الكويت. بث مباشر لجميع مباريات كأس العالم بجودة HD و4K. خدمات الشاشات والستلايت والكاميرات مع اشتراك برلين وسبايدر.",
+    "عروض كأس العالم 2026 IPTV في الكويت. بث مباشر لجميع مباريات كأس العالم بجودة HD و4K. خدمات الشاشات والستلايت والكاميرات مع اشتراك برلين وسبايدر، مكتبة أفلام ومسلسلات كبيرة، واستشارة مجانية. خدمة ممتازة لكل عشاق الترفيه.",
   path: "/",
   keywords: [
     "عروض كأس العالم IPTV",
@@ -87,6 +87,13 @@ export const metadata: Metadata = buildPageMetadata({
     "ستلايت الرجاء",
     "برلين IPTV",
     "سبايدر IPTV",
+    "مكتبة أفلام ومسلسلات",
+    "قنوات ومسلسلات",
+    "خدمة ممتازة",
+    "استشارة مجانية",
+    "IPTV مجاني",
+    "مشاهدة أفلام مجانية",
+    "مكتبة IPTV واسعة",
   ],
   ogImage: DEFAULT_OG_IMAGE,
 });
@@ -191,7 +198,99 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <section className="py-16 px-6 bg-white rounded-3xl shadow-xl max-w-6xl w-full mx-auto">
+        <div className="grid gap-10 lg:grid-cols-2 items-center">
+          <div className="prose text-gray-700 leading-relaxed text-lg">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">عروض كأس العالم 2026 في الصفحة الرئيسية — تجربة IPTV لا تُقارن</h2>
+            <p>
+              في ستلايت الرجاء، نضع بين يديك عالمًا متكاملاً من الترفيه والمباريات مع عروض كأس العالم 2026 المخصصة لمشاهدي الكويت. هذا الموسم، نقدم باقات IPTV حصرية ترتبط مباشرة بمباريات كأس العالم، لتشاهد كل مباراة كما لو كنت في الاستاد. اشتراك برلين IPTV يفتح لك أبوب القنوات الأوروبية العالمية، بينما اشتراك سبايدر IPTV يمنحك تغطية عربية كاملة لكل المباريات والتحليلات الرياضية والبرامج الحصرية. مع عرض كأس العالم، نوفر لك تفعيل سريع، دعم فني مباشر، وأسعار خاصة لفترة البطولة، مما يجعل مشاهدة مباريات كأس العالم من المنزل تجربة سلسة وممتعة.
+            </p>
+            <p>
+              لقد صممنا عروضنا لتناسب جميع الاحتياجات: إذا كنت من عشاق المباريات الأوروبية وتريد البث بجودة HD فائقة، فإن اشتراك برلين IPTV هو الخيار المثالي. أما إذا كنت تبحث عن القنوات العربية الرئيسية مثل beIN Sports وMBC للأحداث الرياضية، فاشتراك سبايدر IPTV يقدم لك هذه القنوات ضمن باقات مرنة وبسعر منافس. كما نقدم خيارات مخصصة تشمل رسيفر الجني و فلاش 4K وعلى رأسها باقات خاصة لعرض كأس العالم بدقة 4K، لتستمتع بالصورة الحقيقية والتفاصيل الدقيقة في كل مباراة.
+            </p>
+            <p>
+              الفارق الذي نقدمه لا يقتصر على نوعية القنوات فحسب، بل على التجربة الكاملة أيضًا. فكر في باقة IPTV مع دعم فني متواصل على مدار الساعة، تفعيل خلال دقائق، وخدمة عملاء قادرة على إعداد الجهاز وشرح التشغيل خطوة بخطوة. لدى ستلايت الرجاء، نقوم بتجهيز قائمة مشاهدة جاهزة لمباريات كأس العالم، ونضاف إليها مكتبة أفلام ومسلسلات عربية وعالمية حتى تستمر متعتك بعد انتهاء المباريات. هذه العروض تساعد العائلة على متابعة البطولة كاملة دون الحاجة للبحث عن القنوات أو تغيير الإعدادات في كل مرة.
+            </p>
+            <p>
+              نقدم لك عروض كأس العالم التي تغطي جميع مناطق الكويت دون استثناء: مدينة الكويت، حولي، الفروانية، الأحمدي، الجهراء، مبارك الكبير، والعديد من المناطق الأخرى. يمكنك اختيار الباقة المناسبة لك سواء كنت ترغب ببث مباشر لمباراة واحدة، أو باقة كاملة للمنافسة بأكملها، أو حتى باقة متكاملة تشمل قنوات أفلام ومسلسلات. كل هذه الخيارات متاحة بأسعار تنافسية ودون التزام طويل الأمد، مع إمكانية تجربة الخدمة أولاً قبل اختيار الاشتراك النهائي.
+            </p>
+            <p>
+              إن العروض الخاصة بكأس العالم تمنحك فرصة الحصول على باقة برلين أو سبايدر مع خصم إضافي، بالإضافة إلى باقات متكاملة تجمع بين اشتراك IPTV وجهاز رسيفر الجني أو فلاش 4K. هذا يجعل تجربتك أفضل من أي وقت مضى، فبطولة كأس العالم تحتاج إلى خدمة بث قوية ومستقرة، ونحن نضمن لك ذلك بفضل سيرفراتنا المحسنة والشبكات السريعة. إذا كنت تود مشاهدة المباريات بجودة UHD ومواصلة الترفيه بعد المباراة، فإن هذه الباقات تضع كل ذلك تحت تصرفك.
+            </p>
+            <p>
+              اختبر بنفسك لماذا أصبح ستلايت الرجاء الخيار الأول لعشاق IPTV في الكويت، وخاصة محبي كأس العالم. تواصل معنا الآن عبر الواتساب أو الهاتف للحصول على استشارة مجانية، عرض خاص، وتفعيل فوري. سواء كنت تبحث عن بث مباشر للأحداث الرياضية، باقات أفلام ومسلسلات غنية، أو جهاز استقبال متكامل، ستجد لدينا الحل الأمثل. استمتع بمشاهدة كأس العالم 2026 بأفضل جودة وراحة من المنزل مع عروض IPTV الأكثر قوة في الكويت.
+            </p>
+          </div>
+          <div className="rounded-3xl overflow-hidden shadow-lg bg-emerald-50 p-4">
+            <Image
+              src="/sattech/iptv/worldcup-fans.jpg"
+              alt="اشتراكات IPTV في الكويت مع ستلايت الرجاء"
+              width={760}
+              height={580}
+              className="w-full h-full object-cover rounded-3xl"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* IPTV و مكتبة المحتوى */}
+      <section className="py-16 px-6 bg-slate-50">
+        <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-2 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">مكتبة IPTV واسعة للقنوات والأفلام والمسلسلات</h2>
+            <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+              استمتع بأكبر مكتبة ترفيه في الكويت مع قنوات أفلام ومسلسلات عربية وعالمية، باقات رياضية، وأفلام حديثة بأعلى جودة. نقدم لك أفضل تجربة IPTV مع محتوى متجدد يومياً وخدمة ممتازة تدعم جميع الأجهزة.
+            </p>
+            <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+              سواء كنت تبحث عن مشاهدة كأس العالم، أفلام مميزة، أو مسلسلات عربية شهيرة، ستجد لدينا مكتبة ضخمة تحتوي على المحتوى الذي تحبه. استشارة مجانية قبل البدء وخدمة عملاء سريعة للرد على جميع استفساراتك.
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+                <h3 className="font-bold text-lg text-primary mb-2">قنوات كاملة</h3>
+                <p className="text-gray-600">آلاف القنوات الرياضية والأفلام والمسلسلات بجودة HD و4K.</p>
+              </div>
+              <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+                <h3 className="font-bold text-lg text-primary mb-2">محتوى متجدد</h3>
+                <p className="text-gray-600">مكتبة متجددة تحتوي على أحدث الأفلام والمسلسلات العربية والعالمية.</p>
+              </div>
+            </div>
+          </div>
+          <div className="rounded-3xl overflow-hidden shadow-xl bg-white">
+            <Image
+              src="/sattech/iptv/library.jpg"
+              alt="مكتبة IPTV واسعة قنوات أفلام ومسلسلات"
+              width={800}
+              height={600}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Stats Section */}
+      <section className="py-16 px-6 bg-emerald-50 rounded-3xl border border-emerald-100 shadow-lg max-w-6xl mx-auto">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">جرب IPTV مجاناً مع عرض تجريبي</h2>
+          <p className="text-gray-600 text-lg mb-6 max-w-3xl mx-auto leading-relaxed">
+            احصل على تجربة IPTV مجانية أو عرض تجريبي لفترة محدودة قبل اختيار الباقة المناسبة لك. نقدم خدمة ممتازة وتجربة مشاهدة مميزة عبر قنوات أفلام ومسلسلات، قنوات رياضية، وبث مباشر لكأس العالم.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
+              <h3 className="text-xl font-bold text-primary mb-3">مكتبة أفلام ومسلسلات</h3>
+              <p className="text-gray-600">محتوى متجدد من الأفلام والمسلسلات العربية والعالمية.</p>
+            </div>
+            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
+              <h3 className="text-xl font-bold text-primary mb-3">اختبار مجاني</h3>
+              <p className="text-gray-600">عرض تجريبي مجاني لتجربة البث قبل شراء الاشتراك.</p>
+            </div>
+            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
+              <h3 className="text-xl font-bold text-primary mb-3">خدمة ممتازة</h3>
+              <p className="text-gray-600">دعم فني سريع ومتابعة شخصية طوال فترة الاشتراك.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="w-full max-w-5xl my-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="bg-white rounded-2xl p-6 shadow border border-gray-100 text-center">

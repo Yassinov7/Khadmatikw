@@ -1,4 +1,5 @@
 // app/iptv/genie/page.tsx
+import Link from "next/link";
 import Image from "next/image";
 import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Tv, Radio, Zap, Award, Cpu } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
@@ -35,20 +36,29 @@ const servicesKeywords = [
 export const metadata: Metadata = {
   title: "رسيفر الجني IPTV في الكويت – أفضل رسيفرات IPTV",
   description:
-    "احصل على أفضل رسيفر الجني IPTV في الكويت. جهاز موثوق وسريع مع جودة عالية لجميع القنوات. تواصل معنا الآن للحصول على أفضل الأسعار.",
-  keywords: `${servicesKeywords.join(", ")}, ${kuwaitCities.join(", ")}`,
+    "احصل على أفضل رسيفر الجني IPTV في الكويت مع مكتبة أفلام ومسلسلات واسعة وتجربة مجانية عند الطلب. خدمة ممتازة مع دعم فني سريع وتفعيل فوري لجميع القنوات.",
+  keywords: `${servicesKeywords.join(", ")}, ${kuwaitCities.join(", ")}, مكتبة أفلام ومسلسلات, تجربة مجانية, خدمة ممتازة, IPTV مجاني, اشتراك تجريبي, بث مباشر`,
   openGraph: {
     title: "رسيفر الجني IPTV في الكويت – أفضل رسيفرات IPTV",
     description:
-      "احصل على أفضل رسيفر الجني IPTV في الكويت. جهاز موثوق وسريع مع جودة عالية لجميع القنوات.",
+      "احصل على أفضل رسيفر الجني IPTV في الكويت مع مكتبة أفلام ومسلسلات واسعة وتجربة تجريبية مجانية. جهاز موثوق وسريع مع جودة عالية لجميع القنوات.",
     url: "https://satellitealrajaa.com/iptv/genie",
     type: "website",
+    images: [
+      {
+        url: "https://satellitealrajaa.com/sattech/iptv/genie-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "رسيفر الجني IPTV في الكويت - جهاز استقبال عالي الأداء IPTV",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "رسيفر الجني IPTV في الكويت",
     description:
-      "أفضل رسيفر الجني IPTV في الكويت مع جودة عالية وخدمة موثوقة."
+      "أفضل رسيفر الجني IPTV في الكويت مع مكتبة أفلام ومسلسلات واسعة وتجربة تجريبية مجانية وخدمة ممتازة.",
+    images: ["https://satellitealrajaa.com/sattech/iptv/genie-og.jpg"],
   },
   alternates: {
     canonical: "https://satellitealrajaa.com/iptv/genie",
@@ -103,6 +113,15 @@ export default function GenieReceiverPage() {
     }
   ];
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://satellitealrajaa.com/" },
+      { "@type": "ListItem", position: 2, name: "رسيفر الجني IPTV", item: "https://satellitealrajaa.com/iptv/genie" },
+    ],
+  };
+
   return (
     <>
     <PageSeoSchemas
@@ -110,6 +129,7 @@ export default function GenieReceiverPage() {
       serviceDescription={"احصل على أفضل رسيفر الجني IPTV في الكويت. جهاز موثوق وسريع مع جودة عالية لجميع القنوات. تواصل معنا الآن للحصول على أفضل الأسعار."}
       path={"/iptv/genie"} faqs={faqs}
     />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
     <main className="relative">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/90 to-green-700 text-white min-h-[70vh] flex flex-col justify-center items-center text-center p-6">
@@ -184,6 +204,23 @@ export default function GenieReceiverPage() {
         </div>
       </section>
 
+      <section className="py-16 px-6 max-w-6xl mx-auto bg-white rounded-3xl shadow-xl">
+        <div className="prose prose-lg max-w-none text-gray-700">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">رسيفر الجني IPTV مع اشتراك سبايدر وبرلين</h2>
+          <p>
+            يعمل رسيفر الجني IPTV بشكل مثالي مع اشتراك سبايدر IPTV واشتراك برلين IPTV لعرض القنوات العربية والأوروبية معاً. هذه الباقة المتكاملة تمنحك تجربة مشاهدة شاملة للمباريات والأفلام والمسلسلات في الكويت.
+          </p>
+          <p>
+            إذا كنت تبحث عن جهاز استقبال قوي ومستقر، يمكنك الجمع بين <Link href="/iptv/spider" className="text-primary font-semibold">اشتراك سبايدر IPTV</Link> للقنوات العربية و<Link href="/iptv/berlin" className="text-primary font-semibold">اشتراك برلين IPTV</Link> للقنوات الأوروبية. نحن نساعدك على إعداد الجهاز بسرعة وتفعيله خلال دقائق.
+          </p>
+          <ul className="list-disc list-inside space-y-3 text-gray-600">
+            <li>تركيب رسيفر الجني مع اشتراك IPTV متوافق وبث ثابت بدون تقطيع.</li>
+            <li>مرونة في التبديل بين القنوات العربية والأوروبية من نفس الجهاز.</li>
+            <li>إعدادات سهلة ودعم فني من فريقنا لتشغيل الجهاز مباشرة.</li>
+          </ul>
+        </div>
+      </section>
+
       {/* Detailed Content Section */}
       <section className="py-16 px-6 max-w-6xl mx-auto">
         <div className="prose prose-lg max-w-none">
@@ -198,6 +235,30 @@ export default function GenieReceiverPage() {
             <p>
               رسيفر الجني IPTV يتميز بسهولة التركيب والتشغيل. يمكنك استخدام رسيفر الجني IPTV مع أي اشتراك IPTV متاح. رسيفر الجني IPTV يدعم جميع التطبيقات الشائعة ويأتي مع دعم فني كامل. نحن نقدم خدمة التركيب والتشغيل لرسيفر الجني IPTV في جميع مناطق الكويت.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* محتوى إضافي عن المكتبة والاشتراكات مع الجني */}
+      <section className="py-12 px-6 bg-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
+          <div className="prose text-gray-700 text-lg leading-relaxed">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">الجني — جهاز متكامل لمشاهدة عالية الجودة</h2>
+            <p>
+              رسيفر الجني يقدم تجربة مشاهدة متكاملة مع دعم لكافة اشتراكات IPTV وخيارات بث متقدمة. إلى جانب الأداء القوي، يأتي الجني محملاً بمكتبة أفلام ومسلسلات يمكن الوصول إليها بسهولة عبر واجهة بسيطة وسريعة. تتيح لك خيارات البحث والفلترة العثور على المحتوى المطلوب في ثوانٍ، كما يدعم الجهاز عرض المحتوى بدقة 4K مع إعدادات صوت متقدمة لتجربة سينمائية في المنزل.
+            </p>
+            <p>
+              سواء رغبت بربط الرسيفر مع اشتراك برلين لمتابعة القنوات الأوروبية أو مع اشتراك سبايدر للقنوات العربية، الجني يدعم التشغيل المتعدد ويوفر استقرار عالي للبث. نقدم شرح تشغيل مفصل ودعم تركيب في المكان لضمان عمل الجهاز بكفاءة من أول لحظة.
+            </p>
+          </div>
+          <div className="rounded-3xl overflow-hidden shadow-lg bg-emerald-50 p-4">
+            <Image
+              src="/sattech/iptv/library.jpg"
+              alt="تركيب رسيفر الجني وتشغيله" 
+              width={720}
+              height={520}
+              className="w-full h-full object-cover rounded-2xl"
+            />
           </div>
         </div>
       </section>
