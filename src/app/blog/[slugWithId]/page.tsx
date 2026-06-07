@@ -7,7 +7,7 @@ import Image from "next/image";
 import { ContactCard } from "@/components/ContactCard";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { absoluteUrl, articleJsonLd, buildPageMetadata } from "@/lib/seo";
+import { absoluteUrl, articleJsonLd, breadcrumbJsonLd, buildPageMetadata, webPageJsonLd } from "@/lib/seo";
 
 export const revalidate = 600;
 
@@ -107,14 +107,26 @@ export default async function BlogPostPage(props: { params: Promise<{ slugWithId
   return (
     <article className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-6 my-10">
       <JsonLd
-        data={articleJsonLd({
-          headline: post.title,
-          description,
-          url: articleUrl,
-          image: post.cover_url ?? undefined,
-          datePublished: post.created_at,
-          dateModified: post.created_at,
-        })}
+        data={[
+          webPageJsonLd({
+            name: post.title,
+            description,
+            url: articleUrl,
+          }),
+          breadcrumbJsonLd([
+            { name: "الرئيسية", path: "/" },
+            { name: "المدونة", path: "/blog" },
+            { name: post.title, path: `/blog/${slugWithId}` },
+          ]),
+          articleJsonLd({
+            headline: post.title,
+            description,
+            url: articleUrl,
+            image: post.cover_url ?? undefined,
+            datePublished: post.created_at,
+            dateModified: post.created_at,
+          }),
+        ]}
       />
 
       {/* Breadcrumb */}

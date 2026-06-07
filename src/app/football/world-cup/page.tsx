@@ -2,7 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, MessageCircle, CheckCircle, Star, Clock, Shield, HeadphonesIcon, Trophy, Globe, Tv, Award, PlayCircle, Zap, MapPin } from "lucide-react";
 import { IPTVLeagueNav } from "@/components/IPTVLeagueNav";
+import { JsonLd } from "@/components/JsonLd";
 import { Metadata } from "next";
+import { breadcrumbJsonLd, faqPageJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/seo";
 
 const kuwaitCities = [
   "مدينة الكويت", "حولى", "الفروانية", "الجهراء", "الأحمدي", "مبارك الكبير",
@@ -167,59 +169,28 @@ export default function WorldCupIPTVPage() {
     },
   ];
 
-  const breadcrumbLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://satellitealrajaa.com/" },
-      { "@type": "ListItem", position: 2, name: "كأس العالم IPTV", item: CANONICAL },
-    ],
-  };
-
-  const serviceLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "عروض كأس العالم IPTV الكويت",
-    description:
-      "بث مباشر لجميع مباريات كأس العالم 2026 في الكويت عبر IPTV بجودة HD و4K. اشتراك برلين وسبايدر مع عروض خاصة.",
-    provider: {
-      "@type": "LocalBusiness",
-      name: "ستلايت الرجاء",
-      telephone: "+96550266068",
-      url: "https://satellitealrajaa.com/",
-      areaServed: { "@type": "Country", name: "Kuwait" },
-    },
-    areaServed: kuwaitCities.map((city) => ({ "@type": "City", name: city })),
-    serviceType: "IPTV World Cup Streaming",
-    url: CANONICAL,
-  };
-
-  const faqLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: faq.answer },
-    })),
-  };
-
-  const webPageLd = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "عروض كأس العالم 2026 IPTV الكويت",
-    description: PAGE_DESCRIPTION,
-    url: CANONICAL,
-    inLanguage: "ar",
-    isPartOf: { "@type": "WebSite", name: "ستلايت الرجاء", url: "https://satellitealrajaa.com/" },
-  };
-
   return (
     <main className="relative">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }} />
+      <JsonLd data={[
+        breadcrumbJsonLd([
+          { name: "الرئيسية", path: "/" },
+
+          { name: "كأس العالم IPTV", path: CANONICAL },
+        ]),
+        serviceJsonLd({
+          name: "عروض كأس العالم IPTV الكويت",
+          description:
+            "بث مباشر لجميع مباريات كأس العالم 2026 في الكويت عبر IPTV بجودة HD و4K. اشتراك برلين وسبايدر مع عروض خاصة.",
+          path: CANONICAL,
+          serviceType: "IPTV World Cup Streaming",
+        }),
+        faqPageJsonLd(faqs),
+        webPageJsonLd({
+          name: "عروض كأس العالم 2026 IPTV الكويت",
+          description: PAGE_DESCRIPTION,
+          url: CANONICAL,
+        }),
+      ]} />
 
       {/* Hero */}
       <section className="relative bg-gradient-to-r from-emerald-800 via-green-700 to-emerald-900 text-white min-h-[75vh] flex flex-col justify-center items-center text-center p-6 border-b-4 border-yellow-400">

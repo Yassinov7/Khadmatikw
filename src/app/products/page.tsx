@@ -3,7 +3,7 @@ import { ProductsClient } from "@/components/ProductClient";
 import Link from "next/link";
 import { Tag } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
-import { absoluteUrl, breadcrumbJsonLd, buildPageMetadata, collectionPageJsonLd } from "@/lib/seo";
+import { absoluteUrl, breadcrumbJsonLd, buildPageMetadata, collectionPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { slugify } from "@/utils/slugify";
 
 export const revalidate = 3600;
@@ -46,6 +46,11 @@ export default async function ProductsPage() {
     <>
       <JsonLd
         data={[
+          webPageJsonLd({
+            name: PAGE_TITLE,
+            description: PAGE_DESCRIPTION,
+            url: absoluteUrl("/products"),
+          }),
           breadcrumbJsonLd([
             { name: "الرئيسية", path: "/" },
             { name: "جميع الخدمات", path: "/products" },

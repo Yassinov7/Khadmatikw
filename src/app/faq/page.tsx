@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Phone, Wrench, Satellite, Camera, Tv } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbJsonLd, buildPageMetadata, faqPageJsonLd } from "@/lib/seo";
+import { absoluteUrl, breadcrumbJsonLd, buildPageMetadata, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
     title: "الأسئلة الشائعة | ستلايت الرجاء | 50266068",
@@ -139,6 +139,12 @@ export default function FAQPage() {
         <section className="max-w-6xl mx-auto py-12 px-4">
             <JsonLd
                 data={[
+                    webPageJsonLd({
+                        name: "الأسئلة الشائعة | ستلايت الرجاء",
+                        description:
+                            "دليل شامل للأسئلة الشائعة عن ستلايت الرجاء وخدمات الشاشات والستلايت والكاميرات وعروض IPTV في الكويت.",
+                        url: absoluteUrl("/faq"),
+                    }),
                     breadcrumbJsonLd([
                         { name: "الرئيسية", path: "/" },
                         { name: "الأسئلة الشائعة", path: "/faq" },

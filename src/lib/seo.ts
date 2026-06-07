@@ -151,8 +151,52 @@ export function webSiteJsonLd() {
   };
 }
 
-export function localBusinessJsonLd() {
+export function webPageJsonLd(opts: { name: string; description: string; url: string }) {
   return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    inLanguage: "ar",
+    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+  };
+}
+
+export type ReviewJsonLd = {
+  name: string;
+  author: string;
+  reviewBody: string;
+  datePublished: string;
+  ratingValue?: number;
+};
+
+export function reviewJsonLd(opts: ReviewJsonLd) {
+  const review: Record<string, unknown> = {
+    "@type": "Review",
+    author: { "@type": "Person", name: opts.author },
+    datePublished: opts.datePublished,
+    reviewBody: opts.reviewBody,
+    name: opts.name,
+  };
+
+  if (typeof opts.ratingValue !== "undefined") {
+    review.reviewRating = {
+      "@type": "Rating",
+      ratingValue: String(opts.ratingValue),
+      bestRating: "5",
+      worstRating: "1",
+    };
+  }
+
+  return review;
+}
+
+export function localBusinessJsonLd(options?: {
+  reviews?: ReviewJsonLd[];
+  aggregateRating?: { ratingValue: number; reviewCount: number; bestRating?: string; worstRating?: string };
+}) {
+  const business: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: SITE_NAME,
@@ -178,6 +222,22 @@ export function localBusinessJsonLd() {
       closes: "23:59",
     },
   };
+
+  if (options?.aggregateRating) {
+    business.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: String(options.aggregateRating.ratingValue),
+      reviewCount: options.aggregateRating.reviewCount,
+      bestRating: options.aggregateRating.bestRating ?? "5",
+      worstRating: options.aggregateRating.worstRating ?? "1",
+    };
+  }
+
+  if (Array.isArray(options?.reviews) && options.reviews.length > 0) {
+    business.review = options.reviews.map((review) => reviewJsonLd(review));
+  }
+
+  return business;
 }
 
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {

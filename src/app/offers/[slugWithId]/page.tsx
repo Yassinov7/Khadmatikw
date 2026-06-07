@@ -6,7 +6,7 @@ import { slugify } from "@/utils/slugify";
 import OfferDetailsClient from "@/components/offer/OfferDetailsClient";
 import { supabase } from "@/lib/supabase";
 import { JsonLd } from "@/components/JsonLd";
-import { absoluteUrl, buildPageMetadata, offerJsonLd } from "@/lib/seo";
+import { absoluteUrl, buildPageMetadata, offerJsonLd, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 
 // استخراج id من نهاية السلاج
 function extractId(slugWithId: string): number | null {
@@ -84,14 +84,26 @@ export default async function OfferPage(props: { params: Promise<{ slugWithId: s
     return (
         <>
             <JsonLd
-                data={offerJsonLd({
-                    name: offer.title,
-                    description,
-                    url: offerUrl,
-                    image: offer.image_url ?? undefined,
-                    price: offer.product?.sale_price ?? offer.product?.price,
-                    priceValidUntil: offer.end_date,
-                })}
+                data={[
+                    webPageJsonLd({
+                        name: offer.title,
+                        description,
+                        url: offerUrl,
+                    }),
+                    breadcrumbJsonLd([
+                        { name: "الرئيسية", path: "/" },
+                        { name: "العروض الخاصة", path: "/offers" },
+                        { name: offer.title, path: `/offers/${slugWithId}` },
+                    ]),
+                    offerJsonLd({
+                        name: offer.title,
+                        description,
+                        url: offerUrl,
+                        image: offer.image_url ?? undefined,
+                        price: offer.product?.sale_price ?? offer.product?.price,
+                        priceValidUntil: offer.end_date,
+                    }),
+                ]}
             />
             <OfferDetailsClient offer={offer} relatedOffers={relatedOffers} />
         </>

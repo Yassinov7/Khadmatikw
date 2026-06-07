@@ -4,7 +4,7 @@ import { Layers } from "lucide-react";
 import { slugify } from "@/utils/slugify";
 import { getAllOffers } from "@/lib/api";
 import { JsonLd } from "@/components/JsonLd";
-import { absoluteUrl, breadcrumbJsonLd, buildPageMetadata, itemListJsonLd } from "@/lib/seo";
+import { absoluteUrl, breadcrumbJsonLd, buildPageMetadata, itemListJsonLd, webPageJsonLd } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -36,6 +36,11 @@ export default async function OffersPage() {
     <>
       <JsonLd
         data={[
+          webPageJsonLd({
+            name: PAGE_TITLE,
+            description: PAGE_DESCRIPTION,
+            url: absoluteUrl("/offers"),
+          }),
           breadcrumbJsonLd([
             { name: "الرئيسية", path: "/" },
             { name: "العروض الخاصة", path: "/offers" },

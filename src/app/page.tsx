@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
-import { DEFAULT_OG_IMAGE, buildPageMetadata, localBusinessJsonLd } from "@/lib/seo";
-import { Monitor, SatelliteDish, Camera, PenTool, Tag, Wrench, Shield, Clock, Headphones, Star, CheckCircle, Award, Users, Trophy, Tv, PlayCircle } from "lucide-react";
+import { DEFAULT_OG_IMAGE, buildPageMetadata, localBusinessJsonLd, webPageJsonLd } from "@/lib/seo";
+import { Monitor, SatelliteDish, Camera, PenTool, Wrench, Shield, Clock, Headphones, Star, CheckCircle, Award, Users, Trophy } from "lucide-react";
 import { ContactCard } from "@/components/ContactCard";
 import { ProductCard } from "@/components/ProductCard";
 import BlogCard from "@/components/BlogCard";
@@ -130,92 +130,122 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 pt-10 font-[Noto Kufi Arabic,sans-serif]">
-      <JsonLd data={localBusinessJsonLd()} />
+      <JsonLd
+        data={[
+          localBusinessJsonLd({
+            aggregateRating: { ratingValue: 5, reviewCount: TESTIMONIALS.length },
+            reviews: TESTIMONIALS.map((testimonial) => ({
+              name: `${testimonial.title} - ${testimonial.name}`,
+              author: testimonial.name,
+              reviewBody: testimonial.text,
+              datePublished: new Date().toISOString().split("T")[0],
+              ratingValue: testimonial.rating,
+            })),
+          }),
+          webPageJsonLd({
+            name: "ستلايت الرجاء | IPTV وكأس العالم في الكويت",
+            description:
+              "عروض كأس العالم IPTV في الكويت، خدمات الشاشات والستلايت والكاميرات مع تفعيل فوري ودعم فني 24/7.",
+            url: "https://satellitealrajaa.com/",
+          }),
+        ]}
+      />
 
       {/* Hero Section */}
-      <section className="w-full max-w-6xl flex flex-col items-center gap-6 mb-16 text-center">
-        <div className="relative w-32 h-32 mb-4">
-          <Image
-            src="/logo.png"
-            alt="شعار ستلايت الرجاء"
-            fill
-            priority
-            className="rounded-xl object-contain"
-          />
-        </div>
+      <section className="w-full max-w-6xl mx-auto mb-16">
+        <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-emerald-900 via-emerald-800 to-slate-950 text-white shadow-[0_40px_120px_rgba(0,0,0,0.25)]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.16),_transparent_30%)]" />
+          <div className="relative px-6 py-10 md:px-12 md:py-14">
+            <div className="flex flex-col items-center gap-6 text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold tracking-[0.18em] text-emerald-200">
+                IPTV كأس العالم 2026 | الكويت
+              </span>
 
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center text-primary">
-          ستلايت الرجاء
-        </h1>
+              <h1 className="max-w-4xl text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
+                ستلايت الرجاء — أفضل عروض IPTV وكأس العالم في الكويت
+              </h1>
 
-        <p className="text-xl md:text-2xl text-center mb-6 text-secondary font-medium max-w-3xl">
-          كل حلول الشاشات، الستلايت، والكاميرات تحت سقف واحد في الكويت.
-        </p>
+              <p className="max-w-3xl text-base sm:text-lg text-slate-200 leading-relaxed">
+                اشتراك IPTV برلين وسبايدر مع تفعيل فوري، بث مباشر لمباريات كأس العالم 2026 بجودة HD و4K، وتركيب وصيانة الشاشات والستلايت والكاميرات في جميع مناطق الكويت.
+              </p>
 
-        <p className="text-lg md:text-xl text-center mb-6 text-gray-700 leading-relaxed max-w-3xl">
-          فني ستلايت محترف يغطي جميع مناطق الكويت.<br />
-          تركيب وصيانة ستلايت بجودة عالية وبسرعة فائقة.<br />
-          محل ستلايت الرجاء جاهز لخدمتكم على مدار الساعة.
-        </p>
+              <div className="grid gap-3 sm:grid-cols-3 text-right w-full max-w-4xl">
+                <div className="rounded-3xl bg-white/10 border border-white/10 p-5 shadow-xl">
+                  <p className="text-sm uppercase tracking-[0.18em] text-emerald-200">سريع</p>
+                  <p className="mt-3 font-semibold text-xl text-white">تفعيل خلال دقائق</p>
+                </div>
+                <div className="rounded-3xl bg-white/10 border border-white/10 p-5 shadow-xl">
+                  <p className="text-sm uppercase tracking-[0.18em] text-emerald-200">مضمون</p>
+                  <p className="mt-3 font-semibold text-xl text-white">دعم فني 24/7</p>
+                </div>
+                <div className="rounded-3xl bg-white/10 border border-white/10 p-5 shadow-xl">
+                  <p className="text-sm uppercase tracking-[0.18em] text-emerald-200">متكامل</p>
+                  <p className="mt-3 font-semibold text-xl text-white">كأس العالم + مكتبة أفلام</p>
+                </div>
+              </div>
 
-        <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-6 mb-8 w-full max-w-3xl">
-          <p className="text-lg md:text-xl text-center text-cyan-700 font-semibold">
-            استمتع بأفضل اشتراكات IPTV، اشتراك برلين، واشتراك سبايدر.<br />
-            جودة عالية، أسعار مناسبة، وخدمة سريعة ومضمونة.
-          </p>
-        </div>
-
-        {/* عروض كأس العالم — بانر رئيسي */}
-        <section className="w-full max-w-5xl mb-10 rounded-2xl overflow-hidden shadow-2xl border-2 border-yellow-400/50 bg-gradient-to-br from-emerald-700 via-green-600 to-emerald-800 text-white p-8 md:p-10 text-center relative">
-          <div className="flex justify-center mb-4">
-            <Trophy size={56} className="text-yellow-300" aria-hidden />
+              <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                <Link
+                  href="/football/world-cup"
+                  className="inline-flex w-full sm:w-auto items-center justify-center rounded-xl bg-yellow-400 px-8 py-4 text-lg font-bold text-emerald-900 shadow-lg transition hover:bg-yellow-300"
+                >
+                  عروض كأس العالم IPTV
+                </Link>
+                <a
+                  href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن عروض كأس العالم IPTV."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full sm:w-auto items-center justify-center rounded-xl bg-white/10 px-8 py-4 text-lg font-bold text-white border border-white/20 hover:bg-white/20 transition"
+                >
+                  استفسار واتساب
+                </a>
+              </div>
+            </div>
           </div>
-          <h2 className="text-2xl md:text-4xl font-extrabold mb-3">
-            عروض كأس العالم 2026 IPTV في الكويت
-          </h2>
-          <p className="text-base md:text-lg opacity-95 mb-6 max-w-2xl mx-auto leading-relaxed">
-            بث مباشر لجميع مباريات كأس العالم بجودة HD و4K. اشتراك برلين، سبايدر، والجني مع تفعيل فوري ودعم فني 24/7 خلال البطولة.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 mb-6 text-sm">
-            <span className="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-full"><PlayCircle size={16} /> بث مباشر</span>
-            <span className="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-full"><Tv size={16} /> HD و 4K</span>
-            <span className="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-full"><Trophy size={16} /> جميع المباريات</span>
+        </div>
+      </section>
+
+      <section className="w-full max-w-6xl mb-10 rounded-3xl overflow-hidden border border-emerald-100 bg-white shadow-xl">
+        <div className="bg-emerald-800 px-6 py-8 text-center text-white">
+          <div className="flex flex-col items-center gap-3">
+            <Trophy size={56} className="text-yellow-300" />
+            <h2 className="text-2xl sm:text-3xl font-extrabold">عروض كأس العالم 2026 IPTV في الكويت</h2>
+            <p className="max-w-2xl text-sm sm:text-base opacity-90 leading-relaxed">
+              بث مباشر لجميع مباريات كأس العالم بجودة HD و4K. اشتراك برلين، سبايدر، والجني مع تفعيل فوري ودعم فني 24/7 خلال البطولة.
+            </p>
+          </div>
+        </div>
+        <div className="px-6 py-8 sm:px-10">
+          <div className="grid gap-4 sm:grid-cols-3 mb-8">
+            <div className="rounded-3xl border border-emerald-100 bg-emerald-50 p-5 text-right">
+              <p className="text-sm text-emerald-700">بث مباشر</p>
+              <p className="mt-3 font-semibold text-lg text-slate-900">جميع المباريات بدون انقطاع</p>
+            </div>
+            <div className="rounded-3xl border border-emerald-100 bg-emerald-50 p-5 text-right">
+              <p className="text-sm text-emerald-700">جودة عالية</p>
+              <p className="mt-3 font-semibold text-lg text-slate-900">HD و 4K مع خوادم قوية</p>
+            </div>
+            <div className="rounded-3xl border border-emerald-100 bg-emerald-50 p-5 text-right">
+              <p className="text-sm text-emerald-700">دعم فني</p>
+              <p className="mt-3 font-semibold text-lg text-slate-900">مساندة فورية طوال البطولة</p>
+            </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/football/world-cup"
-              className="px-8 py-4 rounded-xl bg-yellow-400 text-emerald-900 font-bold text-lg hover:bg-yellow-300 transition shadow-lg"
+              className="inline-flex w-full sm:w-auto items-center justify-center rounded-xl bg-emerald-900 px-8 py-4 text-base font-bold text-white shadow-lg hover:bg-emerald-800 transition"
             >
-              عروض كأس العالم IPTV
+              شاهد الباقات الآن
             </Link>
             <a
               href="https://wa.me/96550266068?text=مرحبًا، أود الاستفسار عن عروض كأس العالم IPTV."
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 rounded-xl bg-white/20 border border-white/40 font-bold text-lg hover:bg-white/30 transition"
+              className="inline-flex w-full sm:w-auto items-center justify-center rounded-xl border border-emerald-900 bg-white px-8 py-4 text-base font-bold text-emerald-900 hover:bg-emerald-50 transition"
             >
-              استفسار واتساب
+              اتصل عبر واتساب
             </a>
           </div>
-        </section>
-
-        <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full justify-center">
-          <Link href="/products" className="w-full sm:w-auto">
-            <button className="w-full px-8 py-4 rounded-xl text-white text-lg font-bold shadow-lg transition mb-2 sm:mb-0 bg-primary hover:bg-primary/90 hover:shadow-xl transform hover:-translate-y-0.5">
-              استعرض الخدمات
-            </button>
-          </Link>
-          <Link href="/offers" className="w-full sm:w-auto">
-            <button className="w-full px-8 py-4 rounded-xl text-white text-lg font-bold shadow-lg transition mb-2 sm:mb-0 bg-red-500 hover:bg-red-600 hover:shadow-xl flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
-              <Tag size={20} />
-              العروض الخاصة
-            </button>
-          </Link>
-          <Link href="/contact" className="w-full sm:w-auto">
-            <button className="w-full px-8 py-4 rounded-xl text-white text-lg font-bold shadow-lg transition bg-secondary hover:bg-secondary/90 hover:shadow-xl transform hover:-translate-y-0.5">
-              تواصل معنا
-            </button>
-          </Link>
         </div>
       </section>
 

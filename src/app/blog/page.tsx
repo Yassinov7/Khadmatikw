@@ -3,7 +3,7 @@ import { BlogClient } from "@/components/BlogClient";
 import Link from "next/link";
 import { Tag, BookOpen, TrendingUp } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
-import { absoluteUrl, breadcrumbJsonLd, buildPageMetadata, itemListJsonLd } from "@/lib/seo";
+import { absoluteUrl, breadcrumbJsonLd, buildPageMetadata, itemListJsonLd, webPageJsonLd } from "@/lib/seo";
 import { slugify } from "@/utils/slugify";
 
 export const revalidate = 3600;
@@ -39,6 +39,11 @@ export default async function BlogPage() {
     <>
       <JsonLd
         data={[
+          webPageJsonLd({
+            name: PAGE_TITLE,
+            description: PAGE_DESCRIPTION,
+            url: absoluteUrl("/blog"),
+          }),
           breadcrumbJsonLd([
             { name: "الرئيسية", path: "/" },
             { name: "المدونة", path: "/blog" },

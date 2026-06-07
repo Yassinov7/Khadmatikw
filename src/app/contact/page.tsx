@@ -1,6 +1,6 @@
 import { ContactCard } from "@/components/ContactCard";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbJsonLd, buildPageMetadata, contactPageJsonLd } from "@/lib/seo";
+import { absoluteUrl, breadcrumbJsonLd, buildPageMetadata, contactPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { Camera, SatelliteDish, Tv2, Wrench, MapPin, Clock, Phone, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
@@ -48,6 +48,12 @@ export default function ContactPage() {
     <section className="max-w-6xl mx-auto py-12 px-4">
       <JsonLd
         data={[
+          webPageJsonLd({
+            name: "تواصل معنا | ستلايت الرجاء",
+            description:
+              "اتصل مباشرة بفريق ستلايت الرجاء في الكويت لخدمات الشاشات والستلايت والكاميرات وعروض IPTV.",
+            url: absoluteUrl("/contact"),
+          }),
           contactPageJsonLd(),
           breadcrumbJsonLd([
             { name: "الرئيسية", path: "/" },

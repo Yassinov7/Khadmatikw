@@ -5,7 +5,7 @@ import { slugify } from "@/utils/slugify";
 import ProductDetailsClient from "@/components/product/ProductDetailsClient";
 import { supabase } from "@/lib/supabase";
 import { JsonLd } from "@/components/JsonLd";
-import { absoluteUrl, buildPageMetadata, productJsonLd } from "@/lib/seo";
+import { absoluteUrl, buildPageMetadata, productJsonLd, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 
 // استخراج id من نهاية slug
 function extractId(slugWithId: string): number | null {
@@ -84,15 +84,27 @@ export default async function ProductPage(props: { params: Promise<{ slugWithId:
   return (
     <>
       <JsonLd
-        data={productJsonLd({
-          name: product.name,
-          description,
-          url: productUrl,
-          image: product.image_url ?? undefined,
-          category: product.category?.name,
-          price: product.price ?? undefined,
-          salePrice: product.sale_price ?? undefined,
-        })}
+        data={[
+          webPageJsonLd({
+            name: product.name,
+            description,
+            url: productUrl,
+          }),
+          breadcrumbJsonLd([
+            { name: "الرئيسية", path: "/" },
+            { name: "الخدمات", path: "/products" },
+            { name: product.name, path: `/products/${slugWithId}` },
+          ]),
+          productJsonLd({
+            name: product.name,
+            description,
+            url: productUrl,
+            image: product.image_url ?? undefined,
+            category: product.category?.name,
+            price: product.price ?? undefined,
+            salePrice: product.sale_price ?? undefined,
+          }),
+        ]}
       />
       <ProductDetailsClient product={product} relatedProducts={relatedProducts} />
     </>
