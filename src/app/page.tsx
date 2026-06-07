@@ -70,6 +70,27 @@ const CONTACTS = [
   },
 ];
 
+const TESTIMONIALS = [
+  {
+    name: "سارة",
+    title: "عميلة سعيدة",
+    text: "خدمة ممتازة وسريعة، تم تثبيت اشتراك IPTV بكفاءة عالية وأصبح لدينا بث مباريات كأس العالم بدون أي انقطاع.",
+    rating: 5,
+  },
+  {
+    name: "خالد",
+    title: "مستخدم مستمر",
+    text: "من أفضل الفرق في الكويت، تعامل مهني وأسعار مناسبة. دعمهم الفني كان متعاونًا جدًا خلال تثبيت الجهاز.",
+    rating: 5,
+  },
+  {
+    name: "نوره",
+    title: "عميلة عربية",
+    text: "اشتراك IPTV برلين يعمل بأداء رائع، والصورة واضحة جدًا. أنصح أي شخص يبحث عن بث كأس العالم بتجربتهم.",
+    rating: 5,
+  },
+];
+
 export const metadata: Metadata = buildPageMetadata({
   title: "ستلايت الرجاء | عروض كأس العالم IPTV الكويت | شاشات وستلايت | 50266068",
   description:
@@ -442,6 +463,33 @@ export default async function HomePage() {
             <h3 className="text-secondary font-bold text-xl mb-2">دعم متواصل</h3>
             <p className="text-gray-600">خدمة ما بعد البيع عبر الاتصال أو الواتساب طوال أيام الأسبوع.</p>
           </div>
+        </div>
+      </section>
+
+      <section className="w-full max-w-6xl my-16 px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-primary">آراء عملائنا</h2>
+          <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
+            بعض من تجارب عملائنا مع اشتراكات IPTV، خدمات الشاشات، وصيانة الستلايت في الكويت.
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {TESTIMONIALS.map((testimonial) => (
+            <div key={testimonial.name} className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 text-right">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-primary">{testimonial.name}</h3>
+                  <p className="text-gray-500">{testimonial.title}</p>
+                </div>
+                <div className="flex items-center gap-1 text-yellow-500">
+                  {[...Array(testimonial.rating)].map((_, index) => (
+                    <Star key={index} size={18} />
+                  ))}
+                </div>
+              </div>
+              <p className="text-gray-700 leading-relaxed">{testimonial.text}</p>
+            </div>
+          ))}
         </div>
       </section>
 

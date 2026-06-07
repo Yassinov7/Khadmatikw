@@ -260,26 +260,28 @@ export function productJsonLd(opts: {
     brand: { "@type": "Brand", name: SITE_NAME },
   };
 
-  if (hasPrice) {
-    product.offers = {
-      "@type": "Offer",
-      price: String(opts.salePrice ?? opts.price),
-      priceCurrency,
-      availability: opts.availability ?? "https://schema.org/InStock",
-      url: opts.url,
-      seller: { "@type": "Organization", name: SITE_NAME },
-      ...(typeof opts.salePrice !== "undefined"
-        ? {
-            priceSpecification: {
-              "@type": "UnitPriceSpecification",
-              priceCurrency,
-              price: String(opts.salePrice),
-              valueAddedTaxIncluded: false,
-            },
-          }
-        : {}),
-    };
-  }
+  product.offers = {
+    "@type": "Offer",
+    availability: opts.availability ?? "https://schema.org/InStock",
+    url: opts.url,
+    seller: { "@type": "Organization", name: SITE_NAME },
+    ...(hasPrice
+      ? {
+          price: String(opts.salePrice ?? opts.price),
+          priceCurrency,
+          ...(typeof opts.salePrice !== "undefined"
+            ? {
+                priceSpecification: {
+                  "@type": "UnitPriceSpecification",
+                  priceCurrency,
+                  price: String(opts.salePrice),
+                  valueAddedTaxIncluded: false,
+                },
+              }
+            : {}),
+        }
+      : {}),
+  };
 
   if (typeof opts.ratingValue === "number" && typeof opts.reviewCount === "number") {
     product.aggregateRating = {
